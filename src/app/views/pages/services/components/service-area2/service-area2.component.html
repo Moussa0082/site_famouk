@@ -1,0 +1,28 @@
+<div class="vl-service-iner-bg sp2">
+    <div class="container">
+        <div class="row">
+            <!-- Single Service Box -->
+             @for (service of services; track $index) {
+            <div class="col-lg-4 col-md-6">
+                <div class="single-service-box mb-30" [ngClass]="{'active': service.active}"
+                    [style.backgroundImage]="'url(' + service.image + ')'"><!-- Dynamic background image -->
+                    <div class="padding-box">
+                        <div class="icon-box">
+                            <div class="icon">
+                                <span><img [src]="service.icon" alt=""></span>
+                            </div>
+                            <div class="content">
+                                <a href="javascript:void(0);" class="title">{{ service.title }}</a>
+                                <p class="para">{{ service.description }}</p>
+                            </div>
+                        </div>
+                        <div class="btniner">
+                            <a href="javascript:void(0);" class="readmore">Read More <span><img
+                                        src="assets/img/icons/vl-service-inner-arrow-right.svg" alt=""></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="overlay">
+    <div class="modal">
+      <button class="close" (click)="close.emit()">&times;</button>
+      <div class="modal-left">
+        <img [src]="module.image" alt="{{module.title}}">
+      </div>
+      <div class="modal-right">
+        <h2>{{module.title}}</h2>
+        <div class="cat">{{module.category}}</div>
+        <p class="desc">{{module.description}}</p>
+  
+        <div class="resources">
+          <a *ngIf="module.pdf" [href]="module.pdf" download class="res">Télécharger PDF</a>
+          <a *ngIf="module.video" [href]="module.video" target="_blank" class="res">Voir la vidéo</a>
+        </div>
+  
+        <div class="admin-note">
+          <small>(L'admin pourra plus tard modifier la mise en forme du contenu)</small>
+        </div>
+      </div>
+    </div>
+  </div>
+  

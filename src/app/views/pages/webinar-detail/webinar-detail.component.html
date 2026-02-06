@@ -1,0 +1,21 @@
+<div class="overlay">
+    <div class="modal webinar">
+      <button class="close" (click)="close.emit()">&times;</button>
+      <h3>{{webinar.title}}</h3>
+      <p class="muted">{{webinar.description}}</p>
+      <div class="meta">
+        <div><strong>Date:</strong> {{webinar.date | date:'fullDate'}} - {{webinar.date | date:'shortTime'}}</div>
+        <div><strong>Animateur:</strong> {{webinar.presenter}}</div>
+      </div>
+  
+      <div class="plan">
+        <label>Planifier une session (local)</label>
+        <input type="datetime-local" />
+        <div class="actions">
+          <button class="confirm">Enregistrer (local)</button>
+          <button (click)="close.emit()" class="cancel">Annuler</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,99 @@
+@use '../utils' as *;
+
+/*============= PROGRESS CSS AREA ===============*/
+.skill-progress {
+  position: relative;
+  width: 100%;
+
+  .skill-box {
+    width: 100%;
+
+    .title {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .skill-bar {
+      height: 8px;
+      width: 100%;
+      border-radius: 6px;
+      margin-top: 6px;
+      margin-bottom: 16px;
+      background: #F6F4EE;
+
+      .skill-per {
+        position: relative;
+        display: block;
+        height: 100%;
+        width: 90%;
+        border-radius: 6px;
+        background: var(--ztc-text-text-6);
+        animation: progress 0.4s ease-in-out forwards;
+        opacity: 0;
+
+        &.html {
+          width: 16%;
+          animation-delay: 0.4s;
+        }
+        &-2{
+          background: var(--ztc-text-text-8);
+        }
+      }
+    }
+  }
+}
+
+.skill-vlue {
+  display: flex;
+  justify-content: space-between;
+  .num1{
+        color: var(--ztc-text-text-3);
+        font-size: var(--ztc-font-size-font-s18);
+        line-height: var(--ztc-specing-height18);
+        font-family: var(--ztc-family-font1);
+        font-weight: var(--ztc-weight-bold);
+    & span{
+            font-weight: var(--ztc-weight-semibold);
+         
+    }
+    &-2{
+      color: var(--ztc-text-text-8);
+    }
+  }
+}
+
+span.tooltipp {
+  position: absolute;
+  right: 0;
+  top: -29px;
+  color: var(--ztc-text-text-3);
+  font-size: var(--ztc-font-size-font-s18);
+  line-height: var(--ztc-specing-height18);
+  font-family: var(--ztc-family-font1);
+  font-weight: var(--ztc-weight-bold);
+  &-2{
+    color: var(--ztc-text-text-8);
+  }
+}
+
+.cause-box-bg .skill-progress {
+  margin-bottom: 32px;
+}
+
+
+
+
+@keyframes progress {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/*============= PROGRESS CSS AREA ENDS===============*/

@@ -1,0 +1,43 @@
+<app-breadcrumb [backgroundImage]="'assets/img/breadcrumb/vl-cause-bg.png'"
+  [shape1]="'assets/img/breadcrumb/breadcrumb-shape-1.1.png'"
+  [shape2]="'assets/img/breadcrumb/breadcrumb-shape-1.2.png'"
+  [shape3]="'assets/img/breadcrumb/breadcrumb-shape-1.3.png'" [pageTitle]="'Causes'">
+</app-breadcrumb>
+<section class="vl-cause-inner sp2">
+  <div class="container">
+    <div class="row">
+      @for (cause of causes; track $index) {
+      <div class="col-lg-4 col-md-6">
+        <div class="vl-single-cause-box gray-bg mb-30">
+          <div class="vl-cause-thumb">
+            <img class="w-100" [src]="cause.image" alt="">
+            <div class="btn-area casue-btn text-center">
+              <a [href]="cause.donationLink" class="header-btn1">Donation <span><i
+                    class="fa-solid fa-arrow-right"></i></span></a>
+            </div>
+          </div>
+          <div class="vl-cause-content">
+            <div class="vl-progress">
+              <div class="skill-progress">
+                <div class="skill-box">
+                  <div class="skill-bar">
+                    <span class="skill-per" [ngStyle]="{'width': cause.progress + '%'}">
+                      <span class="tooltipp">{{ cause.progress }}%</span>
+                    </span>
+                  </div>
+                  <div class="skill-vlue">
+                    <div class="num1"><span>Raised: </span>${{ cause.raised }}</div>
+                    <div class="num1"><span>Goal: </span>${{ cause.goal }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="javascript:void(0);" class="badge mt-32">{{ cause.category }}</a>
+            <h3 class="title"><a [href]="cause.donationLink">{{ cause.title }}</a></h3>
+            <p>{{ cause.description }}</p>
+          </div>
+        </div>
+      </div>}
+    </div>
+  </div>
+</section>

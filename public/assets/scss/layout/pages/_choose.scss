@@ -1,0 +1,98 @@
+@use '../../utils/' as * ;
+
+/*============= CHOOSE CSS AREA ===============*/
+
+.vl-choose5{
+    & .vl-icon-box{
+        background: var(--ztc-bg-bg-4);
+        border-radius: 8px;
+        padding: 24px;
+        & .icon{
+            & span{
+                display: inline-block;
+                height:60px;
+                width:60px;
+                line-height:60px;
+                border-radius: 50px;
+                text-align: center;
+                background: var(--ztc-text-text-6);
+                margin-bottom: 25px;
+            }
+        }
+        & .content{
+            & .title{
+                color: var(--ztc-text-text-3);
+                transition: .3s;
+                font-size: var(--ztc-font-size-font-s20);
+                line-height: var(--ztc-specing-height20);
+                font-family: var(--ztc-family-font2);
+                font-weight: var(--ztc-weight-bold);
+                &:hover{
+                    color: var(--ztc-text-text-6);
+                    transition: .3s;
+                }
+            }
+            & .para{
+                color: var(--ztc-text-text-2);
+                font-size: var(--ztc-font-size-font-s18);
+                line-height: var(--ztc-specing-height26);
+                font-family: var(--ztc-family-font1);
+                font-weight: var(--ztc-weight-semibold);
+                padding-top: 16px;
+                padding-bottom: 25px;
+            }
+            & .readmore{
+                color: var(--ztc-text-text-3);
+                transition: .3s;
+                font-size: var(--ztc-font-size-font-s18);
+                line-height: var(--ztc-specing-height18);
+                font-family: var(--ztc-family-font2);
+                font-weight: var(--ztc-weight-bold);
+                display: inline-block;
+                &:hover{
+                    color: var(--ztc-text-text-6);
+                    transition: .3s;
+                }
+            }
+        }
+    }
+    & .single-thumb-box{
+        position: relative;
+        & .box-icon{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 40%;
+            z-index: 1;
+            & span{
+                height: 100px;
+                width:100px;
+                border-radius: 8px;
+                display: inline-block;
+                line-height: 100px;
+                background: var(--ztc-text-text-6);
+                text-align: center;
+            }
+        }
+        & .single-thmb{
+            & img{
+                border-radius:8px;
+                height: 500px;
+                object-fit: cover;
+            }
+        }
+        & .single-thmb2{
+            & img{
+                margin-top: 108px;
+                border-radius: 8px;
+                height: 470px;
+                object-fit: cover;
+                @media #{$xs}{
+                    margin-top: 0px;
+                }
+            }
+        }
+    }
+}
+
+/*============= CHOOSE CSS AREA ===============*/

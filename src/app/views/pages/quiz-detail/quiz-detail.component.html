@@ -1,0 +1,38 @@
+<div class="overlay">
+    <div class="modal quiz">
+      <button class="close" (click)="close.emit()">&times;</button>
+  
+      <ng-container *ngIf="!finished">
+        <div class="header">
+          <h3>{{quiz.title}}</h3>
+          <div class="progress">Question {{index+1}} / {{quiz.questions.length}}</div>
+        </div>
+  
+        <div class="question">{{ current.q }}</div>
+        <div class="options">
+          <button *ngFor="let o of current.options"
+                  (click)="pick(o)"
+                  [class.active]="selected===o">
+            {{o}}
+          </button>
+        </div>
+  
+        <div class="actions">
+          <button class="next" (click)="next()" [disabled]="!selected">Suivant</button>
+        </div>
+      </ng-container>
+  
+      <ng-container *ngIf="finished">
+        <div class="result">
+          <h3>Terminé 🎉</h3>
+          <p>Score : <strong>{{score}} / {{quiz.questions.length}}</strong></p>
+          <div class="percent">{{ (score/quiz.questions.length*100) | number:'1.0-0' }}%</div>
+          <div class="result-actions">
+            <button (click)="restart()">Recommencer</button>
+            <button (click)="close.emit()">Fermer</button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  

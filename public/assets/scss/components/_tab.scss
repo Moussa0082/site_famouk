@@ -1,0 +1,177 @@
+@use '../utils' as *;
+
+/*============= TAB CSS AREA ===============*/
+.event-tabs .nav-pills .nav-link.active{
+    & .event-tab-content .subheading{
+        background: var(--ztc-text-text-4);
+        transition: .3s;
+        color: var(--ztc-text-text-3);
+    }
+    & .event-tab-content{
+        border:transparent;
+        & .event-date{
+            background:var(--ztc-text-text-6);
+            transition: .3s;
+            & .title{
+                color: var(--ztc-text-text-1);
+                transition: .3s;
+            }
+            & .content{
+                & p{
+                    color: var(--ztc-text-text-1);
+                    transition: .3s;
+                }
+            }
+        }
+    }
+    & .date-event1{
+        background:var(--ztc-text-text-6);
+        transition:.3s;
+        & .date{
+            color: var(--ztc-text-text-1);
+        }
+        & .year{
+            color: var(--ztc-text-text-1);
+        }
+    }
+   
+    & .nav{
+        display:block;
+       
+    }
+    & .nav-link{
+        padding:0 !important;
+    }
+}
+
+.event-tabs .nav-pills .nav-link.active{
+    background-color:transparent;
+}
+
+
+.event-tab-content {
+    border-radius: 8px;
+    border: 1px solid rgba(24, 23, 19, 0.10);
+    overflow: hidden;
+    & .event-date{
+        & .content{
+            & p{
+                & br{
+                    @media #{$md}{
+                        display:block;
+                    }
+                    @media #{$xs}{
+                        display:block;
+                    }
+                }
+            }
+        }
+    }
+}
+.event-tabs {
+    & .subheading {
+        background: var(--ztc-bg-bg-4);
+        color: var(--ztc-text-text-2);
+        padding: 8px;
+        font-size: var(--ztc-font-size-font-s18);
+        line-height: var(--ztc-specing-height18);
+        font-family: var(--ztc-family-font1);
+        font-weight: var(--ztc-weight-semibold);
+        transition: .3s;
+    }
+    
+}
+
+
+
+.event-tabs{
+    text-align: center;
+    & .nav {
+        display: block;
+
+        @media #{$md}{
+            display: flex;
+            justify-content: space-between;
+        }
+        @media #{$xs}{
+            display: flex;
+            justify-content: space-between;
+        }
+        & .event-date {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 29px;
+            padding-bottom: 22px;
+            padding-left: 24px;
+            padding-right: 18px;
+            & .title{
+                color: var(--ztc-text-text-3);
+                font-size: var(--ztc-font-size-font-s44);
+                line-height: var(--ztc-specing-height44);
+                font-family: var(--ztc-family-font2);
+                font-weight: var(--ztc-weight-bold);
+                transition: .3s;
+                @media #{$md,$xs}{
+                    margin-right: 20px;
+                }
+            }
+            & .content{
+                & p{
+                    color: var(--ztc-text-text-3);
+                    font-size: var(--ztc-font-size-font-s20);
+                    line-height: var(--ztc-specing-height30);
+                    font-family: var(--ztc-family-font2);
+                    font-weight: var(--ztc-weight-bold);
+                    transition: .3s;
+                }
+            }
+        }
+
+        & .date-event1 {
+            padding-top: 27px;
+            padding-bottom: 24px;
+            @media #{$md}{
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            @media #{$xs}{
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+        & .date-event1 ul li span {
+            color:var(--ztc-text-text-3);
+            font-size: 44px;
+            font-weight: 700;
+            margin: 0 14px;
+            &.date{
+                font-size: var(--ztc-font-size-font-s44);
+                line-height: var(--ztc-specing-height44);
+                font-family: var(--ztc-family-font2);
+                font-weight: var(--ztc-weight-bold);
+                display:table;
+            }
+            &.year{
+                font-size: var(--ztc-font-size-font-s20);
+                line-height: var(--ztc-specing-height30);
+                font-family: var(--ztc-family-font2);
+                font-weight: var(--ztc-weight-bold);
+                margin: 0 auto;
+            }
+
+        }
+        
+        & .date-event1{
+            & ul li {
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.event-tabs .nav-link {
+    padding: 0;
+}
+
+/*============= TAB CSS AREA ENDS===============*/

@@ -1,0 +1,454 @@
+@use '../../utils/' as * ;
+
+/*============= SERVICE CSS AREA ===============*/
+.vl-services2{
+    .vl-single-service-box{
+        background: var(--ztc-bg-bg-5);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: .3s;
+        & .vl-service-box-content{
+            & .read-more{
+                & span{
+                    transition: .3s;
+                }
+            }
+        }
+        
+        &.active{
+            background: var(--ztc-text-text-10);
+            transition: .3s;
+            .read-more{
+                color:var(--ztc-text-text-1);
+                & span{
+                    color:var(--ztc-text-text-1);
+                }
+            }
+            .vl-service-box-flex{
+                .thumb{
+                    background: #fff;
+                }
+            }
+            .vl-service-box-content{
+                .title{
+                    & a{
+                        color: var(--ztc-text-text-1);
+                        transition: .3s;
+                    }
+                }
+                p{
+                    color: rgba(255, 255, 255, 0.80);
+                    transition: .3s;
+                }
+                .read-more{
+                    & span{
+                        color: var(--ztc-text-text-1);
+                        transition: 0.3s;
+                        display: inline-block;
+                        transform: rotate(-45deg);
+                    }
+                }
+            }
+            .icon span{
+               background: rgba(255, 255, 255, 0.20);
+            }
+            .icon span img.icon-1 {
+                filter: brightness(0) invert(1);
+            }
+        }
+    }
+    .vl-service-box-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .thumb {
+            background: #EBE2F2;
+            width: 155px;
+            height: 120px;
+            border-bottom-left-radius: 8px;
+            transition: .3s;
+        }
+        .sm-thumb img {
+            margin-left: 13px;
+        }
+    }
+    .icon span {
+        background: var(--ztc-bg-bg-1);
+        display: block;
+        height: 70px;
+        width: 70px;
+        line-height: 70px;
+        text-align: center;
+        border-radius: 50px;
+        margin-left: 24px;
+        transition: .3s;
+        filter: drop-shadow(0px 0px 30px rgba(0, 0, 0, 0.08));
+        & img{
+            transition: .3s;
+        }
+    }
+    .vl-service-box-content {
+        padding: 24px;
+        .title{
+            a{
+                color: var(--ztc-text-text-8);
+                font-size: var(--ztc-font-size-font-s20);
+                line-height: var(--ztc-specing-height20);
+                font-family: var(--ztc-family-font2);
+                font-weight: var(--ztc-weight-bold);
+                transition: .3s;
+                display:inline-block;
+            }
+        }
+        p{
+            color: var(--ztc-text-text-9);
+            font-size: var(--ztc-font-size-font-s18);
+            line-height: var(--ztc-specing-height26);
+            font-family: var(--ztc-family-font1);
+            font-weight: var(--ztc-weight-semibold);
+            padding-top: 16px;
+            padding-bottom: 25px;
+            transition: .3s;
+        }
+        .read-more{
+            color: var(--ztc-text-text-8);
+            font-size: var(--ztc-font-size-font-s18);
+            line-height: var(--ztc-specing-height18);
+            font-family: var(--ztc-family-font2);
+            font-weight: var(--ztc-weight-bold);
+            transition: .3s;
+            & span{
+                transition: .3s;
+            }
+        }
+    }
+    &.service-inner-page{
+        & .vl-single-service-box{
+            background: var(--ztc-bg-bg-4);
+            transition:.3s;
+            &.active{
+                background: var(--ztc-text-text-4);
+                & .icon span img{
+                    filter: none;
+                    transition:.3s;
+                }
+            }
+            & .vl-service-box-flex{
+                & .thumb{
+                    background: #E6DFE3;
+                    transition:.3s;
+                }
+            }
+            & .vl-service-box-content{
+                & .title{
+                     & a{
+                        color: var(--ztc-text-text-3);
+                        transition: .3s;
+                     }
+                }
+                & p{
+                    color: var(--ztc-text-text-2);
+                    transition: .3s;
+                }
+                & .read-more{
+                    color:var(--ztc-text-text-3);
+                    & span{
+                        transition: .3s;
+                        display: inline-block;
+                        color:var(--ztc-text-text-3);
+                    }
+                }
+            }
+        }
+    }
+}
+
+.vl-service-iner-bg{
+    .single-service-box .btniner .readmore span{
+        transition: .3s;
+        display: inline-block;
+        transform: rotate(0deg);
+    }
+    .single-service-box.active .btniner .readmore span {
+        transition: .3s;
+        display: inline-block;
+        transform: rotate(-45deg);
+    }
+}
+
+
+// Service Home -03
+.vl-service3{
+    background: var(--ztc-bg-bg-7);
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    & .shape{
+        position:absolute;
+        z-index: -1;
+    }
+    & .vl-section-title3{
+        & .subtitle{
+            background: var(--ztc-text-text-1);
+        }
+        & .title{
+            font-size: var(--ztc-font-size-font-s44);
+            line-height: var(--ztc-specing-height54);
+            padding-top: 16px;
+            padding-bottom: 0px;
+            @media #{$xs}{
+                font-size: var(--ztc-font-size-font-s30);
+                line-height: var(--ztc-specing-height40);
+            }
+        }
+    }
+    & .vl-service-box-parent{
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        transition: .3s;
+        & .vl-service-icon span {
+            background: var(--ztc-text-text-11);
+            display: inline-block;
+            height: 80px;
+            width: 80px;
+            line-height: 80px;
+            text-align: center;
+            border-top-right-radius: 8px;
+            position: absolute;
+            z-index: 9;
+            top: 49%;
+            transition: .3s;
+            @media #{$md}{
+                top:207px;
+            }
+            @media #{$xs}{
+                top:220px;
+            }
+        }
+        &  .vl-service-box{
+            &-3 {
+                background:var(--ztc-bg-bg-7);
+                border: 24px solid var(--ztc-text-text-1);
+                border-radius: 8px;
+                transition: .3s;
+                position: relative;
+                overflow: hidden;
+                & .service-thumb{
+                    position:relative;
+                    height:294px;
+                    transition: .3s;
+                    @media #{$md,$xs}{
+                        height:100%;
+                    }
+                    & img{
+                        transition: .3s;
+                    }
+                    & .service-icon{
+                        & span{
+                            height: 80px;
+                            width: 80px;
+                            line-height: 80px;
+                            text-align: center;
+                            background: var(--ztc-text-text-11);
+                            display: block;
+                            border-top-right-radius: 8px;
+                            position: absolute;
+                            bottom: 0;
+                            left:-24px;
+                            transition: .3s;
+                        }
+                    }
+                }
+                & .service-content{
+                    padding: 24px;
+                    padding-bottom: 0;
+                    transition: .3s;
+                    & .title{
+                        font-size: var(--ztc-font-size-font-s24);
+                        line-height: var(--ztc-specing-height24);
+                        font-family: var(--ztc-family-font2);
+                        font-weight: var(--ztc-weight-bold);
+                        color: var(--ztc-text-text-11);
+                        padding-bottom: 16px;
+                        transition: .3s;
+                        display: inline-block;
+                        &:hover{
+                            color:var(--ztc-text-text-12);
+                            transition: .3s;
+                        }
+                    }
+                    & .para{
+                        font-size: var(--ztc-font-size-font-s18);
+                        line-height: var(--ztc-specing-height28);
+                        font-family: var(--ztc-family-font1);
+                        font-weight: var(--ztc-weight-semibold);
+                        color: var(-ztc-text-text-13);
+                        transition: .3s;
+                    }
+                    & .rmore{
+                        font-size: var(--ztc-font-size-font-s20);
+                        line-height: var(--ztc-specing-height18);
+                        font-family: var(--ztc-family-font1);
+                        font-weight: var(--ztc-weight-bold);
+                        color: var(--ztc-text-text-11);
+                        display:inline-block;
+                        transition: .3s;
+                        transform:translateY(50px);
+                        & span{
+                            transform:rotate(-45deg);
+                            display:inline-block;
+                            transition: .3s;
+                        }
+                        &:hover{
+                            transition: .3s;
+                            color: var(--ztc-text-text-12);
+                        }
+                    }
+                }
+            }
+        }
+        &:hover{
+            transition: .3s;
+            & .service-thumb {
+                transform: translateY(-40px);
+                & .service-icon span{
+                    left:0;
+                }
+            }
+            & .service-content{
+                transform: translateY(-42px);
+                & .rmore {
+                    transform: translateY(24px);
+                }
+            }
+        }
+    }
+    
+}
+
+
+.vl-service-box-parent:hover .vl-service-icon span {
+    transform: translateY(-40px);
+    left: 24px;
+    transition: .3s;
+    background: var(--ztc-text-text-12);
+}
+
+// Service Inner page
+
+.vl-service-iner-bg{
+    background:var(--ztc-bg-bg-4);
+    & .single-service-box{
+        position:relative;
+        z-index:1;
+        height:370px;
+        border-radius:8px;
+        overflow: hidden;
+        background-position:center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        &:after{
+            position:absolute;
+            content:"";
+            left:0;
+            top:0;
+            height:100%;
+            width:100%;
+            background: #181713;
+            opacity: .7;
+            z-index: -1;
+        }
+        & .padding-box{
+            padding:32px;
+            padding-top:78px;
+            & .icon-box{
+                overflow: hidden;
+                transform: translateY(97px);
+                transition:.3s;
+                & .icon{
+                    & span{
+                        background: var(--ztc-text-text-1);
+                        height:70px;
+                        width:70px;
+                        display:block;
+                        border-radius:50px;
+                        line-height: 70px;
+                        text-align:center;
+                        & img{
+                            height:32px;
+                            width:32px;
+                        }
+                    }
+                }
+                & .content{
+                    & .title{
+                        color:var(--ztc-text-text-1);
+                        font-size: var(--ztc-font-size-font-s28);
+                        line-height: var(--ztc-specing-height28);
+                        font-family: var(--ztc-family-font2);
+                        font-weight: var(--ztc-weight-bold);
+                        display:inline-block;
+                        padding-top: 32px;
+                        padding-bottom:16px;
+                        @media #{$md}{
+                            font-size: 25px;
+                            line-height: 25px;
+                            padding-top: 16px;
+                        }
+                        @media #{$xs}{
+                            font-size: 25px;
+                            line-height: 25px;
+                            padding-top: 16px;
+                        }
+                    }
+                    & .para{
+                        color:rgba(255,255,255,.8);
+                        font-size: var(--ztc-font-size-font-s18);
+                        line-height: var(--ztc-specing-height26);
+                        font-family: var(--ztc-family-font1);
+                        font-weight: var(--ztc-weight-semibold);
+                        opacity:0;
+                        visibility: hidden;
+                    }
+                }
+            }
+            
+            & .btniner{
+                & .readmore{
+                    color:var(--ztc-text-text-1);
+                    font-size: var(--ztc-font-size-font-s18);
+                    line-height: var(--ztc-specing-height18);
+                    font-family: var(--ztc-family-font2);
+                    font-weight: var(--ztc-weight-bold);
+                    display:inline-block;
+                    margin-top:24px;
+                    & span{
+                        display:inline-block;
+                        & img{
+                            height:20px;
+                            width:20px;
+                        }
+                    }
+                }
+            }
+        }
+        &.active{
+            & .padding-box{
+                & .icon-box{
+                    transition:.3s;
+                    transform: translateY(0px);
+                    & .content{
+                        & .para{
+                            opacity:1;
+                            visibility: visible;
+                        }
+                    }
+                }
+            }
+        }
+   }
+}
+
+
+/*============= SERVICE CSS AREA ENDS===============*/

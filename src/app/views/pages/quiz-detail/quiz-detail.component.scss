@@ -1,0 +1,13 @@
+.overlay{ position:fixed; inset:0; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; z-index:3000; padding:16px; }
+.modal.quiz{ background:#fff; width:100%; max-width:700px; border-radius:12px; padding:18px; position:relative; box-shadow:0 12px 32px rgba(0,0,0,0.18); animation:pop .25s ease; }
+.close{ position:absolute; right:12px; top:8px; background:transparent; border:none; font-size:26px; cursor:pointer; }
+.header{ display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; }
+.question{ font-size:18px; margin-bottom:12px; color:#222; }
+.options{ display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+.options button{ text-align:left; padding:10px 12px; border-radius:10px; border:1px solid rgba(0,0,0,0.06); background:#fff; cursor:pointer; transition:transform .12s, box-shadow .12s; }
+.options button.active{ background:#ffd54f; box-shadow:0 6px 18px rgba(255,197,40,0.14); transform:translateY(-2px); }
+.actions{ text-align:right; }
+.next{ background:#ffb74d; border:none; padding:8px 14px; border-radius:10px; font-weight:700; cursor:pointer; }
+.result{ text-align:center; padding:8px 12px; }
+.percent{ font-size:28px; font-weight:800; margin:8px 0; color:#ffb74d; }
+.result-actions button{ margin:6px; padding:8px 12px; border-radius:8px; border:none; cursor:pointer; }

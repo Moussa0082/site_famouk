@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let w of filtered">
+      <article class="web-card">
+        <h4>{{w.title}}</h4>
+        <p class="muted">{{w.description}}</p>
+        <div class="meta">
+          <span class="date">{{w.date | date:'mediumDate'}}</span>
+          <span class="presenter">Par {{w.presenter}}</span>
+        </div>
+        <div class="actions">
+          <button (click)="open(w)" class="btn">Détails / Planifier</button>
+        </div>
+      </article>
+    </div>
+  </div>
+  
+  <app-webinar-detail *ngIf="selected" [webinar]="selected" (close)="close()"></app-webinar-detail>
+  

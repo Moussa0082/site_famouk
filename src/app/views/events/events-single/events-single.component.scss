@@ -1,0 +1,28 @@
+.event-single-section {
+    .event-title {
+      font-weight: 700;
+      color: #222;
+    }
+  
+    .event-meta {
+      font-size: 0.95rem;
+      i {
+        color: #007bff;
+      }
+    }
+  
+    .event-description {
+      font-size: 1rem;
+    }
+  
+    .badge {
+      font-size: 0.85rem;
+      background: #e8f0fe;
+    }
+  
+    img {
+      max-height: 400px;
+      object-fit: cover;
+    }
+  }
+  

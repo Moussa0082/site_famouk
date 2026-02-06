@@ -1,0 +1,241 @@
+<header>
+    <div class="header-area homepage1 header header-sticky d-none d-lg-block mt-16" id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header-elements header-elements-1">
+                        <div class="site-logo">
+                            <a routerLink="/"><img src="assets/img/logo/vl-logo-1.1.png" alt="Logo"></a>
+                        </div>
+                        <div class="main-menu">
+                            <ul>
+                                <li [ngClass]="{
+                                active: activeLink === 'about'
+                              }" (click)="setActiveLink('about')"><a [ngxScrollTo]="'#about'">About</a></li>
+                                <li [ngClass]="{
+                                active: activeLink === 'cause'
+                              }" (click)="setActiveLink('cause')"><a [ngxScrollTo]="'#cause'">Cause</a></li>
+                                <li [ngClass]="{
+                                active: activeLink === 'event'
+                              }" (click)="setActiveLink('event')"><a [ngxScrollTo]="'#event'">Event</a></li>
+                                <li [ngClass]="{
+                                active: activeLink === 'testimonial'
+                              }" (click)="setActiveLink('testimonial')"><a
+                                        [ngxScrollTo]="'#testimonial'">Testimonial</a></li>
+                                <li [ngClass]="{
+                                active: activeLink === 'gallery'
+                              }" (click)="setActiveLink('gallery')"><a [ngxScrollTo]="'#gallery'">Gallery</a></li>
+                                <li [ngClass]="{
+                                active: activeLink === 'volunteer'
+                              }" (click)="setActiveLink('volunteer')"><a [ngxScrollTo]="'#volunteer'">Volunteer</a>
+                                </li>
+                                <li [ngClass]="{
+                                active: activeLink === 'blog'
+                              }" (click)="setActiveLink('blog')"><a [ngxScrollTo]="'#blog'">Blog</a></li>
+                                <li [ngClass]="{
+                                active: activeLink === 'contact'
+                              }" (click)="setActiveLink('contact')"><a [ngxScrollTo]="'#contact'">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-area">
+                            <a routerLink="/contact" class="header-btn1">Donate <span><i
+                                        class="fa-solid fa-arrow-right"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-sidebar mobile-sidebar1" [ngClass]="{ 'mobile-menu-active': isMenuOpen }">
+    <div class="logosicon-area">
+        <div class="logos">
+            <img src="assets/img/logo/vl-footer-logo-1.1.png" alt="">
+        </div>
+        <div class="menu-close" (click)="closeMenu()">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+    </div>
+    <div class="mobile-nav mobile-nav1">
+        <ul>
+            <li [ngClass]="{
+            active: activeLink === 'about'
+          }" (click)="setActiveLink('about')"><a [ngxScrollTo]="'#about'">About</a></li>
+            <li [ngClass]="{
+            active: activeLink === 'cause'
+          }" (click)="setActiveLink('cause')"><a [ngxScrollTo]="'#cause'">Cause</a></li>
+            <li [ngClass]="{
+            active: activeLink === 'event'
+          }" (click)="setActiveLink('event')"><a [ngxScrollTo]="'#event'">Event</a></li>
+            <li [ngClass]="{
+            active: activeLink === 'testimonial'
+          }" (click)="setActiveLink('testimonial')"><a [ngxScrollTo]="'#testimonial'">Testimonial</a></li>
+            <li [ngClass]="{
+            active: activeLink === 'gallery'
+          }" (click)="setActiveLink('gallery')"><a [ngxScrollTo]="'#gallery'">Gallery</a></li>
+            <li [ngClass]="{
+            active: activeLink === 'volunteer'
+          }" (click)="setActiveLink('volunteer')"><a [ngxScrollTo]="'#volunteer'">Volunteer</a>
+            </li>
+            <li [ngClass]="{
+            active: activeLink === 'blog'
+          }" (click)="setActiveLink('blog')"><a [ngxScrollTo]="'#blog'">Blog</a></li>
+            <li [ngClass]="{
+            active: activeLink === 'contact'
+          }" (click)="setActiveLink('contact')"><a [ngxScrollTo]="'#contact'">Contact</a></li>
+        </ul>
+        <div class="allmobilesection">
+            <!-- btn -->
+            <a routerLink="/contact" class="header-mobile-btn1">Get Started <span><i
+                        class="fa-solid fa-arrow-right"></i></span></a>
+
+            <div class="vl-mobile-contact1">
+                <h3 class="title">Contact Info</h3>
+                <div class="footer1-contact-info">
+                    <div class="contact-info-single">
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+                        <div class="contact-info-text">
+                            <a href="tel:+3(924)4596512">+3(924)4596512</a>
+                        </div>
+                    </div>
+
+                    <!-- single footer -->
+                    <div class="contact-info-single">
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="contact-info-text">
+                            <a href="mailto:info&#64;example.com">info&#64;example.com</a>
+                        </div>
+                    </div>
+
+                    <!-- single footer -->
+                    <div class="contact-info-single">
+                        <div class="contact-info-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="contact-info-text">
+                            <a href="mailto:info&#64;example.com">55 East Birchwood Ave.Brooklyn, <br> New York 11201,United
+                                States</a>
+                        </div>
+                    </div>
+
+
+                    <div class="vl-mobile-contact1">
+                        <h3 class="title">Social Links</h3>
+                        <div class="social-links-mobile-menu">
+                            <ul>
+                                <li><a href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href="javascript:void(0);"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                <li><a href="javascript:void(0);"><i class="fa-brands fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="vl-banner p-relative fix">
+    <ngx-slick-carousel [config]="sliderConfig" class="slider-active-1">
+        <!-- single slider -->
+        <div ngxSlickItem class="vl-hero-slider vl-hero-bg"
+            style="background-image: url(./assets/img/banner/vl-banner-1.1.png);">
+            <div class="vl-hero-shape shape-1">
+                <img src="assets/img/shape/vl-hero-shape-1.1.png" alt="">
+            </div>
+            <div class="vl-hero-shape shape-2">
+                <img src="assets/img/shape/vl-hero-shape-1.2.png" alt="">
+            </div>
+
+            <div class="vl-hero-social d-none d-lg-block">
+                <h4 class="title">Follow Us:</h4>
+                <div class="vl-hero-social-icon">
+                    <ul>
+                        <li><a href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="javascript:void(0);"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="javascript:void(0);"><i class="fa-brands fa-github"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="vl-hero-section-title">
+                            <h5 class="vl-subtitle"> <span><img src="assets/img/icons/vl-sub-title-icon.svg"
+                                        alt=""></span> Recognizing Our Disaster Relief Heroes</h5>
+                            <h1 class="vl-title text-anime-style-3">Disaster Relief Funding</h1>
+                            <p>In times of crisis, when disaster strikes and hope seems lost, <br> there emerge unsung
+                                heroes who rise to the occasion.</p>
+                            <div class="vl-hero-btn">
+                                <a routerLink="/contact" class="header-btn1">Join The Relief Effort <span><i
+                                            class="fa-solid fa-arrow-right"></i></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- single slider -->
+        <div ngxSlickItem class="vl-hero-slider vl-hero-bg"
+            style="background-image: url(./assets/img/banner/vl-banner-1.1.png);">
+            <div class="vl-hero-shape shape-1">
+                <img src="assets/img/shape/vl-hero-shape-1.1.png" alt="">
+            </div>
+            <div class="vl-hero-shape shape-2">
+                <img src="assets/img/shape/vl-hero-shape-1.2.png" alt="">
+            </div>
+
+            <div class="vl-hero-social d-none d-lg-block">
+                <h4 class="title">Follow Us:</h4>
+                <div class="vl-hero-social-icon">
+                    <ul>
+                        <li><a href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a></li>
+                        <li><a href="javascript:void(0);"><i class="fa-brands fa-twitter"></i></a></li>
+                        <li><a href="javascript:void(0);"><i class="fa-brands fa-github"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="vl-hero-section-title">
+                            <h5 class="vl-subtitle"> <span><img src="assets/img/icons/vl-sub-title-icon.svg"
+                                        alt=""></span> Recognizing Our Disaster Relief Heroes</h5>
+                            <h1 class="vl-title text-anime-style-3">Disaster Relief Funding</h1>
+                            <p>In times of crisis, when disaster strikes and hope seems lost, <br> there emerge unsung
+                                heroes who rise to the occasion.</p>
+                            <div class="vl-hero-btn">
+                                <a routerLink="/contact" class="header-btn1">Join The Relief Effort <span><i
+                                            class="fa-solid fa-arrow-right"></i></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5"></div>
+                </div>
+            </div>
+        </div>
+    </ngx-slick-carousel>
+    <div class="vl-arrow">
+        <span class="prev-arow"><i class="fa-solid fa-angle-right"></i></span>
+        <span class="next-arow"><i class="fa-solid fa-angle-left"></i></span>
+    </div>
+</div>
+<app-about id="about" />
+<app-cause id="cause" />
+<app-event id="event" />
+<app-testimonial id="testimonial" />
+<app-gallary id="gallery" />
+<app-team-area id="volunteer" />
+<app-blog-area id="blog" />
+<app-subscribe id="contact" />

@@ -1,0 +1,825 @@
+@use '../../utils/' as * ;
+
+/*============= HERO CSS AREA ===============*/
+
+.vl-hero-shape.shape-2 {
+    right: 0;
+    bottom: 0;
+}
+.vl-hero{
+    position: relative;
+    z-index: 1;
+    &-bg{
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color:#ddd;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        &:after{
+            position: absolute;
+            content: "";
+            left:0;
+            top: 0;
+            height:100%;
+            width:100%;
+            background: #181713;
+            opacity: .5;
+            z-index: -1;
+        }
+    }
+    &-section-title{
+        padding-top: 208px;
+        padding-bottom: 108px;
+        @media #{$md}{
+            padding-top: 120px;
+        }
+        .vl-subtitle{
+            display: inline-block;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            background: rgba(255, 255, 255, 0.20);
+            backdrop-filter: blur(25px);
+            color: var(--ztc-text-text-1);
+            font-size: var(--ztc-font-size-font-s20);
+            line-height: var(--ztc-specing-height20);
+            font-weight: var(--ztc-weight-semibold);
+            font-family: var(--ztc-family-font1);
+            padding: 8px 12px;
+            transform: translateX(100px);
+            opacity: 0;
+            visibility: hidden;
+            transition: 1300ms;
+            span{
+                display: inline-block;
+            }
+            @media #{$xs}{
+                font-size: var(--ztc-font-size-font-s16);
+                line-height: var(--ztc-specing-height16);
+            }
+        }
+        & .vl-title{
+            color: var(--ztc-text-text-1);
+            font-size: var(--ztc-font-size-font-s90);
+            line-height: var(--ztc-specing-height92);
+            font-weight: var(--ztc-weight-bold);
+            font-family: var(--ztc-family-font2);
+            padding-top: 16px;
+            padding-bottom: 16px;
+            transform: translateX(250px);
+            transition: 1400ms;
+            opacity: 0;
+            visibility: hidden;
+            @media #{$md}{
+                font-size: var(--ztc-font-size-font-s55);
+                line-height: var(--ztc-specing-height55);
+            }
+            @media #{$xs}{
+                font-size: var(--ztc-font-size-font-s48);
+                line-height: var(--ztc-specing-height50);
+            }
+        }
+
+        & p{
+            color: rgba(255, 255, 255, 0.90);
+            font-size: var(--ztc-font-size-font-s20);
+            line-height: var(--ztc-specing-height30);
+            font-weight: var(--ztc-weight-semibold);
+            font-family: var(--ztc-family-font1);
+            padding-bottom:32px;
+            transform: translateX(250px);
+            transition: 1600ms;
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+    &-shape{
+        position: absolute;
+        &.shape{
+            transition: .3s;
+            &-1{
+                top:0;
+                left:0;
+                & img {
+                    transform: translateX(-200px);
+                    transition: .3s;
+                }
+            }
+            &-2{
+                bottom:0;
+                right:0;
+                & img {
+                    transform: translateX(200px);
+                    transition: .3s;
+                }
+            }
+        }
+    }
+    &-social {
+        position: absolute;
+        top: 340px;
+        transition: 1300ms;
+        opacity: 1;
+        visibility: visible;
+        @media #{$md}{
+            top:215px;
+            left: -44px;
+        }
+        & .title{
+            color: var(--ztc-text-text-1);
+            font-size: var(--ztc-font-size-font-s20);
+            line-height: var(--ztc-specing-height20);
+            font-weight: var(--ztc-weight-semibold);
+            font-family: var(--ztc-family-font2);
+            transform: rotate(90deg);
+            position: relative;
+            top: -52px;
+            left: 16px;
+            @media #{$xxl}{
+                left: 0px;
+            }
+            @media #{$xl}{
+                left: -4px;
+            }
+        }
+        &-icon{
+            position: absolute;
+            right: 17px;
+            @media #{$xxl}{
+                right: 35px;
+            }
+            @media #{$xl}{
+                right: 39px;
+            }
+            & ul li a {
+                background: #41413F;
+                display: inline-block;
+                height: 32px;
+                width: 32px;
+                text-align: center;
+                border-radius: 50px;
+                line-height: 32px;
+                color: #fff;
+                border: 2px solid #545351;
+                margin-bottom: 8px;
+                transition: .3s;
+                &:hover{
+                    background:  var(--ztc-text-text-4);
+                    transition: .3s;
+                    border: 2px solid var(--ztc-text-text-4);
+                    color: var(--ztc-text-text-3);
+                }
+            }
+        }
+        
+    }
+}
+
+
+
+
+.vl-hero-slider.vl-hero-bg.slick-slide.slick-current.slick-active{
+    & .vl-hero{
+        &-shape{
+            &.shape{
+                &-1{
+                    & img {
+                        transform: translateX(0px);
+                        transition: 1400ms;
+                    }
+                }
+                &-2 img {
+                    transform: translateX(0px);
+                    transition: 1400ms;
+                }
+            }
+        }
+    }
+    & .vl-hero-section-title{
+        .vl-subtitle {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0px);
+            transition: 1400ms;
+        }
+        .vl-title{
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+            transition: 1400ms;
+        }
+        p{
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+            transition: 1600ms;
+        }
+        .vl-hero-btn .header-btn1{
+            transform: translateY(0px);
+            opacity: 1;
+            visibility: visible;
+            transition: 1400ms;
+        }
+        .vl-hero-social{
+            transform: translateX(0px);
+            transition: 1300ms;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+
+
+
+// arrow
+
+
+.vl-arrow{
+    &  span {
+        background: var(--ztc-text-text-1);
+        color: var(--ztc-text-text-3);
+        height: 56px;
+        width: 56px;
+        display: inline-block;
+        line-height: 56px;
+        text-align: center;
+        font-size: 25px;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: .3s;
+        &:hover{
+            background: var(--ztc-text-text-4);
+        }
+    }
+    .prev-arow {
+        position: absolute;
+        right: 24px;
+        bottom: 100px;
+        @media #{$md}{
+           bottom:140px;
+        }
+    }
+    .next-arow {
+        position: absolute;
+        right: 24px;
+        bottom: 20px;
+        @media #{$md}{
+            bottom:73px;
+         }
+    }
+}
+
+
+
+// Home 2 css
+
+.vl-banner2 {
+    padding-top: 176px;
+    padding-bottom: 220px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    @media #{$md}{
+        padding-top: 145px;
+        padding-bottom: 145px;
+    }
+    @media #{$xs}{
+        padding-top: 145px;
+        padding-bottom: 145px;
+    }
+    &-content{
+        p{
+            font-size: var(--ztc-font-size-font-s20);
+            line-height: var(--ztc-specing-height30);
+            color: rgba(255, 255, 255, 0.90);
+            margin-left: 93px;
+            font-family: var(--ztc-family-font1);
+            font-weight: var(--ztc-weight-semibold);
+            @media #{$md,$xs}{
+                margin-left: 0px;
+            }
+
+        }
+    }
+}
+
+.vl-banner-shape-2{
+    position: absolute;
+    &.shape-1 {
+        left: 0;
+    }
+    &.shape-2{
+        bottom: 146px;
+        left: 355px;
+    }
+    &.shape-3{
+        left: 40%;
+        top: 18%;
+    }
+    &.shape-4{
+        right: 24%;
+        top: 53%;
+    }
+    &.shape-5{
+       bottom: 0;
+    }
+    &.shape-6 {
+        top: 0;
+        right: 0;
+        height: 100%;
+    }
+}
+
+
+// Home 3 css
+.banner-thmub3.d-lg-none {
+    & img{
+        border-radius: 8px;
+    }
+    @media #{$xs}{
+        margin-top: 82px;
+        margin-bottom: 30px;
+    }
+}
+
+.vl-banner-3{
+    position:relative;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-size: cover;
+    background-position: center;
+    @media #{$xs}{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    & .vl-banner-content {
+        position: relative;
+        height: 675px;
+        @media #{$md,$xs}{
+            height: 100%;
+         }
+        @media #{$xs}{
+            height: 100%;
+         }
+    }
+    & .banner-thumb img {
+        position: absolute;
+        width: 100%;
+    }
+    & .vl-section-heading3 {
+        padding: 400px 0 0;
+        position: relative;
+        display: flex;
+        align-items: end;
+        @media #{$md,$xs}{
+            display: block;
+            padding-top: 50px;
+         }
+        @media #{$xs}{
+          padding: 0;
+        }
+    }
+    
+}
+
+
+.vl-banner-3-bg {
+    background-image: url(/assets/img/banner/banner3.png);
+    height: 770px;
+    background-size: cover;
+    background-repeat: round;
+    margin-left: 57px;
+    margin-right: 57px;
+    @media #{$md}{
+        background-repeat: no-repeat;
+        background-position: center;
+        height: auto;
+        background-size: contain;
+        margin-top: -210px;
+        margin-left: 24px;
+        margin-right: 24px;
+    }
+    @media #{$xs}{
+        background-image: none !important;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: auto;
+        background-size: contain;
+        margin-top: -282px;
+        margin-left: 15px;
+        margin-right: 15px;
+        border-radius: 8px;
+    }
+    .vl-section-heading3 {
+        padding-top: 447px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        @media #{$md,$xs}{
+            display: block;
+            padding-top: 96px;
+        }
+    }
+}
+
+
+
+
+
+// Home 4 css
+.vl-section-banner4{
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    & .shape2{
+        position: absolute;
+        right:0;
+        top:140px;
+    }
+    & .shape3{
+        position: absolute;
+        bottom:0;
+    }
+    & .shape{
+        position: absolute;
+        top:0;
+        height:100%;
+        width: 100%;
+        z-index: -1;
+    }
+    & .vl-padding-top{
+        & .vl-section-title{
+            padding-top: 214px;
+            padding-bottom: 110px;
+        }
+    }
+    & .vl-section-title{
+        & .subtitle{
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            background: rgba(255, 255, 255, 0.20);
+            backdrop-filter: blur(25px);
+            display: inline-block;
+            color: var(--ztc-text-text-1);
+            font-size: var(--ztc-font-size-font-s20);
+            line-height: var(--ztc-specing-height20);
+            font-family: var(--ztc-family-font1);
+            font-weight: var(--ztc-weight-semibold);
+            padding: 8px 12px;
+            & span{
+                & img{
+                    height: 20px;
+                    width: 20px;
+                    display: inline-block;
+                }
+            }
+        }
+        & .title{
+            color: var(--ztc-text-text-1);
+            font-size: var(--ztc-font-size-font-s80);
+            line-height: var(--ztc-specing-height82);
+            font-family: var(--ztc-family-font2);
+            font-weight: var(--ztc-weight-bold);
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+        & .para{
+            color: rgba(255, 255, 255, 0.90);
+            font-family: var(--ztc-family-font1);
+            font-size: var(--ztc-font-size-font-s20);
+            line-height: var(--ztc-specing-height30);
+            font-weight: var(--ztc-weight-semibold);
+        }
+    }
+}
+
+// home 4
+.baner4-active .slick-dots{
+    &::after {
+        position: absolute;
+        content: "";
+        height: 100px;
+        width: 4px;
+        background-image: url(/assets/img/icons/vl-dot-line-3.2.svg);
+        background-size:cover;
+        z-index: 1;
+        left: 18px;
+        top: 90px;
+    }
+    &::before {
+        position: absolute;
+        content: "";
+        height: 100px;
+        width: 4px;
+        background-image: url(/assets/img/icons/vl-dot-line-3.1.svg);
+        background-size:cover;
+        z-index: 1;
+        left: 18px;
+        top: -113px;
+    }
+}
+
+.baner4-active .slick-dots li.slick-active {
+    background: var(--ztc-text-text-14);
+    position: relative;
+    height: 10px;
+    width: 10px;
+}
+
+.baner4-active .slick-dots li.slick-active:after {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    border: 1px solid var(--ztc-text-text-14);
+    border-radius: 50px;
+    left: -5px;
+    top: -5px;
+}
+
+
+
+.baner4-active {
+    height: 782px;
+    overflow: hidden;
+    position: relative;
+    z-index:1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    @media #{$md}{
+        height:auto;
+    }
+    @media #{$xs}{
+        height:auto;
+    }
+    & .slick-dots {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 18px;
+        @media #{$md}{
+            right:10px;
+            left: auto;
+            
+        }
+        @media #{$xs}{
+            right:0px;
+            left: auto;
+            top: 60%;
+        }
+    }
+    
+    & .slick-dots li {
+        background: #fff;
+        height: 12px;
+        width: 12px;
+        border-radius: 50px;
+        margin: 12px 14px;
+        text-align: center;
+        line-height: 12px;
+        font-size: 0;
+        cursor: pointer;
+    }
+}
+.vl-banner4{
+    position: relative;
+    z-index:1;
+    overflow:hidden;
+    height:782px;
+    @media #{$md}{
+        height:auto;
+    }
+    @media #{$xs}{
+        height:auto;
+    }
+    & .shape{
+        position: absolute;
+        left: 117px;
+        height: 100%;
+        width: 100%;
+        & img{
+            height: 100%;
+        }
+    }
+    & .shape2{
+        position:absolute;
+        right:0;
+    }
+    & .shape3{
+        position:absolute;
+        bottom:0;
+    }
+    & .banner-content{
+        padding-top: 214px;
+        padding-bottom: 118px;
+        transform: translateX(-400px);
+        opacity: 0;
+        visibility: hidden;
+        transition: 1600ms;
+        @media #{$md}{
+            padding-bottom: 0px;
+        }
+        @media #{$xs}{
+            padding-top: 180px;
+            padding-bottom: 20px;
+        }
+        & .subtitle{
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            background: rgba(255, 255, 255, 0.20);
+            backdrop-filter: blur(25px);
+            display: inline-block;
+            color: var(--ztc-text-text-1);
+            font-size: var(--ztc-font-size-font-s20);
+            line-height: var(--ztc-specing-height20);
+            font-family: var(--ztc-family-font1);
+            font-weight: var(--ztc-weight-semibold);
+            padding: 8px 12px;
+            @media #{$xs}{
+                font-size: var(--ztc-font-size-font-s16);
+                line-height: var(--ztc-specing-height16);
+            }
+            & img{
+                display: inline-block;
+                margin-right: 4px;
+            }
+        }
+        & .title{
+            color: var(--ztc-text-text-1);
+            font-size: var(--ztc-font-size-font-s80);
+            line-height: var(--ztc-specing-height82);
+            font-family: var(--ztc-family-font2);
+            font-weight: var(--ztc-weight-bold);
+            padding-top: 16px;
+            padding-bottom: 16px;
+            @media #{$md}{
+                br{
+                    display: none;
+                }
+                font-size: var(--ztc-font-size-font-s60);
+                line-height: var(--ztc-specing-height70);
+            }
+            @media #{$xs}{
+                br{
+                    display: none;
+                }
+                font-size: var(--ztc-font-size-font-s34);
+                line-height: var(--ztc-specing-height44);
+            }
+        }
+        & .para{
+            color: rgba(255, 255, 255, 0.90);
+            font-family: var(--ztc-family-font1);
+            font-size: var(--ztc-font-size-font-s20);
+            line-height: var(--ztc-specing-height30);
+            font-weight: var(--ztc-weight-semibold);
+        }
+    }
+    
+    & .vl-banner-thumb {
+        position: absolute;
+        top:40px;
+        transform: translateY(500px);
+        opacity: 0;
+        visibility: hidden;
+        transition: 1500ms;
+        @media #{$md}{
+            position:relative;
+        }
+        @media #{$xs}{
+            position:relative;
+        }
+    }
+}
+
+.vl-banner4.slick-active .banner-content {
+    transform: translateY(0px);
+    transition: 1400ms;
+    opacity: 1;
+    visibility: visible;
+}
+
+.vl-banner4.slick-active .vl-banner-thumb{
+    transform: translateX(0px);
+    opacity: 1;
+    visibility: visible;
+    transition: 1500ms;
+}
+
+
+
+// Home 5
+.vl-banner5{
+    background: var(--ztc-bg-bg-4);
+    position: relative;
+    z-index:1;
+    padding-top: 120px;
+    padding-bottom: 120px;
+    overflow: hidden;
+    @media #{$md}{
+        padding-top: 220px;
+        padding-bottom: 0px;
+    }
+    @media #{$xs}{
+        padding-top: 150px;
+        padding-bottom: 0px;
+    }
+    & .section-title{
+        & .subtitle{
+            border-radius: 8px;
+            background: rgba(1, 113, 93, 0.10);
+            padding: 8px 12px;
+            display:inline-block;
+            font-size: var(--ztc-font-size-font-s20);
+            line-height: var(--ztc-specing-height20);
+            font-family: var(--ztc-family-font1);
+            font-weight: var(--ztc-weight-semibold);
+            color: var(--ztc-text-text-6);
+            @media #{$xs}{
+                font-size: var(--ztc-font-size-font-s16);
+                line-height: var(--ztc-specing-height16);
+            }
+        }
+        & .title{
+            font-size: var(--ztc-font-size-font-s60);
+            line-height: var(--ztc-specing-height70);
+            font-family: var(--ztc-family-font2);
+            font-weight: var(--ztc-weight-bold);
+            color: var(--ztc-text-text-3);
+            padding-top: 16px;
+            padding-bottom: 16px;
+            @media #{$xs}{
+                font-size: var(--ztc-font-size-font-s30);
+                line-height: var(--ztc-specing-height40);
+            }
+        }
+        & .para{
+            font-size: var(--ztc-font-size-font-s20);
+            line-height: var(--ztc-specing-height30);
+            font-family: var(--ztc-family-font1);
+            font-weight: var(--ztc-weight-semibold);
+            color: var(--ztc-text-text-2);
+        }
+    }
+    & .vl-banner-thumb{
+        position: absolute;
+        bottom:0;
+        @media #{$md}{
+            position:relative;
+        }
+        @media #{$xs}{
+            position:relative;
+        }
+    }
+    & .shape{
+        position: absolute;
+        &.shape-1{
+            bottom: 47px;
+            left: 40%;
+        }
+        &.shape-2{
+            bottom: 0;
+            left: 30px;
+        }
+        &.shape-3{
+            top: 130px;
+            left: 45%;
+        }
+        &.shape-4{
+            right:0;
+            top:30%;
+        }
+        &.shape-5 {
+            right: 0;
+            z-index: -1;
+        }
+    }
+}
+
+
+
+
+// image animation
+
+@keyframes cssAnimation {
+    from {
+      -webkit-transform: scale(1) translate(0px);
+    }
+    to {
+      -webkit-transform: scale(1.3) translate(0px);
+    }
+  }
+  @-webkit-keyframes cssAnimation {
+    from {
+      -webkit-transform: scale(1) translate(0px);
+    }
+    to {
+      -webkit-transform: scale(1.3) translate(0px);
+    }
+  }
+
+  /*============= HERO CSS AREA ENDS ===============*/

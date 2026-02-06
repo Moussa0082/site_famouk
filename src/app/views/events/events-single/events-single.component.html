@@ -1,0 +1,44 @@
+<app-breadcrumb [backgroundImage]="'assets/img/banner/africa.jpg'"
+  [shape1]="'assets/img/breadcrumb/breadcrumb-shape-1.1.png'"
+  [shape2]="'assets/img/breadcrumb/breadcrumb-shape-1.2.png'"
+  [shape3]="'assets/img/breadcrumb/breadcrumb-shape-1.3.png'" [pageTitle]="'Events Detail'">
+</app-breadcrumb>
+<!-- <app-event-sidebar-area />
+<app-event-content /> -->
+
+<section class="event-single-section py-5 bg-light">
+  <div class="container">
+
+    <!-- Image principale -->
+    <div class="event-image mb-4 text-center">
+      <img [src]="event.image" alt="{{ event.title }}" class="img-fluid rounded-4 shadow-sm">
+    </div>
+
+    <!-- Détails de l'événement -->
+    <div class="event-content mx-auto" style="max-width: 850px;">
+      <h1 class="event-title mb-3 text-center">{{ event.title }}</h1>
+
+      <ul class="event-meta list-inline text-muted text-center mb-4">
+        <li class="list-inline-item"><i class="fa-solid fa-calendar-days me-1"></i> {{ event.date }}</li>
+        <li class="list-inline-item"><i class="fa-solid fa-location-dot me-1"></i> {{ event.location }}</li>
+        <li class="list-inline-item"><i class="fa-solid fa-user me-1"></i> {{ event.organizer }}</li>
+      </ul>
+
+      <p class="event-description text-secondary lh-lg text-justify">{{ event.description }}</p>
+<!-- 
+      <div class="event-extra mt-5 text-center">
+        <h5 class="mb-3 fw-semibold">Catégories :</h5>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+          <span *ngFor="let tag of event.tags" class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill">
+            {{ tag }}
+          </span>
+        </div>
+
+        <div class="event-price mt-4 text-success fw-semibold fs-5">
+          {{ event.price }}
+        </div>
+      </div> -->
+    </div>
+
+  </div>
+</section>

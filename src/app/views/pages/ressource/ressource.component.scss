@@ -1,0 +1,48 @@
+.vl-single-blg-item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .vl-blg-content {
+    flex-grow: 1;
+    
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; // nombre de lignes avant l’ellipsis
+      -webkit-box-orient: vertical;
+    }
+    
+   
+  }
+
+
+.btn-area {
+    width: 100%;
+    margin-top: 10px;
+  
+    .full-width-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: linear-gradient(90deg, #0078d7, #00bfa5);
+      // color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 0;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+  
+      &:hover {
+        background: linear-gradient(90deg, #00bfa5, #0078d7);
+      }
+  
+      span {
+        margin-left: 6px;
+      }
+    }
+  }
+  
+  

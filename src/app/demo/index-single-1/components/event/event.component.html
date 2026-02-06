@@ -1,0 +1,76 @@
+<section class="vl-blog sp2">
+  <div class="container">
+    <div class="row">
+
+      <!-- Tabs -->
+      <div class="col-lg-2">
+        <div class="event-tabs">
+          <ul class="nav nav-pills mb-30" role="tablist">
+            <li *ngFor="let day of days; let i = index" class="nav-item mb-30" role="presentation">
+              <div class="nav-link"
+                   [class.active]="i === 0"
+                   data-bs-toggle="pill"
+                   [attr.data-bs-target]="'#day' + i"
+                   role="tab"
+                   [attr.aria-selected]="i === 0 ? 'true' : 'false'">
+                <div class="event-tab-content">
+                  <div class="subheading">{{ day.label }}</div>
+                  <div class="date-event1">
+                    <ul>
+                      <li><span class="date">{{ day.date }}</span></li>
+                      <li><span class="year">{{ day.month }} <br> {{ day.year }}</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="col-lg-10">
+        <div class="tab-content">
+          <div *ngFor="let day of days; let i = index"
+               class="tab-pane fade"
+               [class.show.active]="i === 0"
+               [id]="'day' + i"
+               role="tabpanel">
+
+            <!-- Events -->
+            <div *ngFor="let ev of day.events" class="vl-single-blog-box mb-20">
+              <div class="row">
+                <div class="col-lg-8 col-md-8">
+                  <div class="vl-single-blog-box-content">
+                    <span class="date"><img src="assets/img/icons/vl-clock-1.1.svg" alt="">{{ ev.time }}</span>
+                    
+                    <!-- Titre avec lien -->
+                    <h4 class="title">
+                      <a [routerLink]="['/event-single', ev.id]">{{ ev.title }}</a>
+                    </h4>
+            
+                    <!-- Bouton détails -->
+                    <a [routerLink]="['/event-single', ev.id]" class="details">
+                       Details Event <span><i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                  <div class="sm-thumb">
+                    <!-- Image avec lien -->
+                    <a [routerLink]="['/event-single', ev.id]">
+                      <img class="w-100" [src]="ev.image" alt="">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

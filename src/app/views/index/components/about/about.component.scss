@@ -1,0 +1,54 @@
+/* Section Objectifs - Card */
+.vl-objectif-box {
+    background: #fff;
+    min-height: 380px; /* 🔹 Hauteur fixe de toutes les cards */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    padding: 10px 10px;
+  }
+  
+  /* Alignement des colonnes */
+  .vl-objectif-section .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .vl-objectif-section .col-lg-4,
+  .vl-objectif-section .col-md-6 {
+    display: flex;
+  }
+  
+  /* 🔹 Images fixées */
+  .objectif-img {
+    width: 250px;   /* largeur fixe */
+    height: 200px;  /* hauteur fixe */
+    object-fit: cover; /* pour garder un bon rendu sans déformation */
+    margin-bottom: 5px;
+  }
+  
+  /* 🔹 Titres alignés */
+  .objectif-title {
+    font-size: 20px;
+    font-weight: 600;
+    min-height: 55px; /* assure la même hauteur du bloc titre */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
+  
+  /* 🔹 Texte occupe le reste */
+  .vl-objectif-box p {
+    flex-grow: 1;
+  }
+  
+  /* Effet hover */
+  .vl-objectif-box:hover {
+    cursor: pointer;
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  }
+  

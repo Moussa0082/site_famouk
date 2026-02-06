@@ -1,0 +1,242 @@
+@use '../utils/' as *;
+
+
+/*============= SPACING CSS AREA ===============*/
+.sp1{
+     padding: 100px 0 100px;
+     @media #{$xs} {
+          padding: 50px 0 50px;
+     }
+     @media #{$md} {
+          padding: 50px 0 50px;
+     }
+} 
+.sp2{
+     padding: 100px 0 70px;
+     @media #{$xs} {
+          padding: 50px 0 20px;
+     }
+     @media #{$md} {
+          padding: 50px 0 20px;
+     }
+}
+.sp3{
+     padding: 100px 0 50px;
+}
+.sp4{
+     padding: 80px 0 80px;
+     @media #{$xs} {
+          padding: 40px 0 40px;
+     }
+     @media #{$md} {
+          padding: 40px 0 40px;
+     }
+}
+.sp5{
+     padding:60px 0 60px;
+     @media #{$xs} {
+          padding: 30px 0 30px;
+     }
+     @media #{$md} {
+          padding: 30px 0 30px;
+     }
+}
+.sp6{
+     padding:120px 0 120px;
+     @media #{$xs} {
+          padding: 60px 0 60px;
+     }
+     @media #{$md} {
+          padding: 60px 0 60px;
+     }
+}
+.sp7{
+     padding: 120px 0 90px;
+     @media #{$xs} {
+          padding: 60px 0 30px;
+     }
+     @media #{$md} {
+          padding: 60px 0 30px;
+     }
+}
+.sp8{
+     padding: 100px 0 0;
+     @media #{$xs} {
+          padding: 50px 0 0;
+     }
+     @media #{$md} {
+          padding: 50px 0 0;
+     }
+}
+.sp9{
+     padding: 120px 0 0;
+     @media #{$xs} {
+          padding: 60px 0 0;
+     }
+     @media #{$md} {
+          padding: 60px 0 0;
+     }
+}
+.sp10{
+     padding: 0 0 100px;
+     @media #{$xs} {
+          padding: 0 0 50px;
+     }
+     @media #{$md} {
+          padding: 0 0 50px;
+     }
+}
+
+p{
+     br{
+          @media #{$md,$xs} {
+               display: none;
+          }
+     }
+}
+
+.w-100{
+     width: 100%;
+}
+
+.mb-10{
+     margin-bottom: 10px;
+}
+.mb-20{
+     margin-bottom: 20px;
+}
+.mb-30{
+     margin-bottom: 30px;
+}
+
+.mb-40{
+     margin-bottom: 40px;
+}
+
+.mb-60{
+     margin-bottom: 60px;
+     @media #{$md} {
+          margin-bottom: 30px;
+     }
+}
+
+.pb-32{
+     padding-bottom: 32px;
+}
+.pl-90{
+     padding-left: 90px;
+     @media #{$md,$xs}{
+          padding-left: 0px;
+     }
+}
+.pl-30{
+     padding-left: 30px;
+     @media #{$md,$xs}{
+          padding-left: 0px;
+     }
+}
+
+.ml-20{
+     margin-left: 20px;
+     @media #{$md,$xs}{
+          margin-left: 0px;
+     }
+}
+.mb-50{
+     margin-bottom: 50px;
+}
+
+
+.space-margin60 {
+     margin-bottom: 60px;
+     @media #{$xs} {
+          margin-bottom: 30px;
+     }
+     @media #{$md} {
+          margin-bottom: 30px;
+     }
+}
+
+.p-relative{
+     position: relative;
+}
+.p-absolute{
+     position: absolute;
+}
+
+
+a, button {
+     color: inherit;
+     outline: none;
+     border: none;
+     background: transparent;
+ }
+ 
+.ml-15{
+     margin-left: 15px;
+     @media #{$md,$xs}{
+          margin-left: 0px;
+     }
+}
+
+.mr-15{
+     margin-right: 15px;
+     @media #{$md,$xs}{
+          margin-right: 0px;
+     }
+}
+
+.pb-16{
+     padding-bottom: 16px;
+}
+.pb-20{
+     padding-bottom: 20px;
+}
+.pt-20{
+     padding-top: 20px;
+}
+.pb-48{
+     padding-bottom: 48px;
+}
+.pb-50{
+     padding-bottom: 50px;
+}
+.ml-50{
+     margin-left: 50px;
+     @media #{$md,$xs}{
+          margin-left: 0px;
+     }
+}
+.mr-50{
+     margin-right: 50px;
+     @media #{$md,$xs}{
+          margin-right: 0px;
+     }
+}
+.pb-70{
+     padding-bottom:70px;
+     @media #{$md,$xs}{
+          padding-bottom:20px;
+     }
+}
+.mt-16{
+     margin-top: 16px;
+}
+
+.mt-32{
+     margin-top: 32px;
+}
+.mt-20{
+     margin-top: 20px;
+}
+.mt-24{
+     margin-top: 24px;
+}
+
+
+.thme-pagination-mt{
+     margin-top: 30px;
+}
+
+
+/*============= SPACING CSS AREA ENDS ===============*/

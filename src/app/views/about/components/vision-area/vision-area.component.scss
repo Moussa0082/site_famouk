@@ -1,0 +1,15 @@
+.vission-thumb {
+    width: 100%;
+    height: 450px; /* tu peux ajuster selon ta mise en page */
+    border-radius: 10px;
+    overflow: hidden; /* empêche les coins d'image de dépasser */
+  }
+  
+  .vission-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ou 'contain' selon ton besoin */
+    border-radius: 0; /* inutile ici car le parent le gère */
+    display: block;
+  }
+  

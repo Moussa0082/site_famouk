@@ -1,0 +1,39 @@
+  <section class="vl-about-vission-bg sp2">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="vission-thumb mb-30">
+            <img class="w-100" src="assets/img/vision/vision.jpeg" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="vl-vission-content ml-50 mb-30">
+            <div class="vl-section-title-1">
+              <h5 class="subtitle">Notre Mission & Vision</h5>
+              <h2 class="title">Une jeunesse engagée pour un futur numérique et citoyen</h2>
+              <p>Notre objectif est de permettre aux jeunes de s’informer, de collaborer et de participer activement à la société. Nous croyons en une jeunesse capable de créer un impact positif durable grâce au numérique et à l’éducation civique.</p>
+            </div>
+  
+            <div class="vl-vission-tab2">
+              <ul ngbNav #nav="ngbNav" class="nav nav-pills" id="pills-tab" role="tablist">
+                <li ngbNavItem class="nav-item" role="presentation">
+                  <button ngbNavLink class="nav-link" id="pills-home-tab" type="button" role="tab">Notre Mission</button>
+                  <ng-template ngbNavContent>
+                    <p class="para">Permettre aux jeunes d’acquérir des connaissances numériques et citoyennes, et de s’impliquer activement dans leurs communautés.</p>
+                  </ng-template>
+                </li>
+                <li class="nav-item" ngbNavItem role="presentation">
+                  <button ngbNavLink class="nav-link" id="pills-profile-tab" type="button" role="tab">Notre Vision</button>
+                  <ng-template ngbNavContent>
+                    <p class="para">Un espace où chaque jeune a les moyens de participer, d’innover et de devenir un acteur de changement dans sa communauté et au-delà.</p>
+                  </ng-template>
+                </li>
+              </ul>
+              <div class="tab-content" [ngbNavOutlet]="nav"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

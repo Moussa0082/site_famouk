@@ -1,0 +1,123 @@
+@use '../utils' as *;
+
+/*============= SCROLLTOP CSS AREA ===============*/
+.progress-wrap {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    height: 56px;
+    width: 56px;
+    cursor: pointer;
+    display: block;
+    border-radius: 50px;
+    box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px);
+    transition: all 200ms linear;
+  
+    &.active-progress {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      z-index: 999;
+    }
+  
+    &::after,
+    &::before {
+      position: absolute;
+      font-family: "FontAwesome";
+      content: "\f062";
+      text-align: center;
+      line-height: 56px;
+      font-size: 18px;
+      left: 0;
+      top: 0;
+      height: 56px;
+      width: 56px;
+      cursor: pointer;
+      display: block;
+      z-index: 1;
+      transition: all 200ms linear;
+    }
+  
+    &::after {
+      color: var(--ztc-text-text-3);
+      z-index: 1;
+    }
+  
+    &::before {
+      opacity: 0;
+      z-index: 2;
+    }
+  
+    &:hover::before {
+      opacity: 1;
+    }
+  
+    svg path {
+      fill: none;
+    }
+  
+    svg.progress-circle path {
+      stroke: var(--ztc-text-text-3);
+      stroke-width: 4;
+      box-sizing: border-box;
+      transition: all 200ms linear;
+    }
+      .progress-wrap2 svg.progress-circle path{
+          stroke: var(--ztc-text-text-12);
+          stroke-width: 4;
+          box-sizing: border-box;
+          transition: all 200ms linear;
+      }
+  }
+  
+  .progress-wrap2 svg.progress-circle path {
+    stroke: var(--ztc-text-text-12);
+    stroke-width: 4;
+    box-sizing: border-box;
+    transition: all 200ms linear;
+}
+
+.progress-wrap2::after {
+  z-index: 1;
+  color: var(--ztc-text-text-12);
+}
+
+.progress-wrap4 svg.progress-circle path {
+  stroke: var(--ztc-text-text-14);
+  stroke-width: 4;
+  box-sizing: border-box;
+  transition: all 200ms linear;
+}
+
+.progress-wrap4::after {
+z-index: 1;
+color: var(--ztc-text-text-14);
+}
+
+
+// home 5
+.progress-wrap5 svg.progress-circle path {
+  stroke: var(--ztc-text-text-6);
+  stroke-width: 4;
+  box-sizing: border-box;
+  transition: all 200ms linear;
+}
+
+.progress-wrap5::after {
+z-index: 1;
+color: var(--ztc-text-text-6);
+}
+
+.progress-wrap6 svg.progress-circle path {
+  stroke: var(--ztc-text-text-8);
+  stroke-width: 4;
+  box-sizing: border-box;
+  transition: all 200ms linear;
+}
+
+/*============= SCROLLTOP CSS AREA ENDS===============*/
+

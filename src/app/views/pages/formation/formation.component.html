@@ -1,0 +1,228 @@
+<!-- <app-breadcrumb [backgroundImage]="'assets/img/breadcrumb/vl-cause-bg.png'"
+  [shape1]="'assets/img/breadcrumb/breadcrumb-shape-1.1.png'"
+  [shape2]="'assets/img/breadcrumb/breadcrumb-shape-1.2.png'"
+  [shape3]="'assets/img/breadcrumb/breadcrumb-shape-1.3.png'" [pageTitle]="'Formation'">
+</app-breadcrumb>
+<section class="vl-cause-inner sp2">
+  <div class="container">
+    <div class="row">
+      @for (cause of causes; track $index) {
+      <div class="col-lg-4 col-md-6">
+        <div class="vl-single-cause-box gray-bg mb-30">
+          <div class="vl-cause-thumb">
+            <img class="w-100" [src]="cause.image" alt="">
+            <div class="btn-area casue-btn text-center">
+              <a [href]="cause.donationLink" class="header-btn1">Donation <span><i
+                    class="fa-solid fa-arrow-right"></i></span></a>
+            </div>
+          </div>
+          <div class="vl-cause-content">
+            <div class="vl-progress">
+              <div class="skill-progress">
+                <div class="skill-box">
+                  <div class="skill-bar">
+                    <span class="skill-per" [ngStyle]="{'width': cause.progress + '%'}">
+                      <span class="tooltipp">{{ cause.progress }}%</span>
+                    </span>
+                  </div>
+                  <div class="skill-vlue">
+                    <div class="num1"><span>Raised: </span>${{ cause.raised }}</div>
+                    <div class="num1"><span>Goal: </span>${{ cause.goal }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a href="javascript:void(0);" class="badge mt-32">{{ cause.category }}</a>
+            <h3 class="title"><a [href]="cause.donationLink">{{ cause.title }}</a></h3>
+            <p>{{ cause.description }}</p>
+          </div>
+        </div>
+      </div>}
+    </div>
+  </div>
+</section> -->
+
+<!-- <app-breadcrumb 
+  [backgroundImage]="'assets/img/banner/africa.jpg'"
+  [shape1]="'assets/img/breadcrumb/breadcrumb-shape-1.1.png'"
+  [shape2]="'assets/img/breadcrumb/breadcrumb-shape-1.2.png'"
+  [shape3]="'assets/img/breadcrumb/breadcrumb-shape-1.3.png'"
+  [pageTitle]="'Formations en Technologie'">
+</app-breadcrumb>
+
+<section class="formation-section sp2">
+  <div class="container">
+    <div class="row gy-4 gx-4"> 
+      @for (formation of formations; track $index) {
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="formation-card">
+            <div class="formation-image">
+              <img [src]="formation.image" [alt]="formation.title">
+            </div>
+            <div class="formation-content">
+              <a href="javascript:void(0);" class="badge">{{ formation.category }}</a>
+              <h3 class="title text-truncate-2">
+                <a [href]="formation.link">{{ formation.title }}</a>
+              </h3>
+              <p class="description text-truncate-3">{{ formation.description }}</p>
+
+              <div class="formation-info">
+                <span><strong>Niveau :</strong> {{ formation.level }}</span>
+                <span><strong>Durée :</strong> {{ formation.duration }}</span>
+              </div>
+
+              <div class="btn-area mt-3">
+                <a [href]="formation.link" class="header-btn1 full-width-btn">
+                  Découvrir <span><i class="fa-solid fa-arrow-right" style="color: black;"></i></span>
+                </a>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section> -->
+<app-breadcrumb 
+  [backgroundImage]="'assets/img/banner/africa.jpg'"
+  [shape1]="'assets/img/breadcrumb/breadcrumb-shape-1.1.png'"
+  [shape2]="'assets/img/breadcrumb/breadcrumb-shape-1.2.png'"
+  [shape3]="'assets/img/breadcrumb/breadcrumb-shape-1.3.png'"
+  [pageTitle]="'Formations en Technologie'">
+</app-breadcrumb>
+
+<section class="formation-section sp2">
+  <div class="container">
+
+    <!-- 🔹 Catalogue de modules -->
+    <h2 class="section-title">Catalogue de modules</h2>
+    <section class="formation-section sp2">
+      <div class="container">
+        <div class="row gy-4 gx-4"> 
+          @for (formation of formations; track $index) {
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="formation-card">
+                <div class="formation-image">
+                  <img [src]="formation.image" [alt]="formation.title">
+                </div>
+                <div class="formation-content">
+                  <a href="javascript:void(0);" class="badge">{{ formation.category }}</a>
+                  <h3 class="title text-truncate-2">
+                    <a [href]="formation.link">{{ formation.title }}</a>
+                  </h3>
+                  <p class="description text-truncate-3">{{ formation.description }}</p>
+    
+                  <div class="formation-info">
+                    <span><strong>Niveau :</strong> {{ formation.level }}</span>
+                    <span><strong>Durée :</strong> {{ formation.duration }}</span>
+                  </div>
+    
+                  <div class="btn-area mt-3">
+                    <a [href]="formation.link" class="header-btn1 full-width-btn">
+                      Découvrir <span><i class="fa-solid fa-arrow-right" style="color: black;"></i></span>
+                    </a>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- 🔹 Quiz interactif -->
+    <!-- <h2 class="section-title mt-5">Quiz interactifs</h2>
+    <div class="row gy-4 gx-4">
+      <div class="col-lg-6 col-md-12" *ngFor="let quiz of quizzes">
+        <div class="quiz-card p-3 border rounded">
+          <h4>{{ quiz.title }}</h4>
+          <p>{{ quiz.description }}</p>
+          <button class="btn btn-primary" (click)="startQuiz(quiz)">Commencer le quiz</button>
+
+          <div *ngIf="activeQuiz === quiz">
+            <div *ngFor="let q of quiz.questions; let i = index" class="mt-2">
+              <p><strong>Q{{ i+1 }}:</strong> {{ q.question }}</p>
+              <div *ngFor="let ans of q.answers">
+                <label>
+                  <input type="radio" name="q{{i}}" (change)="selectAnswer(q, ans)">
+                  {{ ans.text }}
+                </label>
+              </div>
+            </div>
+            <button class="btn btn-success mt-2" (click)="submitQuiz()">Valider</button>
+          </div>
+
+          <p *ngIf="quizResult && quizResult.quiz === quiz" class="mt-2">
+            Score: {{ quizResult.score }}/{{ quiz.questions.length }} - 
+            <span [ngClass]="{'text-success': quizResult.passed, 'text-danger': !quizResult.passed}">
+              {{ quizResult.passed ? 'Réussi ✅' : 'Échoué ❌' }}
+            </span>
+          </p>
+        </div>
+      </div>
+    </div> -->
+
+  
+    <!-- 🔹 Webinaires -->
+    <h2 class="section-title mt-5">Webinaires à venir</h2>
+    <div class="row gy-4 gx-4">
+      <div class="col-lg-4 col-md-6 col-sm-12" *ngFor="let webinar of webinars">
+        <div class="webinar-card p-3 border rounded">
+          <h4>{{ webinar.title }}</h4>
+          <p><strong>Date :</strong> {{ webinar.date | date:'dd/MM/yyyy HH:mm' }}</p>
+          <p><strong>Plateforme :</strong> {{ webinar.platform }}</p>
+          <a [href]="webinar.link" class="btn btn-outline-primary full-width-btn">
+            Accéder au live 
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 🔹 Textes bruts -->
+    <!-- <h2 class="section-title mt-5">À propos des formations</h2>
+    <p>{{ rawTextContent }}</p> -->
+
+  </div>
+</section>
+
+
+
+
+
+<!-- <app-breadcrumb
+  [backgroundImage]="'assets/img/breadcrumb/vl-cause-bg.png'"
+  [shape1]="'assets/img/breadcrumb/breadcrumb-shape-1.1.png'"
+  [shape2]="'assets/img/breadcrumb/breadcrumb-shape-1.2.png'"
+  [shape3]="'assets/img/breadcrumb/breadcrumb-shape-1.3.png'"
+  [pageTitle]="'Formation - Logo'">
+</app-breadcrumb>
+
+<section class="formation-section sp2">
+  <div class="container">
+
+    <div class="top-controls">
+      <div class="search-wrap">
+        <input [(ngModel)]="searchTerm" placeholder="Rechercher une formation, mot-clé, animateur..." />
+      </div>
+
+      <div class="tabs-wrap" role="tablist" aria-label="filtre formations">
+        <button *ngFor="let t of tabs"
+                (click)="selectTab(t.id)"
+                [class.active]="selectedTab === t.id"
+                role="tab">
+          {{ t.label }}
+        </button>
+      </div>
+    </div>
+
+    <div class="tab-content">
+      <app-elearning-list *ngIf="selectedTab==='elearning'" [searchTerm]="searchTerm"></app-elearning-list>
+      <app-quiz-list *ngIf="selectedTab==='quiz'" [searchTerm]="searchTerm"></app-quiz-list>
+      <app-webinar-list *ngIf="selectedTab==='webinar'" [searchTerm]="searchTerm"></app-webinar-list>
+    </div>
+
+  </div>
+</section>
+ -->

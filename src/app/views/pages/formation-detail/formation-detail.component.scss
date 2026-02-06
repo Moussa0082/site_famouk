@@ -1,0 +1,36 @@
+/* formation.component.scss */
+.formation-section {
+    background: #fffef6;
+    .search-bar input {
+      width: 70%;
+      margin: auto;
+      border-radius: 25px;
+      padding: 12px 20px;
+      border: 1px solid #f3cc4d;
+      transition: 0.3s;
+      &:focus { box-shadow: 0 0 10px #ffe17b; }
+    }
+  
+    .tabs .tab-btn {
+      border: none;
+      background: #f8f8f8;
+      color: #222;
+      padding: 10px 25px;
+      margin: 0 8px;
+      border-radius: 25px;
+      transition: 0.3s;
+      &.active, &:hover { background: #f7d24c; color: #000; }
+    }
+  
+    .formation-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+      cursor: pointer;
+      &:hover { transform: translateY(-5px); }
+      img { border-top-left-radius: 15px; border-top-right-radius: 15px; }
+      .card-body { padding: 15px; }
+    }
+  }
+  

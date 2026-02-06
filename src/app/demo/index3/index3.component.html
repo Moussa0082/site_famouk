@@ -1,0 +1,36 @@
+<app-navbar [logoImage]="'assets/img/logo/vl-logo-3.1.png'" headerArea="homepage1 header-3 mt-20" label="Donate Now"
+    link="contact" btnParent="vl-btn3" [btnClass]="'primary-btn-3'" headerElement="header-elements-3"
+    [menuClass]="'main-menu-3'" [buttonClass]="'header-btn3'" [container]="true" />
+
+<app-index3-hero />
+<app-index3-about />
+<app-index3-service />
+<app-index3-gallery />
+<app-index3-testimonial />
+<app-index3faqs />
+<app-index3-conatct />
+<app-index3-blog />
+<app-index3-cta />
+<app-index3-footer />
+
+<div class="mobile-header mobile-haeder3 d-block d-lg-none">
+    <div class="container">
+      <div class="col-12">
+        <div class="mobile-header-elements">
+          <div class="mobile-logo">
+            <a routerLink="/"><img src="assets/img/logo/vl-logo-3.1.png" alt=""></a>
+          </div>
+          <div class="mobile-nav-icon mobile-nav-icon3 dots-menu" (click)="toggleMenu()">
+            <i class="fa-solid fa-bars"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  <app-mobile-sidebar 
+  [isMenuOpen]="isMenuOpen"
+  (closeMenuEvent)="closeMenu()">
+</app-mobile-sidebar>
+
+<app-page-scroll  progressClass="progress-wrap2"/>

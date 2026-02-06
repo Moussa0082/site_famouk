@@ -1,0 +1,92 @@
+@use '../../utils/' as * ;
+/*============= WORK CSS AREA ===============*/
+.vl-work5{
+    background: var(--ztc-text-text-3);
+    & .vl-work-content{
+        & .vl-section-title5{
+            & .subtitle{
+                color: var(--ztc-text-text-1);
+                background: rgba(255, 255, 255, 0.10);
+            }
+            & .title{
+                color: var(--ztc-text-text-1);
+            }
+            & .para{
+                color: rgba(255,255,255,.8);
+            }
+        }
+        & .vl-work-thumb{
+            margin-top:48px;
+            & img{
+                border-radius: 8px;
+                height: 350px;
+                object-fit: cover;
+            }
+        }
+    }
+    & .vl-single-work-box{
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.10);
+        background: rgba(255, 255, 255, 0.10);
+        padding: 27px;
+        margin-bottom:20px;
+        transition: .3s;
+        &.active{
+            background:var(--ztc-text-text-6);
+            transition: .3s;
+        }
+        & .work-box-flx{
+            display: flex;
+            @media #{$xs}{
+                display:block;
+            }
+            & .num{
+                & span{
+                    color: rgba(255, 255, 255, 0.10);
+                    font-size: var(--ztc-font-size-font-s60);
+                    line-height: var(--ztc-specing-height60);
+                    font-family: var(--ztc-family-font2);
+                    font-weight: var(--ztc-weight-bold);
+                    margin-right: 22px;
+                    transition: .3s;
+                    @media #{$xs}{
+                        display:block;
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+            & .content{
+                & .title{
+                    color: var(--ztc-text-text-1);
+                    font-size: var(--ztc-font-size-font-s20);
+                    line-height: var(--ztc-specing-height20);
+                    font-family: var(--ztc-family-font2);
+                    font-weight: var(--ztc-weight-bold);
+                    transition: 0.3s;
+                    padding-bottom: 16px;
+                    @media #{$xs}{
+                        line-height: var(--ztc-specing-height30);
+                    }
+                }
+                & .para{
+                    color: rgba(255, 255, 255, 0.80);
+                    font-size: var(--ztc-font-size-font-s18);
+                    line-height: var(--ztc-specing-height28);
+                    font-family: var(--ztc-family-font1);
+                    font-weight: var(--ztc-weight-semibold);
+                    transition: 0.3s;
+                }
+            }
+        }
+    }
+    & .ttsingle-box{
+        background: red;
+        padding: 28px;
+        text-align: center;
+        &.active{
+            background: green;
+        }
+    }
+}
+
+/*============= WORK CSS AREA ENDS===============*/

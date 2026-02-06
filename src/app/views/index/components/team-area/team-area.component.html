@@ -1,0 +1,112 @@
+
+<!-- // team composant de la page d'accueil  -->
+<section class="vl-team-bg-1 sp1">
+  <div class="container">
+    <div class="vl-team-section-title mb-60 text-center">
+      <div class="vl-section-title-1">
+        <h5 class="subtitle" data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+          Notre équipe
+        </h5>
+        <h2 class="title text-anime-style-3">
+          L’équipe Logo – Innovation et Citoyenneté
+        </h2>
+        <p data-aos="fade-up" data-aos-duration="800" data-aos-delay="300">
+          Une équipe passionnée et engagée qui œuvre chaque jour pour promouvoir la culture numérique,
+          l’inclusion et la participation citoyenne des jeunes à travers le digital et les médias.
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <owl-carousel-o id="team1" [options]="teamArea">
+
+        <!-- Membre 1 -->
+        <ng-template carouselSlide>
+          <div class="vl-team-parent" style="min-height: 420px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="vl-team-thumb" style="height: 320px; overflow: hidden;">
+              <img class="w-100" src="assets/img/team/t5.jpeg" alt="Membre équipe Logo" style="height: 100%; object-fit: cover;">
+            </div>
+            <div class="vl-team-social">
+              <ul>
+                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+              </ul>
+            </div>
+            <div class="vl-team-content text-center">
+              <a routerLink="/volunteers" class="title">Aminata Konaté</a>
+              <span>Cheffe de projet digital</span>
+            </div>
+          </div>
+        </ng-template>
+
+        <!-- Membre 2 -->
+        <ng-template carouselSlide>
+          <div class="vl-team-parent" style="min-height: 420px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="vl-team-thumb" style="height: 320px; overflow: hidden;">
+              <img class="w-100" src="assets/img/team/t4.jpeg" alt="Membre équipe Logo" style="height: 100%; object-fit: cover;">
+            </div>
+            <div class="vl-team-social">
+              <ul>
+                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+              </ul>
+            </div>
+            <div class="vl-team-content text-center">
+              <a routerLink="/volunteers" class="title">Moussa Traoré</a>
+              <span>Responsable Communication</span>
+            </div>
+          </div>
+        </ng-template>
+
+        <!-- Membre 3 -->
+        <ng-template carouselSlide>
+          <div class="vl-team-parent" style="min-height: 420px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="vl-team-thumb" style="height: 320px; overflow: hidden;">
+              <img class="w-100" src="assets/img/team/t6.jpeg" alt="Membre équipe Logo" style="height: 100%; object-fit: cover;">
+            </div>
+            <div class="vl-team-social">
+              <ul>
+                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+              </ul>
+            </div>
+            <div class="vl-team-content text-center">
+              <a routerLink="/volunteers" class="title">Fatoumata Diarra</a>
+              <span>Coordinatrice des programmes</span>
+            </div>
+          </div>
+        </ng-template>
+
+       
+
+        <!-- Membre 5 -->
+        <ng-template carouselSlide>
+          <div class="vl-team-parent" style="min-height: 420px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div class="vl-team-thumb" style="height: 320px; overflow: hidden;">
+              <img class="w-100" src="assets/img/team/t3.jpeg" alt="Membre équipe Logo" style="height: 100%; object-fit: cover;">
+            </div>
+            <div class="vl-team-social">
+              <ul>
+                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
+              </ul>
+            </div>
+            <div class="vl-team-content text-center">
+              <a routerLink="/volunteers" class="title">Mousssa Bah</a>
+              <span>Chargée de la communauté</span>
+            </div>
+          </div>
+        </ng-template>
+
+      </owl-carousel-o>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+@use '../utils' as *;
+
+/*============= BRANDS CSS AREA ===============*/
+.vl-brand-area{
+    background: var(--ztc-text-text-10);
+    padding-top: 70px;
+    padding-bottom:70px;
+    & .single-brand-item {
+        width: 170px;
+    } 
+}    
+
+.vl-brand5{
+    background: var(--ztc-bg-bg-4);
+    padding-top: 74px;
+    padding-bottom: 74px;
+    .owl-carousel .owl-stage-outer{
+        overflow: inherit;
+    }
+    & .single-brand-logo img {
+        width: 156px;
+        height: 80px !important;
+        object-fit: contain;
+    }
+    @media #{$xs}{
+        .single-brand-logo img {
+            width: auto;
+            height: auto;
+            text-align: center;
+            margin: 0 auto;
+        }
+    }
+}
+
+.single-brand-item img {
+    width: 156px;
+}
+
+/*============= BRANDS CSS AREA ENDS ===============*/

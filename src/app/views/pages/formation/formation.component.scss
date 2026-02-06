@@ -1,0 +1,135 @@
+.formation-section {
+  padding: 60px 0;
+
+  .formation-card {
+    background: #f8f9fa;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .formation-image img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .formation-content {
+      flex: 1;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .badge {
+        background: #007bff;
+        color: #fff;
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 50px;
+        display: inline-block;
+        margin-bottom: 6px;
+      }
+
+      .title {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 6px;
+        line-height: 1.3;
+        color: #222;
+
+        a {
+          color: inherit;
+          text-decoration: none;
+
+          &:hover {
+            color: #007bff;
+          }
+        }
+      }
+
+      .description {
+        color: #555;
+        font-size: 14px;
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+
+      .formation-info {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        color: #444;
+        margin-top: auto;
+      }
+
+      .btn-area {
+        margin-top: 10px;
+
+        .header-btn1 {
+          font-size: 13px;
+          padding: 8px 16px;
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+}
+
+/* 🔹 Ellipsis (2 ou 3 lignes) */
+.text-truncate-2, .text-truncate-3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.text-truncate-2 { -webkit-line-clamp: 2; }
+.text-truncate-3 { -webkit-line-clamp: 3; }
+
+/* 🔹 Gestion des marges entre colonnes et lignes */
+.row.gy-4 {
+  --bs-gutter-y: 24px;
+}
+.row.gx-4 {
+  --bs-gutter-x: 24px;
+}
+
+
+.header-btn1{
+ color: white;
+}
+
+.btn-area {
+  width: 100%;
+  margin-top: 10px;
+
+  .full-width-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: linear-gradient(90deg, #0078d7, #00bfa5);
+    // color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 10px 0;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: linear-gradient(90deg, #00bfa5, #0078d7);
+    }
+
+    span {
+      margin-left: 6px;
+    }
+  }
+}

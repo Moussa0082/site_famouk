@@ -1,0 +1,26 @@
+<section class="vl-services2 service-inner-page sp2">
+    <div class="container">
+        <div class="row">
+            @for (service of services; track $index) {
+            <div class="col-lg-4 col-md-6">
+                <div class="vl-single-service-box mb-30" [ngClass]="{'active': service.active}">
+                    <div class="vl-service-box-flex">
+                        <div class="icon">
+                            <span><img [src]="service.icon" alt=""></span>
+                        </div>
+                        <div class="thumb">
+                            <div class="sm-thumb">
+                                <img [src]="service.image" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vl-service-box-content">
+                        <h4 class="title"><a href="javascript:void(0);">{{ service.title }}</a></h4>
+                        <p>{{ service.description }}</p>
+                        <a href="javascript:void(0);" class="read-more">Read More <span><i class="fa-solid fa-arrow-right"></i></span></a>
+                    </div>
+                </div>
+            </div>}
+        </div>
+    </div>
+</section>

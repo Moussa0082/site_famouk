@@ -1,0 +1,28 @@
+@use '../../utils/' as * ;
+
+/*============= 404 CSS AREA ===============*/
+.vl-error-section{
+    & .error-content{
+        & .content{
+            & .title{
+                color:var(--ztc-text-text-3);
+                font-size: var(--ztc-font-size-font-s44);
+                line-height: var(--ztc-specing-height44);
+                font-family: var(--ztc-family-font2);
+                font-weight: var(--ztc-weight-bold);
+                padding-top:48px;
+            }
+            & .para{
+                color:var(--ztc-text-text-2);
+                font-size: var(--ztc-font-size-font-s18);
+                line-height: var(--ztc-specing-height28);
+                font-family: var(--ztc-family-font1);
+                font-weight: var(--ztc-weight-semibold);
+                padding-top: 16px;
+                padding-bottom:24px;
+            }
+        }
+    }
+}
+
+/*============= 404 CSS AREA ENDS===============*/

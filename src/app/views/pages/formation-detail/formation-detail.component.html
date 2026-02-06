@@ -1,0 +1,9 @@
+<!-- formation-detail.component.html -->
+<section class="formation-detail py-5">
+    <div class="container">
+      <a routerLink="/formation" class="back-btn mb-3"><i class="fa fa-arrow-left"></i> Retour</a>
+      <h2>{{ formation.title }}</h2>
+      <div class="content" [innerHTML]="formation.content"></div>
+    </div>
+  </section>
+  

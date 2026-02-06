@@ -1,0 +1,19 @@
+<section class="vl-breadcrumb"  [ngStyle]="{'background-image': 'url(' + backgroundImage + ')'}">
+    <div class="shape1"><img [src]="shape1" alt="Shape 1"></div>
+    <div class="shape2"><img [src]="shape2" alt="Shape 2"></div>
+    <div class="shape2"><img [src]="shape3" alt="Shape 3"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="vl-breadcrumb-title">
+                    <h2 class="heading">{{ pageTitle }}</h2>
+                    <div class="vl-breadcrumb-list">
+                        <span><a routerLink="/">Accueil</a></span>
+                        <span class="dvir"><i class="fa-solid fa-angle-right mx-1"></i></span>
+                        <span><a class="active" href="javascript:void(0);">{{ pageTitle }}</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

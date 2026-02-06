@@ -1,0 +1,131 @@
+<!-- <app-breadcrumb 
+  [backgroundImage]="'assets/img/banner/africa.jpg'"
+  [shape1]="'assets/img/breadcrumb/breadcrumb-shape-1.1.png'"
+  [shape2]="'assets/img/breadcrumb/breadcrumb-shape-1.2.png'"
+  [shape3]="'assets/img/breadcrumb/breadcrumb-shape-1.3.png'"
+  [pageTitle]="'Ressources'">
+</app-breadcrumb>
+
+<section class="vl-blog-inner sp2">
+  <div class="container">
+    <div class="row">
+      @for (resource of resources; track $index) {
+      <div class="col-lg-4 col-md-6">
+        <div class="vl-single-blg-item mb-30">
+          <div class="vl-blg-thumb">
+            <a [href]="resource.link" target="_blank">
+              <img class="w-100" [src]="resource.image" [alt]="resource.title" />
+            </a>
+          </div>
+          <div class="vl-meta">
+            <ul>
+              <li>
+                <a href="javascript:void(0);">
+                  <span class="top-minus">
+                    <img src="assets/img/icons/vl-calender-1.1.svg" alt="">
+                  </span> {{ resource.date }}
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);">
+                  <span class="top-minus">
+                    <img src="assets/img/icons/vl-user-1.1.svg" alt="">
+                  </span> {{ resource.author }}
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="vl-blg-content">
+            <h3 class="title">
+              <a [href]="resource.link" target="_blank">{{ resource.title }}</a>
+            </h3>
+            <p>{{ resource.description }}</p>
+            
+            <div class="btn-area mt-3">
+              <a [href]="resource.link" class="header-btn1 full-width-btn">
+                Découvrir <span><i class="fa-solid fa-arrow-right" style="color: black;"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>}
+    </div>
+  </div>
+</section> -->
+
+
+<app-breadcrumb 
+  [backgroundImage]="'assets/img/banner/africa.jpg'"
+  [shape1]="'assets/img/breadcrumb/breadcrumb-shape-1.1.png'"
+  [shape2]="'assets/img/breadcrumb/breadcrumb-shape-1.2.png'"
+  [shape3]="'assets/img/breadcrumb/breadcrumb-shape-1.3.png'"
+  [pageTitle]="'Ressources'">
+</app-breadcrumb>
+
+<!-- 🔹 Recherche et filtrage -->
+<section class="resource-filter-section mt-5">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-md-6">
+        <input type="text" class="form-control h-100" placeholder="Rechercher par titre ou mot-clé" [(ngModel)]="searchTerm">
+      </div>
+      <div class="col-md-6">
+        <select class="form-select h-100" [(ngModel)]="selectedTheme">
+          <option value="">Tous les thèmes</option>
+          <option value="citoyenneté">Citoyenneté</option>
+          <option value="désinformation">Désinformation</option>
+          <option value="cybersécurité">Cybersécurité</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 🔹 Bibliothèque numérique -->
+<section class="vl-blog-inner mb-3">
+  <div class="container">
+    <div class="row">
+      <!-- Filtrer les ressources selon searchTerm et selectedTheme -->
+      <div class="col-lg-4 col-md-6" *ngFor="let resource of resources | filterResources:searchTerm:selectedTheme">
+        <div class="vl-single-blg-item mb-30">
+          <div class="vl-blg-thumb">
+            <a [href]="resource.link" target="_blank">
+              <img class="w-100" [src]="resource.image" [alt]="resource.title" />
+            </a>
+          </div>
+          <div class="vl-meta">
+            <ul>
+              <li>
+                <a href="javascript:void(0);">
+                  <span class="top-minus">
+                    <img src="assets/img/icons/vl-calender-1.1.svg" alt="">
+                  </span> {{ resource.date }}
+                </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);">
+                  <span class="top-minus">
+                    <img src="assets/img/icons/vl-user-1.1.svg" alt="">
+                  </span> {{ resource.author }}
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="vl-blg-content">
+            <h3 class="title">
+              <a [href]="resource.link" target="_blank">{{ resource.title }}</a>
+            </h3>
+            <p>{{ resource.description }}</p>
+            
+            <div class="btn-area mt-3">
+              <a [href]="resource.link" class="header-btn1 full-width-btn">
+                Découvrir <span><i class="fa-solid fa-arrow-right" style="color: black;"></i></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
