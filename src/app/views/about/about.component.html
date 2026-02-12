@@ -1,12 +1,17 @@
-<app-breadcrumb 
-  [backgroundImage]="'assets/img/banner/africa.jpg'"
+<app-breadcrumb
+  [backgroundImage]="
+    logoData
+      ? 'url(' + logoData.image + ')'
+      : 'url(./assets/img/banner/africa.jpg)'
+  "
   [shape1]="'assets/img/breadcrumb/breadcrumb-shape-1.1.png'"
   [shape2]="'assets/img/breadcrumb/breadcrumb-shape-1.2.png'"
   [shape3]="'assets/img/breadcrumb/breadcrumb-shape-1.3.png'"
-  [pageTitle]="'A propos de nous'">
+  [pageTitle]="'A propos de nous'"
+>
 </app-breadcrumb>
-<app-about-area/>
-<app-mission-area/>
-<app-vision-area/>
-<app-counter-area/>
-<app-testi-area/>
+<app-about-area />
+<app-mission-area />
+<app-vision-area />
+<app-counter-area />
+<!-- <app-testi-area /> -->

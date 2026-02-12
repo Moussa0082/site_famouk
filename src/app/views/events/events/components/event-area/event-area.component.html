@@ -1,50 +1,57 @@
 <section class="vl-singlevent-iner sp1">
-    <div class="container">
-      <div class="row">
-        @for (item of eventAreaData; track $index) {
-        <!-- single event item -->
-        <div class="col-lg-12 mb-50">
-          <div class="event-bg-flex" [ngClass]="{ 'active': hoverIndex === $index }"
-               (mouseenter)="hoverIndex = $index" 
-               (mouseleave)="hoverIndex = 0">
-            
-            <div class="event-date">
-              <h3 class="title">{{item.date}}</h3>
-              <p class="year">{{item.month}} <br> {{item.year}}</p>
+  <div class="container">
+    <div class="row">
+      @for (item of events; track item.id; let i = $index) {
+      <div class="col-lg-12 mb-50">
+        <div
+          class="event-bg-flex"
+          [ngClass]="{ active: hoverIndex === i }"
+          (mouseenter)="hoverIndex = i"
+          (mouseleave)="hoverIndex = null"
+        >
+          <div class="event-date">
+            <h3 class="title">{{ item.dateDebutEvent | date : "dd" }}</h3>
+            <p class="year">
+              {{ item.dateDebutEvent | date : "MMM" }} <br />
+              {{ item.dateDebutEvent | date : "yyyy" }}
+            </p>
+          </div>
+
+          <div class="event-content">
+            <div class="event-meta">
+              <p class="para">
+                Du {{ item.dateDebutEvent | date : "dd" }} Au
+                {{ item.dateFinEvent | date : "dd" }}
+              </p>
             </div>
-  
-            <div class="event-content">
-              <div class="event-meta">
-                <p class="para">{{item.eventTime}}</p>
-              </div>
-              <a [routerLink]="item.detailsUrl" class="title">{{item.eventTitle}}</a>
-              <p class="para">{{item.location}}</p>
-              <a [routerLink]="item.detailsUrl" class="details">Détails <span><i
-                      class="fa-solid fa-arrow-right"></i></span></a>
-            </div>
-            <div class="event-thumb">
-              <img class="w-100" [src]="item.image" alt="{{item.eventTitle}}">
-            </div>
+            <a [routerLink]="['/event-details', item.id]" class="title">{{
+              item.titre
+            }}</a>
+            <p class="para">
+              <i class="fa-solid fa-location-dot mr-2"></i>{{ item.lieu }}
+            </p>
+            <p class="text-muted small">
+              Organisé par : {{ item.organisateur }}
+            </p>
+
+            <a [routerLink]="['/event-details', item.id]" class="details">
+              Détails <span><i class="fa-solid fa-arrow-right"></i></span>
+            </a>
+          </div>
+
+          <div class="event-thumb">
+            <img
+              class="w-100"
+              [src]="getEventImage(item)"
+              alt="{{ item.titre }}"
+              style="height: 200px; object-fit: cover"
+            />
           </div>
         </div>
-        }
       </div>
-  
-      <!-- pagination -->
-      <div class="row">
-        <div class="col-12 m-auto">
-          <div class="theme-pagination thme-pagination-mt text-center mt-18">
-            <ul>
-              <li><a href="javascript:void(0);"><i class="fa-solid fa-angle-left"></i></a></li>
-              <li><a class="active" href="javascript:void(0);">01</a></li>
-              <li><a href="javascript:void(0);">02</a></li>
-              <li>...</li>
-              <li><a href="javascript:void(0);">12</a></li>
-              <li><a href="javascript:void(0);"><i class="fa-solid fa-angle-right"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      }
     </div>
-  </section>
-  
+
+    <div class="row" *ngIf="events.length > 10"></div>
+  </div>
+</section>

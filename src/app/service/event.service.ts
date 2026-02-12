@@ -14,8 +14,10 @@ export class EventService {
     this.serviceUrl = environment.apiUrl;
   }
 
-  getAllEvents(): Observable<EventResponse[]> {
-    return this.http.get<EventResponse[]>(`${this.serviceUrl}/${this.baseUrl}`);
+  getActiveEvents(): Observable<EventResponse[]> {
+    return this.http.get<EventResponse[]>(
+      `${this.serviceUrl}/${this.baseUrl}/active`
+    );
   }
 
   getEventById(idEvent: string): Observable<EventResponse> {

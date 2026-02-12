@@ -1,0 +1,19 @@
+.logo-img {
+  max-height: 70px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Optionnel : centrage vertical si nécessaire dans le flexbox */
+.site-logo a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.vl-footer-logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}

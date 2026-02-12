@@ -1,25 +1,34 @@
-
-
-
 <section class="vl-about-section sp2">
   <div class="container">
     <div class="row">
-
       <!-- Texte principal -->
       <div class="col-lg-6">
         <div class="vl-about-content">
           <div class="vl-section-title-1">
-            <h5 class="subtitle" data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
+            <!-- <h5
+              class="subtitle"
+              data-aos="fade-right"
+              data-aos-duration="800"
+              data-aos-delay="300"
+            >
               À propos de nous
-            </h5>
+            </h5> -->
             <h2 class="title text-anime-style-3">
               Donner la parole, connecter et inspirer la jeunesse
             </h2>
-            <p class="pb-32" data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
-              Logo est une plateforme numérique et citoyenne qui met en avant la créativité, 
-              l’engagement et les initiatives de la jeunesse malienne et ouest-africaine. 
-              <br>Notre mission : informer, former et accompagner les jeunes à devenir des acteurs 
-              actifs du changement grâce au numérique, aux médias et aux technologies.
+            <p
+              class="pb-32"
+              data-aos="fade-right"
+              data-aos-duration="800"
+              data-aos-delay="300"
+            >
+              Le projet renforce la capacité des jeunes à participer activement
+              aux processus décisionnels grâce à la formation civique et aux
+              outils numériques, en structurant des espaces d’expression et de
+              contribution.
+              <br />Notre mission : informer, former et accompagner les jeunes à
+              devenir des acteurs actifs du changement grâce au numérique, aux
+              médias et aux technologies.
             </p>
           </div>
 
@@ -32,7 +41,7 @@
               <div class="vl-icon-content">
                 <h3 class="title"><a routerLink="/service">Renforcer les compétences digitales</a></h3>
                 <p>
-                  Nous proposons des contenus éducatifs, ateliers et tutoriels pour permettre aux jeunes 
+                  Nous proposons des contenus éducatifs, ateliers et tutoriels pour permettre aux jeunes
                   de maîtriser les technologies et développer leur autonomie numérique.
                 </p>
               </div>
@@ -40,14 +49,23 @@
 
             <!-- Icon box 2 -->
             <div class="vl-about-icon-box mb-30">
-              <div class="vl-about-icon" style="height: 20%;">
-                <span><img src="assets/img/icons/vl-about-1.2.svg" alt="Participation citoyenne"></span>
+              <div class="vl-about-icon" style="height: 20%">
+                <span
+                  ><img
+                    src="assets/img/icons/vl-about-1.2.svg"
+                    alt="Participation citoyenne"
+                /></span>
               </div>
               <div class="vl-icon-content">
-                <h3 class="title"><a routerLink="/service">Encourager la participation citoyenne</a></h3>
+                <h3 class="title">
+                  <a routerLink="/service"
+                    >Encourager la participation citoyenne</a
+                  >
+                </h3>
                 <p>
-                  Logo valorise les initiatives des jeunes et promeut la solidarité, 
-                  la créativité et l’engagement citoyen à travers des projets numériques et médias.
+                  Nous valorisons les initiatives des jeunes et promeut la
+                  solidarité, la créativité et l’engagement citoyen à travers
+                  des projets numériques et médias.
                 </p>
               </div>
             </div>
@@ -58,77 +76,121 @@
       <!-- Image principale agrandie -->
       <div class="col-lg-4 col-md-6 mb-30">
         <div class="vl-about-large-thumb reveal" appGsapReveal>
-          <img class="w-100" style="max-height: 500px; object-fit: cover;" src="assets/img/about/t1.jpeg" alt="Photo principale Logo">
+          <img
+            class="w-100"
+            style="max-height: 500px; object-fit: cover"
+            [src]="about1?.image"
+            alt="Photo principale Logo"
+          />
         </div>
       </div>
 
       <!-- Bloc court avec image et bouton -->
       <div class="col-lg-2 col-md-6 mb-30">
-        <div class="vl-about-sm-content" data-aos="zoom-in-up" data-aos-duration="1000" data-aos-delay="300">
+        <div
+          class="vl-about-sm-content"
+          data-aos="zoom-in-up"
+          data-aos-duration="1000"
+          data-aos-delay="300"
+        >
           <p>
-            Logo croit en une jeunesse forte, connectée et créative. 
-            <br>Nous favorisons l’innovation, l’apprentissage et le dialogue citoyen grâce aux médias numériques.
+            Nous croyons en une jeunesse forte, connectée et créative.
+            <br />Nous favorisons l’innovation, l’apprentissage et le dialogue
+            citoyen grâce aux médias numériques.
           </p>
           <div class="btn-area">
-            <a routerLink="/contact" class="header-btn1" style="width: 100%;">
-              Nous rejoindre <span><i class="fa-solid fa-arrow-right"></i></span>
+            <a routerLink="/contact" class="header-btn1" style="width: 100%">
+              Nous rejoindre
+              <span><i class="fa-solid fa-arrow-right"></i></span>
             </a>
           </div>
           <div class="vl-about-sm-thumb d-none d-md-block mt-3">
-            <img class="w-100" style="max-height: 200px; object-fit: cover;" src="assets/img/about/t2.jpeg" alt="Bloc Logo">
+            <img
+              class="w-100"
+              style="max-height: 200px; object-fit: cover"
+              [src]="about2?.image"
+              alt="Bloc Logo"
+            />
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-
-
-  <section class="vl-objectif-section sp2 bg-light">
-    <div class="container">
-      <div class="vl-section-title-1 text-center mb-50">
-        <h5 class="subtitle" data-aos="fade-down" data-aos-duration="800">Nos Objectifs</h5>
-        <h2 class="title text-anime-style-3">Construire un avenir numérique inclusif et citoyen</h2>
+<section class="vl-objectif-section sp2 bg-light">
+  <div class="container">
+    <div class="vl-section-title-1 text-center mb-50">
+      <h5 class="subtitle" data-aos="fade-down" data-aos-duration="800">
+        Nos Objectifs
+      </h5>
+      <h2 class="title text-anime-style-3">
+        Construire un avenir numérique inclusif et citoyen
+      </h2>
+    </div>
+    <div class="row">
+      <!-- Objectif 1 -->
+      <div
+        class="col-lg-4 col-md-6 mb-30"
+        data-aos="zoom-in"
+        data-aos-delay="200"
+      >
+        <div class="vl-objectif-box text-center p-4 shadow-sm rounded">
+          <img
+            [src]="Objecti1?.image"
+            alt="Compétences numériques"
+            class="objectif-img mb-20"
+          />
+          <h3 class="objectif-title">Former et Informer</h3>
+          <p>
+            Renforcer les compétences numériques de 360 jeunes sur la
+            compréhension de leur environnement sociomédiatique afin de
+            contribuer au renforcement de leur confiance et de leur intérêt pour
+            la bonne gouvernance.
+          </p>
+        </div>
       </div>
-      <div class="row">
-        <!-- Objectif 1 -->
-        <div class="col-lg-4 col-md-6 mb-30" data-aos="zoom-in" data-aos-delay="200">
-          <div class="vl-objectif-box text-center p-4 shadow-sm rounded">
-            <img src="assets/img/about/objectif-1.png" alt="Compétences numériques" class="objectif-img mb-20">
-            <h3 class="objectif-title">Former et Informer</h3>
-            <p>
-              Offrir aux jeunes un accès à des contenus pédagogiques et aux compétences numériques 
-              nécessaires pour s’adapter aux défis du monde moderne.
-            </p>
-          </div>
+
+      <!-- Objectif 2 -->
+      <div
+        class="col-lg-4 col-md-6 mb-30"
+        data-aos="zoom-in"
+        data-aos-delay="400"
+      >
+        <div class="vl-objectif-box text-center p-4 shadow-sm rounded">
+          <img
+            [src]="Objectif2?.image"
+            alt="Participation citoyenne"
+            class="objectif-img mb-20"
+          />
+          <h3 class="objectif-title">Stimuler la Participation Citoyenne</h3>
+          <p>
+            Soutenir la participation de 360 jeunes dans les processus de
+            gouvernance locale et d’initiatives économiques à travers des
+            programmes de mentorat et des ateliers participatifs
+          </p>
         </div>
-  
-        <!-- Objectif 2 -->
-        <div class="col-lg-4 col-md-6 mb-30" data-aos="zoom-in" data-aos-delay="400">
-          <div class="vl-objectif-box text-center p-4 shadow-sm rounded">
-            <img src="assets/img/about/objectif-2.jpeg" alt="Participation citoyenne" class="objectif-img mb-20">
-            <h3 class="objectif-title">Stimuler la Participation Citoyenne</h3>
-            <p>
-              Créer des espaces d’échange et de débat pour que les jeunes puissent s’exprimer 
-              et contribuer activement à la vie citoyenne et démocratique.
-            </p>
-          </div>
-        </div>
-  
-        <!-- Objectif 3 -->
-        <div class="col-lg-4 col-md-6 mb-30" data-aos="zoom-in" data-aos-delay="600">
-          <div class="vl-objectif-box text-center p-4 shadow-sm rounded">
-            <img src="assets/img/about/objectif-3.jpg" alt="Innovation africaine" class="objectif-img mb-20">
-            <h3 class="objectif-title">Promouvoir l’Innovation Africaine</h3>
-            <p>
-              Valoriser les initiatives locales et encourager la créativité des jeunes 
-              pour transformer les défis en opportunités durables.
-            </p>
-          </div>
+      </div>
+
+      <!-- Objectif 3 -->
+      <div
+        class="col-lg-4 col-md-6 mb-30"
+        data-aos="zoom-in"
+        data-aos-delay="600"
+      >
+        <div class="vl-objectif-box text-center p-4 shadow-sm rounded">
+          <img
+            [src]="objectif3?.image"
+            alt="Innovation africaine"
+            class="objectif-img mb-20"
+          />
+          <h3 class="objectif-title">Promouvoir l’Innovation Africaine</h3>
+          <p>
+            Valoriser les initiatives locales et encourager la créativité des
+            jeunes pour transformer les défis en opportunités durables.
+          </p>
         </div>
       </div>
     </div>
-  </section>
-  
+  </div>
+</section>

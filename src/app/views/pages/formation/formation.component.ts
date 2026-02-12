@@ -14,14 +14,19 @@ import { causes } from '../../causes/data';
 // }
 
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { BreadcrumbComponent } from '../../../component/breadcrumb/breadcrumb.component';
 import { FormsModule } from '@angular/forms';
 import { ElearningListComponent } from '../elearning-list/elearning-list.component';
 import { QuizListComponent } from '../quiz-list/quiz-list.component';
 import { WebinarListComponent } from '../webinar-list/webinar-list.component';
 import { Router } from '@angular/router';
-
+import { FormationResponse } from '../../../models/Formation';
+import { FormationService } from '../../../service/formation.service';
+import { environment } from '../../../../environments/environment';
+import { HeadImageService } from '../../../service/head-image.service';
+import { HeadImage } from '../../../models/HeadImage';
+import { catchError, map, of } from 'rxjs';
 
 // @Component({
 //   selector: 'app-formation',
@@ -109,89 +114,134 @@ import { Router } from '@angular/router';
 //   }
 // }
 @Component({
-  imports: [BreadcrumbComponent,CommonModule, FormsModule , ElearningListComponent, QuizListComponent, WebinarListComponent],
+  imports: [
+    BreadcrumbComponent,
+    CommonModule,
+    FormsModule,
+    // ElearningListComponent,
+    // QuizListComponent,
+    // WebinarListComponent,
+  ],
   selector: 'app-formation',
-  standalone:true,
+  standalone: true,
   templateUrl: './formation.component.html',
-  styleUrls: ['./formation.component.scss']
+  styleUrls: ['./formation.component.scss'],
 })
-export class FormationComponent {
+export class FormationComponent implements OnInit {
+  private formationService = inject(FormationService);
+  private headService = inject(HeadImageService);
+
+  isLoading: boolean = true;
+  errorMessage: string = '';
   causes = causes;
   selectedTab = 'elearning';
   searchTerm = '';
+
   tabs = [
     { id: 'elearning', label: 'E-learning' },
     { id: 'quiz', label: 'Quiz & Certification' },
-    { id: 'webinar', label: 'Webinaires' }
+    { id: 'webinar', label: 'Webinaires' },
   ];
 
+  ngOnInit(): void {
+    this.loadFormations();
+    this.loadImage();
+  }
 
-  selectTab(id: string) { this.selectedTab = id; }
+  selectTab(id: string) {
+    this.selectedTab = id;
+  }
 
-  formations = [
-    {
-      title: 'Développement Web Full Stack',
-      description: 'Apprenez à créer des applications web modernes avec Angular, Node.js et MongoDB.',
-      image: 'assets/img/formation/f_d.png',
-      category: 'Programmation',
-      level: 'Débutant à Avancé',
-      duration: '6 semaines',
-      link: '#'
-    },
-    {
-      title: 'Cybersécurité et Protection des Données',
-      description: 'Découvrez comment sécuriser les systèmes, les réseaux et les données sensibles.',
-      image: 'assets/img/formation/OG-Social-SaS-Cybersecurity.jpg',
-      category: 'Sécurité Informatique',
-      level: 'Intermédiaire',
-      duration: '4 semaines',
-      link: '#'
-    },
-    {
-      title: 'Intelligence Artificielle et Machine Learning',
-      description: 'Maîtrisez les bases de l’IA et entraînez vos premiers modèles de machine learning.',
-      image: 'assets/img/formation/ia-tool-1.jpg',
-      category: 'Data Science',
-      level: 'Avancé',
-      duration: '8 semaines',
-      link: '#'
-    },
-    {
-      title: 'Développement Mobile avec Flutter',
-      description: 'Créez des applications mobiles performantes pour Android et iOS avec Flutter.',
-      image: 'assets/img/formation/flutter_dev.jpeg',
-      category: 'Mobile',
-      level: 'Débutant à Intermédiaire',
-      duration: '5 semaines',
-      link: '#'
-    },
-    {
-      title: 'Administration Systèmes et Réseaux',
-      description: 'Apprenez à gérer des infrastructures serveurs, Linux et Cloud.',
-      image: 'assets/img/formation/reseau-informatique.jpg',
-      category: 'Infrastructure',
-      level: 'Intermédiaire',
-      duration: '6 semaines',
-      link: '#'
-    },
-    {
-      title: 'Cloud Computing & DevOps',
-      description: 'Découvrez les outils et pratiques DevOps, Docker, Kubernetes et AWS.',
-      image: 'assets/img/formation/cloud-computing.png',
-      category: 'Cloud',
-      level: 'Avancé',
-      duration: '7 semaines',
-      link: '#'
+  formations: FormationResponse[] = [];
+
+  logoData: HeadImage | null = null;
+
+  loadImage() {
+    const pageName = 'Formation';
+
+    this.headService
+      .getHeadImageByPage(pageName)
+      .pipe(
+        map((response) => {
+          // On extrait l'objet 'headImage' de la réponse JSON
+          if (response && response.headImage) {
+            const item = response.headImage;
+
+            // Reconstruction de l'URL avec ton environnement
+            if (item.image && !item.image.startsWith('http')) {
+              item.image = `${environment.apiUrl}/${item.image}`;
+            }
+            return item;
+          }
+          return null;
+        }),
+        catchError((err) => {
+          console.error(`Erreur lors de la récupération du logo:`, err);
+          return of(null);
+        })
+      )
+      .subscribe((data) => {
+        this.logoData = data;
+        console.log('image chargé avec succès :', this.logoData);
+      });
+  }
+
+  loadFormations(): void {
+    this.isLoading = true;
+    this.formationService.afficherFormations().subscribe({
+      next: (data) => {
+        this.formations = data;
+        this.isLoading = false;
+        console.log('Formations récupérées :', data);
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.errorMessage = 'Erreur lors de la récupération des données.';
+        console.error(err);
+      },
+    });
+  }
+
+  getFormationImage(event: FormationResponse): string {
+    // 1. Vérifier si le blog possède des médias
+    if (event.media && event.media.length > 0) {
+      const firstMedia = event.media[0];
+
+      // 2. Vérifier si webPath existe (généré par ton @Transient Java)
+      if (firstMedia.webPath) {
+        // On retourne l'URL complète vers ton backend
+        // Rappel : Ton MvcConfig Spring mappe "/images/**" vers ton dossier Desktop
+        return `${environment.apiUrl}${firstMedia.webPath}`;
+      }
     }
-  ];
+    // 3. Image de secours (Placeholder) si pas de média ou erreur
+    return 'assets/img/theme/img-1-1000x600.jpg';
+  }
 
-
+  reload(): void {
+    this.loadFormations();
+  }
 
   // 🔹 Modules
   modules = [
-    { title: 'Angular Avancé', duration: '3h', type: 'Vidéo', image: 'assets/img/module1.jpg' },
-    { title: 'Spring Boot Débutant', duration: '4h', type: 'Texte', image: 'assets/img/module2.jpg' },
-    { title: 'Quiz Sécurité', duration: '1h', type: 'Quiz', image: 'assets/img/module3.jpg' },
+    {
+      title: 'Angular Avancé',
+      duration: '3h',
+      type: 'Vidéo',
+      image: 'assets/img/module1.jpg',
+    },
+    {
+      title: 'Spring Boot Débutant',
+      duration: '4h',
+      type: 'Texte',
+      image: 'assets/img/module2.jpg',
+    },
+    {
+      title: 'Quiz Sécurité',
+      duration: '1h',
+      type: 'Quiz',
+      image: 'assets/img/module3.jpg',
+    },
   ];
 
   // 🔹 Quiz
@@ -205,19 +255,19 @@ export class FormationComponent {
           answers: [
             { text: 'JavaScript', correct: false },
             { text: 'TypeScript', correct: true },
-            { text: 'Python', correct: false }
-          ]
+            { text: 'Python', correct: false },
+          ],
         },
         {
           question: 'Le data binding peut être ?',
           answers: [
             { text: 'Unidirectionnel', correct: true },
             { text: 'Bidirectionnel', correct: true },
-            { text: 'Aucun', correct: false }
-          ]
-        }
-      ]
-    }
+            { text: 'Aucun', correct: false },
+          ],
+        },
+      ],
+    },
   ];
 
   activeQuiz: any = null;
@@ -227,10 +277,15 @@ export class FormationComponent {
   // 🔹 Webinaires
   webinars = [
     { title: 'Live Angular', date: new Date(), platform: 'Zoom', link: '#' },
-    { title: 'Webinar Spring Boot', date: new Date(), platform: 'WebRTC', link: '#' },
+    {
+      title: 'Webinar Spring Boot',
+      date: new Date(),
+      platform: 'WebRTC',
+      link: '#',
+    },
   ];
 
-  rawTextContent = `Nos formations couvrent les dernières technologies et méthodes de développement. 
+  rawTextContent = `Nos formations couvrent les dernières technologies et méthodes de développement.
   Elles incluent des modules vidéos, textes, quiz interactifs et webinaires en direct avec replay.`;
 
   // 🔹 Quiz logic
@@ -251,7 +306,11 @@ export class FormationComponent {
       const selected = this.selectedAnswers.get(q);
       if (selected && selected.correct) score++;
     }
-    this.quizResult = { quiz: this.activeQuiz, score, passed: score >= Math.ceil(this.activeQuiz.questions.length / 2) };
+    this.quizResult = {
+      quiz: this.activeQuiz,
+      score,
+      passed: score >= Math.ceil(this.activeQuiz.questions.length / 2),
+    };
   }
 
   // 🔹 PDF + QR code
@@ -267,6 +326,4 @@ export class FormationComponent {
 
   //   doc.save('certificat.pdf');
   // }
-
-
 }

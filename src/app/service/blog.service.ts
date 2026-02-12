@@ -18,6 +18,11 @@ export class BlogService {
   getAllBlogs(): Observable<BlogResponse[]> {
     return this.http.get<BlogResponse[]>(`${this.serviceUrl}/${this.baseUrl}`);
   }
+  getActiveBlogs(): Observable<BlogResponse[]> {
+    return this.http.get<BlogResponse[]>(
+      `${this.serviceUrl}/${this.baseUrl}/active`
+    );
+  }
 
   getBlogByCategory(idCategorie: string): Observable<BlogResponse[]> {
     return this.http.get<BlogResponse[]>(
