@@ -109,7 +109,7 @@
             <div class="formation-card">
               <div class="formation-image">
                 <img
-                  [src]="getFormationImage(formation)"
+                  [src]="getImageFullUrl(formation.imageUrl)"
                   alt="Formation Image"
                 />
               </div>
@@ -124,7 +124,9 @@
 
                 <div class="formation-info">
                   <span><strong>Niveau :</strong> {{ formation.niveau }}</span>
-                  <span><strong>Durée :</strong> {{ formation.Duree }}</span>
+                  <span
+                    ><strong>Durée :</strong> {{ formation.dureeEstimee }}</span
+                  >
                 </div>
 
                 <!-- <div class="btn-area mt-3">

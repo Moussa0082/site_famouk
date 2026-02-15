@@ -1,0 +1,65 @@
+.formations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 20px 0;
+}
+
+.formation-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-image {
+    position: relative;
+    height: 180px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .status-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: white;
+      &.en_cours {
+        background: #4a90e2;
+      }
+      &.terminee {
+        background: #2ecc71;
+      }
+    }
+  }
+
+  .card-body {
+    padding: 20px;
+    h3 {
+      margin: 0 0 15px;
+      font-size: 1.2rem;
+    }
+
+    .progress-bar-bg {
+      height: 8px;
+      background: #eee;
+      border-radius: 4px;
+      margin-top: 5px;
+      .progress-bar-fill {
+        height: 100%;
+        background: #4a90e2;
+        border-radius: 4px;
+        transition: width 0.5s ease;
+      }
+    }
+  }
+}

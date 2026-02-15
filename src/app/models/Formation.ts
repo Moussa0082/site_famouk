@@ -1,23 +1,20 @@
-import { MediaResponseDTO } from "./Media";
+import { MediaResponseDTO } from './Media';
 
 export enum Niveau {
-  DEBUTANT = "DEBUTANT",
-  INTERMEDIAIRE = "INTERMEDIAIRE",
-  AVANCE = "AVANCE",
+  DEBUTANT = 'DEBUTANT',
+  INTERMEDIAIRE = 'INTERMEDIAIRE',
+  AVANCE = 'AVANCE',
 }
 
 export interface FormationResponse {
-  id: string;
-  nom: string;
+  id: number;
+  titre: string;
   description: string;
-  Duree: string; // Attention : 'Duree' en Java devient 'duree' (camelCase standard)
+  imageUrl: string;
+  categorie: string;
+  dureeEstimee: number;
   niveau: Niveau;
-  media: MediaResponseDTO[];
-}
-
-export interface FormationRequest {
-  nom: string;
-  description: string;
-  Duree: string; // On garde la majuscule si ton backend l'attend ainsi dans le JSON
-  niveau: Niveau;
+  active: boolean;
+  dateCreation: string;
+  nombreModules: number;
 }

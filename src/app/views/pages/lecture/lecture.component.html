@@ -1,0 +1,69 @@
+<div class="lecture-container" *ngIf="!isLoading">
+  <aside class="sidebar">
+    <div class="formation-header">
+      <h3>{{ progression?.formation?.titre }}</h3>
+      <div class="global-progress">
+        <small>Votre progression : {{ progression?.progression }}%</small>
+      </div>
+    </div>
+
+    <div class="modules-list">
+      <div class="module-item" *ngFor="let mod of modules; let i = index">
+        <div class="module-title" (click)="toggleModule(i)">
+          <span>{{ mod.titre }}</span>
+          <i
+            class="fa"
+            [ngClass]="mod.isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"
+          ></i>
+        </div>
+
+        <div class="cours-container" *ngIf="mod.isOpen">
+          <div *ngIf="mod.isLessonsLoading" class="loader-small">
+            Chargement...
+          </div>
+
+          <ul class="lessons-list" *ngIf="!mod.isLessonsLoading">
+            <li
+              *ngFor="let c of mod.cours"
+              (click)="selectCours(c)"
+              [class.active]="currentCours?.id === c.id"
+            >
+              <i
+                class="fa"
+                [ngClass]="
+                  c.typeContenu === 'VIDEO' ? 'fa-play-circle' : 'fa-file-text'
+                "
+              ></i>
+              {{ c.titre }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="player-zone">
+    <div *ngIf="currentCours; else emptyState">
+      <h2>{{ currentCours.titre }}</h2>
+
+      <div class="content-wrapper">
+        <div
+          *ngIf="currentCours.typeContenu === 'VIDEO'"
+          class="video-placeholder"
+        >
+          <div class="mock-player">
+            Lecteur Vidéo : {{ currentCours.videoUrl }}
+          </div>
+        </div>
+
+        <div class="description-text">
+          {{ currentCours.contenu }}
+        </div>
+      </div>
+    </div>
+
+    <ng-template #emptyState>
+      <div class="welcome">Sélectionnez une leçon pour commencer.</div>
+    </ng-template>
+  </main>
+</div>

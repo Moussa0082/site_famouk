@@ -1,0 +1,61 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>Connexion</h2>
+    <p>Accédez à votre espace Famoc</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="identifiant">Email ou Telepone</label>
+        <input
+          type="text"
+          id="identifiant"
+          formControlName="identifiant"
+          placeholder="votre@email.com ou 7070..."
+          [class.error]="
+            loginForm.get('identifiant')?.invalid &&
+            loginForm.get('identifiant')?.touched
+          "
+        />
+        <small
+          *ngIf="
+            loginForm.get('identifiant')?.invalid &&
+            loginForm.get('identifiant')?.touched
+          "
+        >
+          L'identifiant est obligatoire.
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="motDePasse">Mot de passe</label>
+        <input
+          type="password"
+          id="motDePasse"
+          formControlName="motDePasse"
+          placeholder="••••••••"
+          [class.error]="
+            loginForm.get('motDePasse')?.invalid &&
+            loginForm.get('motDePasse')?.touched
+          "
+        />
+        <small
+          *ngIf="
+            loginForm.get('motDePasse')?.invalid &&
+            loginForm.get('motDePasse')?.touched
+          "
+        >
+          Le mot de passe est obligatoire (min. 6 caractères).
+        </small>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid || loading">
+        {{ loading ? "Connexion en cours..." : "Se connecter" }}
+      </button>
+
+      <div class="footer-links">
+        <a routerLink="/forgot-password">Mot de passe oublié ?</a>
+        <p>Nouveau ? <a routerLink="/inscription">Créer un compte</a></p>
+      </div>
+    </form>
+  </div>
+</div>

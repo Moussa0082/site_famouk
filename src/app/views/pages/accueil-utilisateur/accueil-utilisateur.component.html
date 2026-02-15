@@ -1,0 +1,71 @@
+<div class="dashboard-content">
+  <header class="page-header">
+    <div class="header-text">
+      <h1>Découvrir nos Formations</h1>
+      <p>Élargissez vos compétences avec nos experts</p>
+    </div>
+    <div class="search-bar">
+      <i class="fa fa-search"></i>
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Rechercher une formation..."
+      />
+    </div>
+  </header>
+
+  <div *ngIf="isLoading" class="loader-container">
+    <div class="spinner"></div>
+    <p>Chargement des formations...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-alert">
+    <i class="fa fa-exclamation-circle"></i>
+    {{ errorMessage }}
+    <button (click)="reload()">Réessayer</button>
+  </div>
+
+  <div class="formation-grid" *ngIf="!isLoading && !errorMessage">
+    <div class="formation-card" *ngFor="let formation of formations">
+      <div class="card-image">
+        <img
+          [src]="getImageFullUrl(formation.imageUrl)"
+          [alt]="formation.titre"
+        />
+        <span class="badge" [ngClass]="formation.niveau.toLowerCase()">{{
+          formation.niveau
+        }}</span>
+      </div>
+
+      <div class="card-body">
+        <span class="category">{{ formation.categorie }}</span>
+        <h3>{{ formation.titre }}</h3>
+        <p class="description">
+          {{ formation.description | slice : 0 : 100 }}...
+        </p>
+
+        <div class="card-footer">
+          <div class="meta">
+            <span
+              ><i class="fa fa-clock"></i> {{ formation.dureeEstimee }}h</span
+            >
+            <span
+              ><i class="fa fa-list"></i>
+              {{ formation.nombreModules }} modules</span
+            >
+          </div>
+          <button
+            class="btn-enroll"
+            [routerLink]="['/dashboard/detail/formations', formation.id]"
+          >
+            Voir le détail
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-data" *ngIf="!isLoading && formations.length === 0">
+    <p>Aucune formation n'est disponible pour le moment.</p>
+  </div>
+</div>

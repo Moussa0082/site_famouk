@@ -201,22 +201,33 @@ export class FormationComponent implements OnInit {
       },
     });
   }
-
-  getFormationImage(event: FormationResponse): string {
-    // 1. Vérifier si le blog possède des médias
-    if (event.media && event.media.length > 0) {
-      const firstMedia = event.media[0];
-
-      // 2. Vérifier si webPath existe (généré par ton @Transient Java)
-      if (firstMedia.webPath) {
-        // On retourne l'URL complète vers ton backend
-        // Rappel : Ton MvcConfig Spring mappe "/images/**" vers ton dossier Desktop
-        return `${environment.apiUrl}${firstMedia.webPath}`;
-      }
+  getImageFullUrl(imagePath: string): string {
+    if (!imagePath) {
+      return 'assets/images/default-course.jpg'; // Une image par défaut si le chemin est vide
     }
-    // 3. Image de secours (Placeholder) si pas de média ou erreur
-    return 'assets/img/theme/img-1-1000x600.jpg';
+    // Si le chemin commence déjà par http, on le garde tel quel
+    if (imagePath.startsWith('http')) {
+      return imagePath;
+    }
+    // Sinon on concatène l'URL du serveur avec le chemin relatif
+    return `${environment.apiUrl}/${imagePath}`;
   }
+
+  // getFormationImage(event: FormationResponse): string {
+  //   // 1. Vérifier si le blog possède des médias
+  //   if (event.media && event.media.length > 0) {
+  //     const firstMedia = event.media[0];
+
+  //     // 2. Vérifier si webPath existe (généré par ton @Transient Java)
+  //     if (firstMedia.webPath) {
+  //       // On retourne l'URL complète vers ton backend
+  //       // Rappel : Ton MvcConfig Spring mappe "/images/**" vers ton dossier Desktop
+  //       return `${environment.apiUrl}${firstMedia.webPath}`;
+  //     }
+  //   }
+  //   // 3. Image de secours (Placeholder) si pas de média ou erreur
+  //   return 'assets/img/theme/img-1-1000x600.jpg';
+  // }
 
   reload(): void {
     this.loadFormations();

@@ -4,8 +4,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import {
+  HttpClient,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
+import { authInterceptor } from './service/auth.interceptor';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,7 +20,9 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     BrowserAnimationsModule,
     HttpClient,
-    provideHttpClient(),
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
+    provideHttpClient(withInterceptors([authInterceptor])),
     provideToastr({
       timeOut: 3000,
       positionClass: 'toast-top-right',
