@@ -14,6 +14,7 @@ import { AccueilUtilisateurComponent } from './views/pages/accueil-utilisateur/a
 import { DetailFormationComponent } from './views/pages/detail-formation/detail-formation.component';
 import { MesFormationComponent } from './views/pages/mes-formation/mes-formation.component';
 import { LectureComponent } from './views/pages/lecture/lecture.component';
+import { MesCertificatsComponent } from './views/pages/mes-certificats/mes-certificats.component';
 
 export const routes: Routes = [
   {
@@ -38,10 +39,10 @@ export const routes: Routes = [
       { path: 'detail/formations/:id', component: DetailFormationComponent }, // À créer
       { path: 'mes-formations', component: MesFormationComponent },
       {
-        path: 'dashboard/lecture/:id',
+        path: 'lecture/:id',
         component: LectureComponent,
       },
-      // { path: 'certificats', component: MesCertificatsComponent }, // À créer
+      { path: 'certificats', component: MesCertificatsComponent }, // À créer
       // { path: 'profil', component: ProfilComponent }, // À créer
     ],
   },

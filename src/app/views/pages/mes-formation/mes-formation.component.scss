@@ -63,3 +63,98 @@
     }
   }
 }
+
+.card-footer {
+  margin-top: 20px;
+
+  .btn-continue {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: #2563eb; // Bleu moderne
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none; // Pour le routerLink
+
+    &:hover {
+      background: #1d4ed8; // Bleu plus foncé au survol
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    // Style spécial si la formation est terminée (100%)
+    &.completed {
+      background: white;
+      color: #2563eb;
+      border: 2px solid #2563eb;
+
+      &:hover {
+        background: #eff6ff;
+      }
+    }
+  }
+}
+
+// Petit plus pour l'icône dans le bouton
+.btn-continue::after {
+  content: "→";
+  transition: transform 0.3s ease;
+}
+
+.btn-continue:hover::after {
+  transform: translateX(5px);
+}
+
+.card-footer {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+
+  button {
+    flex: 1; // Les boutons prennent la même largeur
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-continue {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+
+    &.completed {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+  }
+
+  .btn-certificat {
+    background: linear-gradient(135deg, #ffca28 0%, #ff8f00 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 10px rgba(255, 143, 0, 0.3);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(255, 143, 0, 0.4);
+    }
+
+    i {
+      margin-right: 5px;
+    }
+  }
+}

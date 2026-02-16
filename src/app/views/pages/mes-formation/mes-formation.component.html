@@ -36,12 +36,33 @@
           </div>
         </div>
 
+        <!-- <div class="card-footer">
+          <button
+            [routerLink]="['/dashboard/lecture/', p.id]"
+            class="btn-continue"
+          >
+            {{ p.progression === 100 ? "Revoir" : "Continuer l'apprentissage" }}
+          </button>
+        </div> -->
         <div class="card-footer">
           <button
             [routerLink]="['/dashboard/lecture', p.id]"
             class="btn-continue"
+            [class.completed]="p.progression === 100"
           >
-            {{ p.progression === 100 ? "Revoir" : "Continuer l'apprentissage" }}
+            {{
+              p.progression === 100
+                ? "Revoir la formation"
+                : "Continuer l'apprentissage"
+            }}
+          </button>
+          <button
+            *ngIf="p.progression === 100"
+            (click)="telechargerCertificat(p.formation.id)"
+            class="btn-certificat"
+            title="Obtenir mon certificat"
+          >
+            <i class="fa fa-award"></i> Certificat
           </button>
         </div>
       </div>
