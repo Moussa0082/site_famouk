@@ -149,6 +149,7 @@ export class LectureComponent implements OnInit {
 
   selectCours(cours: CoursResponseDTO) {
     this.currentCours = cours;
+    this.showQuiz = false;
   }
 
   validerLeconActuelle() {
@@ -218,6 +219,14 @@ export class LectureComponent implements OnInit {
 
     return isGlobalProgressHighEnough;
   }
+
+  //   isCurrentLessonCompleted(): boolean {
+  //   if (!this.currentCours || !this.progression) return false;
+
+  //   // On suppose que votre objet progression contient une liste d'IDs de cours terminés
+  //   // Si votre DTO est différent, adaptez la condition (ex: c.termine === true)
+  //   return this.progression..includes(this.currentCours.id) || false;
+  // }
 
   choisirReponse(questionId: number, optionId: number) {
     this.reponsesSelectionnees[questionId] = optionId;

@@ -163,8 +163,50 @@
     </div>
 
     <ng-template #lessonOrEmpty>
-      <div class="content-body" *ngIf="currentCours; else emptyState">
-        <h1>{{ currentCours.titre }}</h1>
+      <div class="player-zone-content" *ngIf="currentCours; else emptyState">
+        <h2>{{ currentCours.titre }}</h2>
+
+        <div class="content-wrapper">
+          <div
+            *ngIf="currentCours.typeContenu === 'VIDEO'"
+            class="video-placeholder mb-4"
+          >
+            <div
+              class="real-player shadow rounded bg-dark"
+              style="overflow: hidden; position: relative"
+            >
+              <iframe
+                *ngIf="currentCours.contenu"
+                style="width: 100%; aspect-ratio: 16/9; border: none"
+                [src]="getSafeVideoUrl(currentCours.videoUrl)"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              >
+              </iframe>
+
+              <div
+                *ngIf="!currentCours.contenu"
+                class="p-4 text-center text-white"
+              >
+                <i class="fa fa-exclamation-triangle mb-2"></i><br />
+                Source vidéo manquante
+              </div>
+            </div>
+          </div>
+
+          <div class="description-text mt-3 p-3 bg-light border rounded">
+            <div [innerHTML]="currentCours.contenu"></div>
+          </div>
+        </div>
+
+        <div class="validation-zone mt-4 pt-3 border-top text-right">
+          <button
+            class="btn btn-success px-5 shadow-sm"
+            (click)="validerLeconActuelle()"
+          >
+            <i class="fa fa-check-circle mr-2"></i> Valider cette leçon
+          </button>
+        </div>
       </div>
     </ng-template>
 
