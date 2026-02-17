@@ -22,11 +22,11 @@ export class AboutComponent implements OnInit {
   headImages: HeadImage[] = [];
   about1: HeadImage | null = null;
   about2: HeadImage | null = null;
-  Objecti1: HeadImage | null = null;
-  Objectif2: HeadImage | null = null;
+  objectif1: HeadImage | null = null;
+  objectif2: HeadImage | null = null;
   objectif3: HeadImage | null = null;
 
-  pagesToManage = ['About1', 'About2', 'Objecti1', 'Objectif2', 'Objectif3'];
+  pagesToManage = ['About1', 'About2', 'Objectif1', 'Objectif2', 'Objectif3'];
 
   loadAllHeadImages() {
     const requests = this.pagesToManage.map((page) =>
@@ -54,8 +54,8 @@ export class AboutComponent implements OnInit {
         this.headImages = results.filter((img) => img !== null);
         this.about1 = results[0];
         this.about2 = results[1];
-        this.Objecti1 = results[2];
-        this.Objectif2 = results[3];
+        this.objectif1 = results[2];
+        this.objectif2 = results[3];
         this.objectif3 = results[4];
         console.log('Images chargées :', this.headImages);
       },

@@ -68,7 +68,7 @@ export class ContactComponent implements OnInit {
   }
 
   loadImage() {
-    const pageName = 'Blog';
+    const pageName = 'Contact';
 
     this.headService
       .getHeadImageByPage(pageName)

@@ -24,7 +24,7 @@ import { environment } from '../../../environments/environment';
   styles: ``,
 })
 export class AboutComponent implements OnInit {
-  ngOnInit(): void {
+  ngOnInit() {
     this.loadLogo();
   }
   private headService = inject(HeadImageService);
