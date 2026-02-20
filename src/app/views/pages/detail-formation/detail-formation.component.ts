@@ -38,16 +38,18 @@ export class DetailFormationComponent {
   private progressionService = inject(ProgressionService);
   private authService = inject(AuthService);
 
-  // CORRECTION ICI : Utilise ModuleUI[] au lieu de ModuleResponse[]
   modules: ModuleUI[] = [];
   Cours: CoursResponseDTO[] = [];
   formation: FormationResponse | null = null;
   isLoading = true;
+  isStarted = false;
+  progressionId: number | null = null;
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.loadData(id);
+      this.checkIfStarted(id);
     }
   }
 
@@ -68,7 +70,7 @@ export class DetailFormationComponent {
   loadModules(formationId: number) {
     this.moduleService.getModulesByFormation(formationId).subscribe({
       next: (data) => {
-        // On transforme les données du backend en données UI
+        // Transforme les données du backend en données UI
         this.modules = data
           .map((m) => ({
             ...m,
@@ -138,6 +140,26 @@ export class DetailFormationComponent {
         console.error("Erreur d'inscription", err);
         alert('Une erreur est survenue lors du démarrage.');
       },
+    });
+  }
+
+  // Vérifie si l'utilisateur a déjà commencé cette formation
+  checkIfStarted(formationId: string) {
+    const userId = this.authService.getUserId();
+    if (!userId) return;
+
+    this.progressionService.getMesProgressions(userId).subscribe({
+      next: (progressions) => {
+        // On cherche une progression qui correspond à l'ID de la formation actuelle
+        const existingProg = progressions.find(
+          (p) => p.formation.id === Number(formationId)
+        );
+        if (existingProg) {
+          this.isStarted = true;
+          this.progressionId = existingProg.id;
+        }
+      },
+      error: (err) => console.error('Erreur vérification progression', err),
     });
   }
 }

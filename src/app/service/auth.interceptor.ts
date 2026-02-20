@@ -18,12 +18,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = authService.getAccessToken();
   let authReq = req;
 
-  // 2. Ajouter le token si présent
   if (token) {
     authReq = addToken(req, token);
   }
 
-  // 3. Envoyer la requête et gérer l'erreur 401 (Token expiré)
   return next(authReq).pipe(
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401) {
@@ -44,7 +42,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   );
 };
 
-// Fonction utilitaire (hors de l'export car c'est une fonction pure)
 function addToken(request: HttpRequest<any>, token: string): HttpRequest<any> {
   return request.clone({
     setHeaders: { Authorization: `Bearer ${token}` },

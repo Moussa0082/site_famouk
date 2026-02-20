@@ -20,7 +20,12 @@
       </div>
 
       <button class="btn-start" (click)="demarrerFormation()">
-        <i class="fa fa-play-circle"></i> Démarrer la formation
+        <ng-container *ngIf="!isStarted; else continueLabel">
+          <i class="fa fa-play-circle"></i> Démarrer la formation
+        </ng-container>
+        <ng-template #continueLabel>
+          <i class="fa fa-eye"></i> Voir la formation
+        </ng-template>
       </button>
     </div>
 

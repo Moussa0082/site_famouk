@@ -76,10 +76,6 @@ export class AuthService {
       );
   }
 
-  /**
-   * 2. Inscription d'un nouvel utilisateur
-   * Endpoint: POST /api-infotech/auth/signup
-   */
   signUp(userData: SignupRequest): Observable<User> {
     return this.http.post<User>(
       `${this.serviceUrl}/${this.baseUrl}/apprenat/register`,
@@ -92,7 +88,6 @@ export class AuthService {
       Authorization: `Bearer ${refreshToken}`,
     });
 
-    // Le corps de la requête POST est vide ({}) car toutes les infos sont dans le header.
     return this.http.post<JwtResponse>(
       `${this.serviceUrl}/${this.baseUrl}/refresh`,
       {},

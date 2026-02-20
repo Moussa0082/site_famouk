@@ -50,28 +50,34 @@
       <div class="cert-inner-border">
         <div class="cert-content">
           <div class="cert-header">
-            <img
-              src="assets/images/logo.png"
-              alt="Logo"
-              class="cert-logo"
-              style="max-width: 150px"
-            />
-            <h1>CERTIFICAT DE RÉUSSITE</h1>
+            <div class="logos">
+              <img
+                src="assets/img/banner/logoTuwindi.png"
+                alt="Logo"
+                class="cert-logo"
+                style="max-width: 150px"
+              />
+              <img
+                src="assets/img/banner/famocLogo.png"
+                alt="Logo"
+                class="cert-logo"
+                style="max-width: 150px"
+              />
+            </div>
+            <h1>CERTIFICAT DE Formation</h1>
             <p class="subtitle">Ce document est fièrement décerné à</p>
           </div>
           <div class="cert-body">
             <h2 class="user-name">
               {{ utilisateur?.prenom }} {{ utilisateur?.nom | uppercase }}
             </h2>
-            <p class="desc">
-              Pour avoir complété avec succès la formation professionnelle :
-            </p>
+            <p class="desc">Pour avoir complété avec succès la formation :</p>
             <h3 class="course-title">{{ selectedCert.titreFormation }}</h3>
           </div>
           <div class="cert-footer">
             <div class="signature">
               <div class="sig-line"></div>
-              <p>Le Responsable Pédagogique</p>
+              <p>Le Presidant Tidiani Togola</p>
             </div>
             <div class="seal"><i class="fa fa-award"></i></div>
             <div class="meta">

@@ -9,7 +9,7 @@ import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-blog-single',
-  imports: [BreadcrumbComponent, BlogContentComponent, BlogSidebarComponent],
+  imports: [BreadcrumbComponent, BlogSidebarComponent],
   templateUrl: './blog-single.component.html',
   styles: ``,
 })

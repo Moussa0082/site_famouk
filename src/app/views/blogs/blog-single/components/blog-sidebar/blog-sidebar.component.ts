@@ -7,7 +7,7 @@ import { environment } from '../../../../../../environments/environment';
 
 @Component({
   selector: 'app-blog-sidebar',
-  imports: [RouterLink, CommonModule],
+  imports: [CommonModule],
   templateUrl: './blog-sidebar.component.html',
   styles: ``,
 })

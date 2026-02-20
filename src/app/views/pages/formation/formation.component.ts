@@ -192,7 +192,6 @@ export class FormationComponent implements OnInit {
       next: (data) => {
         this.formations = data;
         this.isLoading = false;
-        console.log('Formations récupérées :', data);
       },
       error: (err) => {
         this.isLoading = false;
@@ -203,13 +202,11 @@ export class FormationComponent implements OnInit {
   }
   getImageFullUrl(imagePath: string): string {
     if (!imagePath) {
-      return 'assets/images/default-course.jpg'; // Une image par défaut si le chemin est vide
+      return 'assets/images/default-course.jpg';
     }
-    // Si le chemin commence déjà par http, on le garde tel quel
     if (imagePath.startsWith('http')) {
       return imagePath;
     }
-    // Sinon on concatène l'URL du serveur avec le chemin relatif
     return `${environment.apiUrl}/${imagePath}`;
   }
 
