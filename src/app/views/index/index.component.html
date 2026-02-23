@@ -1,73 +1,89 @@
-
 <div class="vl-banner p-relative fix">
-    <ngx-slick-carousel [config]="sliderConfig" class="slider-active-1">
-  
-      <!-- Slide 1 -->
-      <div ngxSlickItem class="vl-hero-slider vl-hero-bg"
-           style="background-image: url(./assets/img/banner/africa.jpg);">
-  
-        <div class="vl-hero-shape shape-1">
-          <img src="assets/img/shape/vl-hero-shape-1.1.png" alt="">
-        </div>
-        <div class="vl-hero-shape shape-2">
-          <img src="assets/img/shape/vl-hero-shape-1.2.png" alt="">
-        </div>
-  
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-7">
-              <div class="vl-hero-section-title">
-                <h5 class="vl-subtitle"> 
-                  <span><img src="assets/img/icons/vl-sub-title-icon.svg" alt=""></span> 
-                  Médias & Technologies Citoyennes
-                </h5>
-                <h1 class="vl-title text-anime-style-3">
-                  Une jeunesse connectée, active et engagée
-                </h1>
-                <p>
-                  Logo est une plateforme numérique innovante qui donne aux jeunes de 15 à 35 ans au Mali 
-                  et en Afrique de l’Ouest les moyens de s’informer, d’échanger et d’agir. 
-                  <br>À travers des contenus pédagogiques, des espaces de débats, des outils pratiques et 
-                  des campagnes de sensibilisation, nous renforçons la participation citoyenne et 
-                  la culture numérique des nouvelles générations.
-                </p>
-                <div class="vl-hero-btn">
-                  <a routerLink="/contact" class="header-btn1">
-                    Rejoignez la communauté <span><i class="fa-solid fa-arrow-right"></i></span>
-                  </a>
-                </div>
+  <ngx-slick-carousel [config]="sliderConfig" class="slider-active-1">
+    <!-- Slide 1 -->
+    <!-- <div
+      ngxSlickItem
+      class="vl-hero-slider vl-hero-bg"
+      style="background-image: url(./assets/img/banner/africa.jpg)"
+    > -->
+    <div
+      ngxSlickItem
+      class="vl-hero-slider vl-hero-bg"
+      [style.background-image]="
+        logoData
+          ? 'url(' + logoData.image + ')'
+          : 'url(./assets/img/banner/africa.jpg)'
+      "
+    >
+      <!-- <div class="vl-hero-shape shape-1">
+        <img src="assets/img/shape/vl-hero-shape-1.1.png" alt="" />
+      </div>
+      <div class="vl-hero-shape shape-2">
+        <img src="assets/img/shape/vl-hero-shape-1.2.png" alt="" />
+      </div> -->
+
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="vl-hero-section-title">
+              <h5 class="vl-subtitle">
+                <span
+                  ><img src="assets/img/icons/vl-sub-title-icon.svg" alt=""
+                /></span>
+                Médias & Technologies Citoyennes
+              </h5>
+              <h1 class="vl-title text-anime-style-3">
+                Jeunesse citoyenne active et informée
+              </h1>
+              <p>
+                Ce projet vise à promouvoir la participation citoyenne des
+                jeunes au processus de réformes politiques ainsi que leur
+                culture de l'information à travers l'utilisation des outils
+                numériques.
+                <br />
+                <br />
+                En renforçant leur rôle dans la prise de décision, il contribue
+                à la promotion de la citoyenneté active, de la bonne gouvernance
+                et des droits humains.
+              </p>
+              <div class="vl-hero-btn">
+                <a routerLink="/contact" class="header-btn1">
+                  Rejoignez la communauté
+                  <span><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
               </div>
             </div>
-            <div class="col-lg-5"></div>
           </div>
+          <div class="col-lg-5"></div>
         </div>
       </div>
-  
-      <!-- Slide 2 -->
-      <div ngxSlickItem class="vl-hero-slider vl-hero-bg"
+    </div>
+
+    <!-- Slide 2 -->
+    <!-- <div ngxSlickItem class="vl-hero-slider vl-hero-bg"
            style="background-image: url(./assets/img/banner/africa.jpg);">
-  
+
         <div class="vl-hero-shape shape-1">
           <img src="assets/img/shape/vl-hero-shape-1.1.png" alt="">
         </div>
         <div class="vl-hero-shape shape-2">
           <img src="assets/img/shape/vl-hero-shape-1.2.png" alt="">
         </div>
-  
+
         <div class="container">
           <div class="row">
             <div class="col-lg-7">
               <div class="vl-hero-section-title">
-                <h5 class="vl-subtitle"> 
-                  <span><img src="assets/img/icons/vl-sub-title-icon.svg" alt=""></span> 
+                <h5 class="vl-subtitle">
+                  <span><img src="assets/img/icons/vl-sub-title-icon.svg" alt=""></span>
                   Logo Hub Digital
                 </h5>
                 <h1 class="vl-title text-anime-style-3">
                   L’innovation au service de la citoyenneté
                 </h1>
                 <p>
-                  Grâce au numérique et aux médias, Logo ouvre un nouvel espace d’expression et de créativité 
-                  pour la jeunesse. La plateforme favorise l’accès à l’information, le dialogue citoyen 
+                  Grâce au numérique et aux médias, Logo ouvre un nouvel espace d’expression et de créativité
+                  pour la jeunesse. La plateforme favorise l’accès à l’information, le dialogue citoyen
                   et l’apprentissage des compétences digitales pour construire une société plus inclusive et participative.
                 </p>
                 <div class="vl-hero-btn">
@@ -80,22 +96,20 @@
             <div class="col-lg-5"></div>
           </div>
         </div>
-      </div>
-  
-    </ngx-slick-carousel>
-  
-    <!-- Arrows -->
-    <div class="vl-arrow">
+      </div> -->
+  </ngx-slick-carousel>
+
+  <!-- Arrows -->
+  <!-- <div class="vl-arrow">
       <span class="prev-arow"><i class="fa-solid fa-angle-right"></i></span>
       <span class="next-arow"><i class="fa-solid fa-angle-left"></i></span>
-    </div>
-  </div>
-  
+    </div> -->
+</div>
 
-<app-about/>
+<app-about />
 <!-- <app-cause/> -->
-<!-- <app-event/> -->
-<app-testimonial/>
-<app-gallary/>
-<app-team-area/>
-<!-- <app-blog-area/> -->
+<app-event />
+<!-- <app-testimonial /> -->
+<app-gallary />
+<!-- <app-team-area /> -->
+<!-- <app-blog-area /> -->

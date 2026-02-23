@@ -1,59 +1,74 @@
-<div class="mobile-sidebar mobile-sidebar1" [ngClass]="{ 'mobile-menu-active': isMenuOpen }">
-    <div class="logosicon-area">
-        <div class="logos">
-            <a routerLink="/index" (click)="closeSidebar()">
-                <!-- <img src="assets/img/logo/vl-footer-logo-1.1.png" alt="Footer Logo"> -->
-                <h2 style="color: black;">Logo</h2>
-              </a> 
-        </div>
- 
-        <div class="menu-close" (click)="closeSidebar()">
-            <i class="fa-solid fa-xmark"></i>
-        </div>
+<div
+  class="mobile-sidebar mobile-sidebar1"
+  [ngClass]="{ 'mobile-menu-active': isMenuOpen }"
+>
+  <div class="logosicon-area">
+    <div class="logos">
+      <a routerLink="/index" (click)="closeSidebar()">
+        <!-- <img src="assets/img/logo/vl-footer-logo-1.1.png" alt="Footer Logo"> -->
+        <h2 style="color: black">Logo</h2>
+      </a>
     </div>
 
-    <div class="mobile-nav mobile-nav1">
-        <ul class="mobile-nav-list nav-list1">
-            @for (item of menuItems; track $index) {
-            <li [ngClass]="{ 'has-sub hash-has-sub': item.isOpen }">
-                <a href="{{item.link}}" (click)="toggleSubMenu(item)" [class.hash-nav]="item.link === '#'">
-                    {{ item.title }}
-                </a>
-                @if(item.subMenu){
-                <span class="submenu-button" [ngClass]="{ 'submenu-opened': item.isOpen }" (click)="toggleSubMenu(item, $event)">
-                    <em ></em>
-                </span>
-                }
-                @if(item.subMenu && item.isOpen){
-                <ul class="sub-menu" [ngClass]="{ 'open-sub': item.isOpen }" [ngStyle]="{ 'display': item.isOpen ? 'block' : 'none' }">
-                    @for (subItem of item.subMenu; track $index) {
-                    <li>
-                        <a href="{{ subItem.link }}">{{ subItem.title }}</a>
-                    </li>
-                    }
-                </ul>
-                }
-            </li>
-            }
+    <div class="menu-close" (click)="closeSidebar()">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+  </div>
+
+  <div class="mobile-nav mobile-nav1">
+    <ul class="mobile-nav-list nav-list1">
+      @for (item of menuItems; track $index) {
+      <li [ngClass]="{ 'has-sub hash-has-sub': item.isOpen }">
+        <a
+          href="{{ item.link }}"
+          (click)="toggleSubMenu(item)"
+          [class.hash-nav]="item.link === '#'"
+        >
+          {{ item.title }}
+        </a>
+        @if(item.subMenu){
+        <span
+          class="submenu-button"
+          [ngClass]="{ 'submenu-opened': item.isOpen }"
+          (click)="toggleSubMenu(item, $event)"
+        >
+          <em></em>
+        </span>
+        } @if(item.subMenu && item.isOpen){
+        <ul
+          class="sub-menu"
+          [ngClass]="{ 'open-sub': item.isOpen }"
+          [ngStyle]="{ display: item.isOpen ? 'block' : 'none' }"
+        >
+          @for (subItem of item.subMenu; track $index) {
+          <li>
+            <a href="{{ subItem.link }}">{{ subItem.title }}</a>
+          </li>
+          }
         </ul>
-    </div>
+        }
+      </li>
+      }
+    </ul>
+  </div>
 
-    <div class="allmobilesection">
-        <a routerLink="/contact" class="header-mobile-btn1">Mon espace <span><i
-                    class="fa-solid fa-arrow-right"></i></span></a>
+  <div class="allmobilesection">
+    <a routerLink="/contact" class="header-mobile-btn1"
+      >Mon espace <span><i class="fa-solid fa-arrow-right"></i></span
+    ></a>
 
-        <div class="vl-mobile-contact1">
-            <h3 class="title">Contact Info</h3>
-            <div class="footer1-contact-info">
-                <div class="contact-info-single">
-                    <div class="contact-info-icon">
-                        <i class="fa-solid fa-phone-volume"></i>
-                    </div>
-                    <div class="contact-info-text">
-                        <a href="tel:+223 71 91 91 91">+223 71 91 91 91</a>
-                    </div>
-                </div>
-            </div>
+    <div class="vl-mobile-contact1">
+      <h3 class="title">Contact Info</h3>
+      <div class="footer1-contact-info">
+        <div class="contact-info-single">
+          <div class="contact-info-icon">
+            <i class="fa-solid fa-phone-volume"></i>
+          </div>
+          <div class="contact-info-text">
+            <a href="tel:+223 71 91 91 91">+223 71 91 91 91</a>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

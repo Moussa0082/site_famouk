@@ -1,11 +1,10 @@
-<app-breadcrumb 
-
-  [backgroundImage]="'assets/img/banner/africa.jpg'"
+<app-breadcrumb
+  [backgroundImage]="logoData?.image || 'assets/img/banner/africa.jpg'"
   [shape1]="'assets/img/breadcrumb/breadcrumb-shape-1.1.png'"
   [shape2]="'assets/img/breadcrumb/breadcrumb-shape-1.2.png'"
   [shape3]="'assets/img/breadcrumb/breadcrumb-shape-1.3.png'"
-  [pageTitle]="'Events'">
+  [pageTitle]="'Events'"
+>
 </app-breadcrumb>
 
-
-<app-event-area/>
+<app-event-area />

@@ -1,0 +1,160 @@
+.formations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 25px;
+  padding: 20px 0;
+}
+
+.formation-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-image {
+    position: relative;
+    height: 180px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .status-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: white;
+      &.en_cours {
+        background: #4a90e2;
+      }
+      &.terminee {
+        background: #2ecc71;
+      }
+    }
+  }
+
+  .card-body {
+    padding: 20px;
+    h3 {
+      margin: 0 0 15px;
+      font-size: 1.2rem;
+    }
+
+    .progress-bar-bg {
+      height: 8px;
+      background: #eee;
+      border-radius: 4px;
+      margin-top: 5px;
+      .progress-bar-fill {
+        height: 100%;
+        background: #4a90e2;
+        border-radius: 4px;
+        transition: width 0.5s ease;
+      }
+    }
+  }
+}
+
+.card-footer {
+  margin-top: 20px;
+
+  .btn-continue {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 20px;
+    background: #2563eb; // Bleu moderne
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none; // Pour le routerLink
+
+    &:hover {
+      background: #1d4ed8; // Bleu plus foncé au survol
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    // Style spécial si la formation est terminée (100%)
+    &.completed {
+      background: white;
+      color: #2563eb;
+      border: 2px solid #2563eb;
+
+      &:hover {
+        background: #eff6ff;
+      }
+    }
+  }
+}
+
+// Petit plus pour l'icône dans le bouton
+.btn-continue::after {
+  content: "→";
+  transition: transform 0.3s ease;
+}
+
+.btn-continue:hover::after {
+  transform: translateX(5px);
+}
+
+.card-footer {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+
+  button {
+    flex: 1; // Les boutons prennent la même largeur
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-continue {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ddd;
+
+    &.completed {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+  }
+
+  .btn-certificat {
+    background: linear-gradient(135deg, #ffca28 0%, #ff8f00 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 10px rgba(255, 143, 0, 0.3);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(255, 143, 0, 0.4);
+    }
+
+    i {
+      margin-right: 5px;
+    }
+  }
+}

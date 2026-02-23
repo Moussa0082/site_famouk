@@ -1,76 +1,72 @@
-<!-- sidebar area start -->
 <div class="vl-sidebar-area sp2">
   <div class="container">
     <div class="col-lg-8 mx-auto">
-      <div class="vl-event-content-area ml-50">
+      <div *ngIf="isLoading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p>Chargement des articles...</p>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+
+      <div class="vl-event-content-area ml-50 mb-50" *ngFor="let blog of blogs">
         <div class="vl-large-thumb">
-          <img  height="80%" width="90%" src="assets/img/resources/r3.png" alt="">
+          <img
+            [src]="getBlogImage(blog)"
+            height="80%"
+            width="90%"
+            style="object-fit: cover; border-radius: 10px"
+            [alt]="blog.titre"
+          />
         </div>
 
         <div class="vl-blog-meta-box mt-32">
           <ul>
-            <li><a href="javascript:void(0);"> <span><img src="assets/img/team/t3.jpeg" alt=""></span>Adil Rashid</a>
+            <li>
+              <a href="javascript:void(0);">
+                <span><img src="assets/img/team/t3.jpeg" alt="" /></span>
+                {{ blog.auteur }}
+              </a>
             </li>
-            <li><a href="javascript:void(0);"> <span class="icon"><img class="mt-4-" src="assets/img/icons/vl-calender-1.1.svg"
-                    alt=""></span> 8/10/2025</a></li>
-            <li><a href="javascript:void(0);"> <span class="icon"><img class="mt-4-" src="assets/img/icons/vl-tags.svg" alt=""></span>
-                Business And Finance</a></li>
-            <li><a href="javascript:void(0);"> <span class="icon"><img class="mt-4-" src="assets/img/icons/vl-chatting-icon.svg"
-                    alt=""></span>2 comments</a></li>
+            <li>
+              <a href="javascript:void(0);">
+                <span class="icon">
+                  <img src="assets/img/icons/vl-calender-1.1.svg" alt="" />
+                </span>
+                {{ blog.datePublication | date : "dd/MM/yyyy" }}
+              </a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">
+                <span class="icon">
+                  <img src="assets/img/icons/vl-tags.svg" alt="" />
+                </span>
+                {{ blog.categorie?.nom || "Actualité" }}
+              </a>
+            </li>
           </ul>
         </div>
+
         <div class="vl-event-content vl-blg-content">
-          <h2 class="title">Tips for Disaster Preparedness: How <br> to Stay Safe and Ready</h2>
-          <p class="para pb-16">Our blog is a space where we share the heart of our mission, offering an inside look at
-            the incredible work being done and the lives being transformed through your support. Each post features real
-            stories from the field, updates on our current projects. </p>
-          <p class="para pb-32">Whether you're learning about a new initiative, discovering how your donations are
-            making an impact, or finding inspiration to get involved, our blog is here to connect.</p>
-        </div>
-        <div class="vl-blg-icon-box">
-          <div class="row">
-            <div class="col-lg-6 col-md-6">
-              <div class="single-blog-box1 mb-30">
-                <a routerLink="/blog-single" class="title">Mission and Vision</a>
-                <p class="para">Join us on this journey & let continue making the world a better place.</p>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6">
-              <div class="single-blog-box1 mb-30">
-                <a routerLink="/blog-single" class="title">A Journey of Impact</a>
-                <p class="para">Our blog is more than just collection of updates it’s a platform for sharing.</p>
-              </div>
-            </div>
-          </div>
+          <h2 class="title">{{ blog.titre }}</h2>
+          <p class="para pb-16">{{ blog.description }}</p>
+
+          <!-- <div class="text-left">
+            <a
+              [routerLink]="['/blog-detail', blog.id]"
+              class="btn btn-link text-info p-0"
+            >
+              Lire la suite <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div> -->
         </div>
 
-        <div class="event-content-area">
-          <h2 class="title">Join Us in Making a Difference</h2>
-          <p class="para">We invite you to join us, meet like-minded individuals, and become part of a movement that
-            makes real, lasting change. Whether you attend, volunteer, or help spread the word, your involvement is
-            invaluable. Explore our upcoming events.</p>
+        <hr class="mt-5 mb-5" style="border-top: 1px solid #eee; width: 90%" />
+      </div>
 
-          <h2 class="title">Event Highlights & Details</h2>
-          <p class="para">Our events are designed to unite passionate individuals, raise critical funds, & increase
-            awareness for the causes we serve. Each event offers a unique opportunity to connect, contribute, and
-            witness the power of community in action.</p>
-          <p class="para">Our events are opportunities to bring people together for meaningful causes, creating moments
-            of connection and impact that extend far beyond the day itself.</p>
-
-
-          <h2 class="title">Upcoming Fundraisers and Community Events</h2>
-          <p class="para">From heartwarming charity dinners to hands-on volunteer days, these gatherings allow us to
-            celebrate milestones, share stories of impact, and inspire further action. By joining us at our upcoming
-            events, you’re not just attending you’re becoming part movement.</p>
-          <p class="para">Each event, whether a fundraiser, awareness campaign, volunteer drive, or community gathering,
-            plays a vital role in supporting our mission and raising essential resources.</p>
-
-          <h2 class="title">Event Details and How to Participate</h2>
-          <p class="para">Whether you attend, volunteer, or help spread the word, your involvement is invaluable.
-            Explore our upcoming events, find ways to get involved, and help us create brighter futures for those in
-            need. Together, we can make an extraordinary impact!</p>
-        </div>
-
+      <div *ngIf="!isLoading && blogs.length === 0" class="text-center">
+        <p class="text-muted">Aucun article disponible pour le moment.</p>
       </div>
     </div>
   </div>

@@ -9,6 +9,13 @@ import { IndexSingle1Component } from './demo/index-single-1/index-single-1.comp
 import { IndexSingle2Component } from './demo/index-single-2/index-single-2.component';
 import { IndexSingle3Component } from './demo/index-single-3/index-single-3.component';
 import { IndexSingle4Component } from './demo/index-single-4/index-single-4.component';
+import { UserLayoutComponent } from './layouts/user-layout/user-layout.component';
+import { AccueilUtilisateurComponent } from './views/pages/accueil-utilisateur/accueil-utilisateur.component';
+import { DetailFormationComponent } from './views/pages/detail-formation/detail-formation.component';
+import { MesFormationComponent } from './views/pages/mes-formation/mes-formation.component';
+import { LectureComponent } from './views/pages/lecture/lecture.component';
+import { MesCertificatsComponent } from './views/pages/mes-certificats/mes-certificats.component';
+import { ProfilComponent } from './views/pages/profil/profil.component';
 
 export const routes: Routes = [
   {
@@ -22,50 +29,68 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./views/views.route').then((mod) => mod.VIEWS_ROUTE),
   },
-  
   {
-    path:'index-single',
-    component:IndexSingle1Component,
+    path: 'dashboard',
+    component: UserLayoutComponent,
+    children: [
+      {
+        path: 'formations',
+        component: AccueilUtilisateurComponent,
+      },
+      { path: 'detail/formations/:id', component: DetailFormationComponent },
+      { path: 'mes-formations', component: MesFormationComponent },
+      {
+        path: 'lecture/:id',
+        component: LectureComponent,
+      },
+      { path: 'certificats', component: MesCertificatsComponent },
+      { path: 'profil', component: ProfilComponent },
+    ],
+  },
+
+  {
+    path: 'index-single',
+    component: IndexSingle1Component,
     data: { title: 'Helpmore-Charity and Fundraising Template' },
   },
   {
-    path:'index-2',
-    component:Index2Component,
+    path: 'index-2',
+    component: Index2Component,
     data: { title: 'Helpmore || 2-Charity and Fundraising Template' },
   },
   {
-    path:'index-single-2',
-    component:IndexSingle2Component,
+    path: 'index-single-2',
+    component: IndexSingle2Component,
     data: { title: 'Helpmore-Charity and Fundraising Template' },
   },
   {
-    path:'index-3',
-    component:Index3Component,
+    path: 'index-3',
+    component: Index3Component,
     data: { title: 'Helpmore || 3-Charity and Fundraising Template' },
   },
   {
-    path:'index-single-3',
-    component:IndexSingle3Component,
+    path: 'index-single-3',
+    component: IndexSingle3Component,
     data: { title: 'Helpmore-Charity and Fundraising Template' },
   },
   {
-    path:'index-4',
-    component:Index4Component,
+    path: 'index-4',
+    component: Index4Component,
     data: { title: 'Helpmore || 4-Charity and Fundraising Template' },
   },
   {
-    path:'index-single-4',
-    component:IndexSingle4Component,
+    path: 'index-single-4',
+    component: IndexSingle4Component,
     data: { title: 'Helpmore-Charity and Fundraising Template' },
   },
   {
-    path:'index-5',
-    component:Index5Component,
+    path: 'index-5',
+    component: Index5Component,
     data: { title: 'Helpmore || 5-Charity and Fundraising Template' },
   },
   {
-    path:'index-single-5',
-    component:IndexSingle5Component,
+    path: 'index-single-5',
+    component: IndexSingle5Component,
     data: { title: 'Helpmore-Charity and Fundraising Template' },
   },
 ];

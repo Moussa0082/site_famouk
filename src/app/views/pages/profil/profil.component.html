@@ -1,0 +1,73 @@
+<div class="profil-container" *ngIf="utilisateur; else loader">
+  <div class="profil-header">
+    <div class="cover-photo"></div>
+    <div class="user-info-main">
+      <div class="avatar-container">
+        <div class="avatar-placeholder">
+          {{ utilisateur.prenom[0] }}{{ utilisateur.nom[0] }}
+        </div>
+      </div>
+      <div class="user-titles">
+        <h1>{{ utilisateur.prenom }} {{ utilisateur.nom | uppercase }}</h1>
+        <span class="role-badge">{{ utilisateur.role }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="profil-content">
+    <div class="side-panel">
+      <div class="card info-card">
+        <h3>Résumé</h3>
+        <div class="stat-item">
+          <i class="fa fa-envelope"></i>
+          <span>{{ utilisateur.email }}</span>
+        </div>
+        <div class="stat-item">
+          <i class="fa fa-phone"></i>
+          <span>{{ utilisateur.telephone || "Non renseigné" }}</span>
+        </div>
+      </div>
+
+      <!-- <button class="btn-edit">
+        <i class="fa fa-edit"></i> Modifier le profil
+      </button> -->
+    </div>
+
+    <div class="main-panel">
+      <div class="card details-card">
+        <div class="card-header">
+          <h2>Informations Personnelles</h2>
+        </div>
+        <div class="grid-details">
+          <div class="detail-group">
+            <label>Prénom</label>
+            <p>{{ utilisateur.prenom }}</p>
+          </div>
+          <div class="detail-group">
+            <label>Nom</label>
+            <p>{{ utilisateur.nom }}</p>
+          </div>
+          <div class="detail-group">
+            <label>Adresse Email</label>
+            <p>{{ utilisateur.email }}</p>
+          </div>
+          <div class="detail-group">
+            <label>Téléphone</label>
+            <p>{{ utilisateur.telephone || "N/A" }}</p>
+          </div>
+          <!-- <div class="detail-group">
+            <label>Identifiant Client</label>
+            <p class="id-text">{{ utilisateur.id }}</p>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loader>
+  <div class="loader-container">
+    <div class="spinner"></div>
+    <p>Chargement de votre profil...</p>
+  </div>
+</ng-template>

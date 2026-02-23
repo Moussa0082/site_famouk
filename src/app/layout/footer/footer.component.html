@@ -1,98 +1,112 @@
 <footer class="vl-footer-bg-1">
-
-    <div class="container">
-        <div class="row">
-            <!-- Footer Logo & Social Links -->
-            <div class="col-lg-3 col-md-6">
-                <div class="vl-footer-widget-1 mb-30">
-                    <div class="vl-footer-logo">
-                        <a routerLink="/">
-                            <!-- <img src="assets/img/logo/vl-footer-logo-1.1.png" alt=""> -->
-                            <h2 style="color: black;">Logo</h2>
-                        </a>
-                    </div>
-                    <div class="vl-footer-content">
-                        <p>
-                            Il est temps d’agir : chaque seconde compte et votre engagement nous rapproche d’un avenir numérique et citoyen meilleur. Rejoignez Logo dès aujourd’hui et contribuez à faire la différence pour la jeunesse.
-                          </p>
-                          
-                    </div>
-                    <div class="vl-footer-social-1">
-                        <ul>
-                            @for (social of socialLinks; track $index) {
-                            <li>
-                                <a [href]="social.link"><i [class]="social.icon"></i></a>
-                            </li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Links -->
-            <div class="col-lg-3 col-md-6">
-                <div class="vl-footer-widget-2 pl-90 mb-30">
-                    <h3 class="title">Liens rapides</h3>
-                    <div class="vl-footer-menu">
-                        <ul>
-                            @for (link of quickLinks; track $index) {
-                            <li>
-                                <a [routerLink]="link.url">{{ link.label }}</a>
-                            </li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Services -->
-            <div class="col-lg-3 col-md-6">
-                <div class="vl-footer-widget-2 pl-30 mb-30">
-                    <h3 class="title">Nos services</h3>
-                    <div class="vl-footer-menu">
-                        <ul>
-                            @for (service of services; track $index) {
-                            <li>
-                                <a [routerLink]="service.url">{{ service.label }}</a>
-                            </li>
-                            }
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Contact Info -->
-            <div class="col-lg-3 col-md-6">
-                <div class="vl-footer-widget-3 mb-30">
-                    <h3 class="title">Contactez nous</h3>
-                    @for (contact of contactInfo; track $index) {
-                    <div class="vl-footer-icon-list">
-                        <div class="vl-footer-icon">
-                            <span><img [src]="contact.icon" alt=""></span>
-                        </div>
-                        <div class="vl-footer-text">
-                            <a [href]="contact.link">{{ contact.text }}</a>
-                        </div>
-                    </div>
-                    }
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <!-- Footer Logo & Social Links -->
+      <div class="col-lg-3 col-md-6">
+        <div class="vl-footer-widget-1 mb-30">
+          <div class="vl-footer-logo">
+            <a
+              routerLink="/"
+              class="d-flex flex-column align-items-start gap-3"
+            >
+              <img
+                src="assets/img/banner/danida.png"
+                alt="Logo"
+                class="logo-img_footer"
+              />
+              <img
+                src="assets/img/banner/famocLogo.png"
+                alt="Logo"
+                class="logo-img_footer"
+              />
+              <!-- <h2 style="color: black;">Logo</h2> -->
+            </a>
+          </div>
+          <div class="vl-footer-content">
+            <p>
+              Il est temps d’agir : chaque seconde compte et votre engagement
+              nous rapproche d’un avenir numérique et citoyen meilleur.
+              <!-- Rejoignez Logo dès aujourd’hui et contribuez à faire la différence
+              pour la jeunesse. -->
+            </p>
+          </div>
+          <div class="vl-footer-social-1">
+            <ul>
+              @for (social of socialLinks; track $index) {
+              <li>
+                <a [href]="social.link"><i [class]="social.icon"></i></a>
+              </li>
+              }
+            </ul>
+          </div>
         </div>
-        <div class="vl-copyright copyright-border-1">
-            <div class="row">
-              <div class="col-md-6">
-                <p class="vl-copyright-text">©  {{year}} Info-Tech. Tous droits réservés.</p>
-              </div>
-              <div class="col-md-6">
-                <div class="vl-copyright-menu">
-                  <ul>
-                    <li><a href="javascript:void(0);">Developpé par Tuwindi </a></li>
-                    <!-- <li><a href="javascript:void(0);">Terms &amp; Conditions</a></li> -->
-                  </ul>
-                </div>
-              </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-lg-3 col-md-6">
+        <div class="vl-footer-widget-2 pl-90 mb-30">
+          <h3 class="title">Liens rapides</h3>
+          <div class="vl-footer-menu">
+            <ul>
+              @for (link of quickLinks; track $index) {
+              <li>
+                <a [routerLink]="link.url">{{ link.label }}</a>
+              </li>
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div class="col-lg-3 col-md-6">
+        <div class="vl-footer-widget-2 pl-30 mb-30">
+          <h3 class="title">Nos services</h3>
+          <div class="vl-footer-menu">
+            <ul>
+              @for (service of services; track $index) {
+              <li>
+                <a [routerLink]="service.url">{{ service.label }}</a>
+              </li>
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-lg-3 col-md-6">
+        <div class="vl-footer-widget-3 mb-30">
+          <h3 class="title">Contactez nous</h3>
+          @for (contact of contactInfo; track $index) {
+          <div class="vl-footer-icon-list">
+            <div class="vl-footer-icon">
+              <span><img [src]="contact.icon" alt="" /></span>
             </div>
-         </div>
-        
+            <div class="vl-footer-text">
+              <a [href]="contact.link">{{ contact.text }}</a>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
     </div>
+    <div class="vl-copyright copyright-border-1">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="vl-copyright-text">
+            © {{ year }} Famoc. Tous droits réservés.
+          </p>
+        </div>
+        <div class="col-md-6">
+          <div class="vl-copyright-menu">
+            <ul>
+              <li><a href="javascript:void(0);">Developpé par Tuwindi </a></li>
+              <!-- <li><a href="javascript:void(0);">Terms &amp; Conditions</a></li> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>

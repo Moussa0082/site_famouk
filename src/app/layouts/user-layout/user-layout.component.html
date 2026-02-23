@@ -1,0 +1,30 @@
+<div class="dashboard-container">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h3>Mon Espace</h3>
+    </div>
+
+    <nav class="sidebar-menu">
+      <a routerLink="/dashboard/formations" routerLinkActive="active">
+        <i class="fa fa-book"></i> Formations
+      </a>
+      <a routerLink="/dashboard/mes-formations" routerLinkActive="active">
+        <i class="fa fa-graduation-cap"></i> Mes Formations
+      </a>
+      <a routerLink="/dashboard/certificats" routerLinkActive="active">
+        <i class="fa fa-certificate"></i> Mes Certificats
+      </a>
+      <a routerLink="/dashboard/profil" routerLinkActive="active">
+        <i class="fa fa-user"></i> Profil
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button (click)="onLogout()">Déconnexion</button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

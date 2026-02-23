@@ -1,0 +1,86 @@
+.certificat-print-area {
+  width: 1100px; // Largeur pour le rendu
+  height: 780px;
+  background: white;
+  padding: 40px;
+  font-family: "Times New Roman", serif;
+
+  .cert-border {
+    border: 15px solid #1a237e; // Bleu Marine
+    height: 100%;
+    padding: 10px;
+    position: relative;
+
+    .cert-inner-border {
+      border: 2px solid #c5a059; // Or
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 50px;
+    }
+  }
+
+  h1 {
+    color: #1a237e;
+    font-size: 50px;
+    margin-bottom: 10px;
+  }
+  .subtitle {
+    font-style: italic;
+    font-size: 22px;
+    color: #666;
+  }
+  .user-name {
+    font-size: 60px;
+    color: #c5a059;
+    margin: 20px 0;
+    border-bottom: 2px solid #eee;
+  }
+  .course-title {
+    font-size: 35px;
+    color: #1a237e;
+    margin-top: 10px;
+  }
+
+  .cert-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    margin-top: 50px;
+
+    .signature {
+      width: 250px;
+      .sig-line {
+        border-top: 2px solid #333;
+        margin-bottom: 10px;
+      }
+    }
+
+    .seal {
+      width: 120px;
+      height: 120px;
+      border: 4px double #c5a059;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c5a059;
+      font-size: 40px;
+    }
+
+    .meta {
+      text-align: right;
+      font-size: 16px;
+    }
+  }
+}
+
+// .logos {
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+// }

@@ -1,0 +1,287 @@
+<div class="lecture-layout" *ngIf="!isLoading">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <button class="btn-back" routerLink="/dashboard/mes-formations">
+        <i class="fa fa-arrow-left"></i> Retour
+      </button>
+      <h2>{{ progression?.formation?.titre }}</h2>
+
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div
+            class="progress-fill"
+            [style.width.%]="progression?.progression"
+          ></div>
+        </div>
+        <span class="progress-text">
+          {{ progression?.progression }}% complété
+        </span>
+      </div>
+    </div>
+
+    <nav class="modules-list">
+      <div
+        class="module-item"
+        *ngFor="let mod of modules; let i = index"
+        [class.open]="mod.isOpen"
+      >
+        <div class="module-trigger" (click)="toggleModule(i)">
+          <div class="module-info">
+            <span class="module-index">Section {{ i + 1 }}</span>
+            <h4>{{ mod.titre }}</h4>
+          </div>
+          <i
+            class="fa"
+            [ngClass]="mod.isOpen ? 'fa-angle-up' : 'fa-angle-down'"
+          ></i>
+        </div>
+
+        <div class="lessons-container" *ngIf="mod.isOpen">
+          <div *ngIf="mod.isLessonsLoading" class="skeleton-loader-container">
+            <div class="skeleton-line"></div>
+            <div class="skeleton-line"></div>
+          </div>
+
+          <ul class="lessons-list" *ngIf="!mod.isLessonsLoading">
+            <li
+              *ngFor="let c of mod.cours"
+              (click)="selectCours(c)"
+              [class.active]="currentCours?.id === c.id"
+            >
+              <div class="lesson-status">
+                <i
+                  class="fa"
+                  [ngClass]="
+                    c.typeContenu === 'VIDEO' ? 'fa-play-circle' : 'fa-file-alt'
+                  "
+                ></i>
+              </div>
+              <span class="lesson-title">{{ c.titre }}</span>
+            </li>
+
+            <li
+              class="quiz-item"
+              *ngIf="isModuleFinished(mod)"
+              (click)="displayQuiz(mod)"
+              [class.active]="showQuiz && currentQuiz?.id === mod.quiz?.id"
+            >
+              <div class="lesson-status">
+                <i class="fa fa-trophy text-warning"></i>
+              </div>
+              <span class="lesson-title font-weight-bold"
+                >Examen : {{ mod.titre }}</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="content-viewer">
+    <div class="quiz-view" *ngIf="showQuiz && currentQuiz; else lessonOrEmpty">
+      <div class="quiz-header card shadow-sm p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <span class="badge badge-warning mb-2">Évaluation Finale</span>
+            <h1>{{ currentQuiz.titre }}</h1>
+            <p class="text-muted">{{ currentQuiz.description }}</p>
+          </div>
+          <div class="quiz-meta text-right">
+            <div class="h4 mb-0 text-primary">
+              {{ currentQuiz.scoreMinimum }}%
+            </div>
+            <small>Score requis</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="questions-container">
+        <div
+          class="question-card card shadow-sm mb-4"
+          *ngFor="let q of currentQuiz.questions; let qi = index"
+        >
+          <div class="card-body">
+            <div class="d-flex justify-content-between mb-3">
+              <h5 class="question-text">
+                <span class="q-number">{{ qi + 1 }}.</span> {{ q.texte }}
+              </h5>
+              <span class="points-badge badge badge-light border"
+                >{{ q.points }} pts</span
+              >
+            </div>
+
+            <div
+              class="options-list"
+              *ngIf="q.reponseOptions && q.reponseOptions.length > 0"
+            >
+              <div
+                class="option-item"
+                *ngFor="let opt of q.reponseOptions; let oi = index"
+              >
+                <label class="option-label" [for]="'q' + q.id + 'o' + opt.id">
+                  <input
+                    type="radio"
+                    [id]="'q' + q.id + 'o' + opt.id"
+                    [name]="'question' + q.id"
+                    class="option-input"
+                    (change)="choisirOption(q.id, opt.id)"
+                  />
+                  <span class="option-custom-radio"></span>
+                  <span class="option-text">{{ opt.texte }}</span>
+                </label>
+              </div>
+            </div>
+
+            <div
+              class="text-answer mt-3"
+              *ngIf="!q.reponseOptions || q.reponseOptions.length === 0"
+            >
+              <input
+                type="text"
+                class="form-control form-control-lg"
+                placeholder="Saisissez votre réponse ici..."
+                (input)="saisirTexte(q.id, $event)"
+              />
+              <small class="text-muted mt-2 d-block"
+                ><i class="fa fa-info-circle"></i> Attention à
+                l'orthographe.</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="quiz-actions pb-5 text-center">
+          <button
+            class="btn btn-primary btn-lg px-5 shadow"
+            (click)="validerQuiz()"
+          >
+            <i class="fa fa-paper-plane mr-2"></i> Soumettre mes réponses
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #lessonOrEmpty>
+      <div class="player-zone-content" *ngIf="currentCours; else emptyState">
+        <h2>{{ currentCours.titre }}</h2>
+
+        <div class="content-wrapper">
+          <div
+            *ngIf="currentCours.typeContenu === 'VIDEO'"
+            class="video-placeholder mb-4"
+          >
+            <div
+              class="real-player shadow rounded bg-dark"
+              style="overflow: hidden; position: relative"
+            >
+              <iframe
+                *ngIf="currentCours.contenu"
+                style="width: 100%; aspect-ratio: 16/9; border: none"
+                [src]="getSafeVideoUrl(currentCours.videoUrl)"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              >
+              </iframe>
+
+              <div
+                *ngIf="!currentCours.contenu"
+                class="p-4 text-center text-white"
+              >
+                <i class="fa fa-exclamation-triangle mb-2"></i><br />
+                Source vidéo manquante
+              </div>
+            </div>
+          </div>
+
+          <div class="description-text mt-3 p-3 bg-light border rounded">
+            <div [innerHTML]="currentCours.contenu"></div>
+          </div>
+        </div>
+
+        <div class="validation-zone mt-4 pt-3 border-top text-right">
+          <button
+            class="btn btn-success px-5 shadow-sm"
+            (click)="validerLeconActuelle()"
+          >
+            <i class="fa fa-check-circle mr-2"></i> Valider cette leçon
+          </button>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #emptyState>
+      <div class="empty-placeholder text-center py-5">
+        <i class="fa fa-graduation-cap fa-4x text-light mb-3"></i>
+        <h2>Prêt à apprendre ?</h2>
+        <p class="text-muted">
+          Sélectionnez une leçon ou un examen dans le menu à gauche.
+        </p>
+      </div>
+    </ng-template>
+  </main>
+
+  <div class="modal-overlay" *ngIf="resultatTentative">
+    <div
+      class="result-modal"
+      [class.success]="resultatTentative.reussi"
+      [class.failed]="!resultatTentative.reussi"
+    >
+      <div class="modal-header">
+        <div class="icon-circle">
+          <i
+            class="fa"
+            [ngClass]="resultatTentative.reussi ? 'fa-check' : 'fa-times'"
+          ></i>
+        </div>
+      </div>
+      <div class="modal-body text-center">
+        <h2>
+          {{ resultatTentative.reussi ? "Félicitations !" : "Dommage..." }}
+        </h2>
+        <p class="result-message">
+          {{
+            resultatTentative.reussi
+              ? "Vous avez validé ce module avec succès."
+              : "Vous n'avez pas atteint le score minimum requis."
+          }}
+        </p>
+        <div class="score-display">
+          <span class="score-value">{{ resultatTentative.score }}%</span>
+          <span class="score-label">Score Obtenu</span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <small>Requis</small>
+            <strong>{{ currentQuiz?.scoreMinimum }}%</strong>
+          </div>
+          <div class="stat-item">
+            <small>Status</small>
+            <strong
+              [class.text-success]="resultatTentative.reussi"
+              [class.text-danger]="!resultatTentative.reussi"
+            >
+              {{ resultatTentative.reussi ? "REUSSI" : "ECHEC" }}
+            </strong>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal" (click)="fermerModal()">
+          {{
+            resultatTentative.reussi
+              ? "Continuer la formation"
+              : "Réessayer plus tard"
+          }}
+        </button>
+        <button
+          class="btn-certificat"
+          (click)="allerAuxCertificats()"
+          *ngIf="progression && progression.progression >= 100"
+        >
+          <i class="fa fa-graduation-cap"></i> Obtenir mon Certificat
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

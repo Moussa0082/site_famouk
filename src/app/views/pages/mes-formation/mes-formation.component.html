@@ -1,0 +1,71 @@
+<div class="mes-formations-container">
+  <h1>Mes Formations</h1>
+
+  <div *ngIf="isLoading" class="loader">Chargement de vos cours...</div>
+
+  <div *ngIf="!isLoading && progressions.length === 0" class="empty-state">
+    <p>Vous n'êtes inscrit à aucune formation pour le moment.</p>
+    <button routerLink="/formations">Explorer le catalogue</button>
+  </div>
+
+  <div class="formations-grid" *ngIf="!isLoading && progressions.length > 0">
+    <div class="formation-card" *ngFor="let p of progressions">
+      <div class="card-image">
+        <img
+          [src]="getImageFullUrl(p.formation.imageUrl)"
+          [alt]="p.formation.titre"
+        />
+        <span class="status-badge" [ngClass]="p.statut.toLowerCase()">{{
+          p.statut
+        }}</span>
+      </div>
+
+      <div class="card-body">
+        <h3>{{ p.formation.titre }}</h3>
+
+        <div class="progress-section">
+          <div class="progress-info">
+            <span>Progression</span>
+            <span>{{ p.progression }}%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div
+              class="progress-bar-fill"
+              [style.width.%]="p.progression"
+            ></div>
+          </div>
+        </div>
+
+        <!-- <div class="card-footer">
+          <button
+            [routerLink]="['/dashboard/lecture/', p.id]"
+            class="btn-continue"
+          >
+            {{ p.progression === 100 ? "Revoir" : "Continuer l'apprentissage" }}
+          </button>
+        </div> -->
+        <div class="card-footer">
+          <button
+            [routerLink]="['/dashboard/lecture', p.id]"
+            class="btn-continue"
+            [class.completed]="p.progression === 100"
+          >
+            {{
+              p.progression === 100
+                ? "Revoir la formation"
+                : "Continuer l'apprentissage"
+            }}
+          </button>
+          <button
+            *ngIf="p.progression === 100"
+            (click)="telechargerCertificat(p.formation.id)"
+            class="btn-certificat"
+            title="Obtenir mon certificat"
+          >
+            <i class="fa fa-award"></i> Certificat
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
