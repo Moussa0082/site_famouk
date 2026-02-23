@@ -121,15 +121,22 @@
                 <div class="formation-info">
                   <span><strong>Niveau :</strong> {{ formation.niveau }}</span>
                   <span
-                    ><strong>Durée :</strong> {{ formation.dureeEstimee }}</span
+                    ><strong>Durée :</strong>
+                    {{ formation.dureeEstimee }} h</span
                   >
                 </div>
 
-                <!-- <div class="btn-area mt-3">
-                    <a [href]="formation.link" class="header-btn1 full-width-btn">
-                      Découvrir <span><i class="fa-solid fa-arrow-right" style="color: black;"></i></span>
-                    </a>
-                  </div> -->
+                <div class="btn-area mt-3">
+                  <a routerLink="/login" class="header-btn1 full-width-btn">
+                    Découvrir
+                    <span
+                      ><i
+                        class="fa-solid fa-arrow-right"
+                        style="color: black"
+                      ></i
+                    ></span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
