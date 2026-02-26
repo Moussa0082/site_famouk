@@ -113,5 +113,5 @@ export const VIEWS_ROUTE: Route[] = [
         path: 'index',
         component: IndexComponent
     }
-
+//jehj
 ]
