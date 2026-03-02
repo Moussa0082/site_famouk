@@ -168,33 +168,47 @@
 
         <div class="content-wrapper">
           <div
-            *ngIf="currentCours.typeContenu === 'VIDEO'"
-            class="video-placeholder mb-4"
+            class="media-container mb-4 shadow rounded bg-dark"
+            style="overflow: hidden; position: relative"
           >
-            <div
-              class="real-player shadow rounded bg-dark"
-              style="overflow: hidden; position: relative"
-            >
-              <iframe
-                *ngIf="currentCours.contenu"
-                style="width: 100%; aspect-ratio: 16/9; border: none"
-                [src]="getSafeVideoUrl(currentCours.videoUrl)"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              >
-              </iframe>
+            <iframe
+              *ngIf="
+                currentCours.typeContenu === 'VIDEO' && currentCours.videoUrl
+              "
+              style="width: 100%; aspect-ratio: 16/9; border: none"
+              [src]="getSafeVideoUrl(currentCours.videoUrl)"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
 
-              <div
-                *ngIf="!currentCours.contenu"
-                class="p-4 text-center text-white"
-              >
-                <i class="fa fa-exclamation-triangle mb-2"></i><br />
-                Source vidéo manquante
-              </div>
+            <iframe
+              *ngIf="
+                ['PDF', 'PRESENTATION'].includes(currentCours.typeContenu) &&
+                currentCours.documentUrl
+              "
+              style="width: 100%; height: 600px; border: none"
+              [src]="getSafeVideoUrl(currentCours.documentUrl)"
+            ></iframe>
+
+            <div
+              *ngIf="
+                (!currentCours.videoUrl &&
+                  currentCours.typeContenu === 'VIDEO') ||
+                (!currentCours.documentUrl &&
+                  ['PDF', 'PRESENTATION'].includes(currentCours.typeContenu))
+              "
+              class="p-5 text-center text-white"
+            >
+              <i class="fa fa-exclamation-triangle fa-2x mb-2 text-warning"></i
+              ><br />
+              Source du média manquante ou lien invalide
             </div>
           </div>
 
-          <div class="description-text mt-3 p-3 bg-light border rounded">
+          <div
+            class="description-text mt-3 p-3 bg-light border rounded"
+            *ngIf="currentCours.contenu"
+          >
             <div [innerHTML]="currentCours.contenu"></div>
           </div>
         </div>

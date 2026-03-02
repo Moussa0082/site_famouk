@@ -17,6 +17,7 @@ import {
   ReponseUtilisateurRequestDTO,
 } from '../../../models/Quiz';
 import { QuestionResponseDTO } from '../../../models/Question';
+import { environment } from '../../../../environments/environment';
 
 interface ModuleUI extends ModuleResponse {
   isOpen: boolean;
@@ -97,6 +98,7 @@ export class LectureComponent implements OnInit {
       this.loadCoursForModule(index);
     }
   }
+
   loadCoursForModule(index: number) {
     const module = this.modules[index];
     module.isLessonsLoading = true;
@@ -124,20 +126,35 @@ export class LectureComponent implements OnInit {
   }
 
   getSafeVideoUrl(url: string): SafeResourceUrl {
-    if (!url) return '';
+    // if (!url) return '';
 
-    let embedUrl = url;
+    // let embedUrl = url;
 
-    // Conversion automatique du lien "watch" en lien "embed"
-    if (url.includes('youtube.com/watch?v=')) {
+    // // Conversion automatique du lien "watch" en lien "embed"
+    // if (url.includes('youtube.com/watch?v=')) {
+    //   const videoId = url.split('v=')[1].split('&')[0];
+    //   embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    // } else if (url.includes('youtu.be/')) {
+    //   const videoId = url.split('youtu.be/')[1];
+    //   embedUrl = `https://www.youtube.com/embed/${videoId}`;
+    // }
+
+    // return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+    if (!url) return this.sanitizer.bypassSecurityTrustResourceUrl('');
+
+    let finalUrl = url;
+
+    // Si c'est un fichier local (ne commence pas par http)
+    if (!url.startsWith('http')) {
+      finalUrl = `${environment.apiUrl}/${url}`;
+    }
+    // Si c'est du YouTube, on transforme en Embed
+    else if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.split('v=')[1].split('&')[0];
-      embedUrl = `https://www.youtube.com/embed/${videoId}`;
-    } else if (url.includes('youtu.be/')) {
-      const videoId = url.split('youtu.be/')[1];
-      embedUrl = `https://www.youtube.com/embed/${videoId}`;
+      finalUrl = `https://www.youtube.com/embed/${videoId}`;
     }
 
-    return this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+    return this.sanitizer.bypassSecurityTrustResourceUrl(finalUrl);
   }
 
   // Vérifie si la vidéo est un fichier local ou un lien externe
