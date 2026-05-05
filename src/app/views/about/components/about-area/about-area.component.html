@@ -21,12 +21,22 @@
           <div class="row">
             <div class="col-lg-12 col-md-6">
               <div class="vl-sm-thumb mb-30">
-                <img class="w-100" src="assets/img/about/p-j.jpeg" alt="" />
+                <!-- <img class="w-100" src="assets/img/about/p-j.jpeg" alt="" /> -->
+                <img
+                  [src]="aya1?.image"
+                  alt="Compétences numériques"
+                  class="w-100"
+                />
               </div>
             </div>
             <div class="col-lg-12 col-md-6">
               <div class="vl-sm-thumb2 mb-30">
-                <img class="w-100" src="assets/img/about/h-a-o-p.jpg" alt="" />
+                <!-- <img class="w-100" src="assets/img/about/h-a-o-p.jpg" alt="" /> -->
+                <img
+                  [src]="aya2?.image"
+                  alt="Engagement citoyen"
+                  class="w-100"
+                />
               </div>
             </div>
           </div>
@@ -35,7 +45,8 @@
       <div class="col-lg-6">
         <div class="vl-about-content2 ml-20">
           <div class="large-thumb mb-30">
-            <img class="w-100" src="assets/img/about/t-c.jpg" alt="" />
+            <!-- <img class="w-100" src="assets/img/about/t-c.jpg" alt="" /> -->
+            <img [src]="aya3?.image" alt="Engagement citoyen" class="w-100" />
           </div>
           <div class="content mb-30">
             <p class="para">
