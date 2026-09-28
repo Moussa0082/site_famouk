@@ -1,46 +1,48 @@
-<div class="container mt-5">
-  <div class="header-section mb-4">
-    <h1><i class="fa fa-award text-warning"></i> Mes Certificats</h1>
-    <p class="text-muted">Retrouvez ici toutes vos certifications obtenues.</p>
-  </div>
-
-  <div *ngIf="isLoading" class="text-center py-5">
-    <div class="spinner-border text-primary"></div>
-  </div>
-
-  <div class="row" *ngIf="!isLoading && certificats.length > 0">
-    <div class="col-md-4 mb-4" *ngFor="let cert of certificats">
-      <div class="card certificat-card h-100 shadow-sm">
-        <div class="card-body text-center">
-          <div class="cert-icon mb-3">
-            <i class="fa fa-certificate fa-4x text-primary"></i>
-          </div>
-          <h5 class="card-title">{{ cert.titreFormation }}</h5>
-          <p class="card-text small text-muted">
-            Délivré le : {{ cert.dateEmission | date : "dd/MM/yyyy" }}
-          </p>
-          <p class="badge badge-info">N° {{ cert.numCertificat }}</p>
-          <hr />
-          <button
-            class="btn btn-outline-primary btn-block"
-            (click)="downloadCertificat(cert)"
-          >
-            <i class="fa fa-download"></i> Télécharger PDF
-          </button>
-        </div>
-      </div>
+<div class="certificats-page">
+  <header class="page-header">
+    <div>
+      <h1>Mes certificats</h1>
+      <p>Retrouvez ici toutes vos certifications obtenues.</p>
     </div>
+  </header>
+
+  <div *ngIf="isLoading" class="loader-container">
+    <div class="spinner"></div>
+    <p>Chargement de vos certificats...</p>
   </div>
 
-  <div
-    *ngIf="!isLoading && certificats.length === 0"
-    class="empty-state text-center py-5"
-  >
-    <i class="fa fa-graduation-cap fa-4x text-light mb-3"></i>
+  <div class="certificats-grid" *ngIf="!isLoading && certificats.length > 0">
+    <article class="certificat-card" *ngFor="let cert of certificats">
+      <div class="cert-ribbon" aria-hidden="true">
+        <i class="fa fa-certificate"></i>
+      </div>
+
+      <div class="cert-body">
+        <h3>{{ cert.titreFormation }}</h3>
+        <p class="cert-date">
+          <i class="fa fa-calendar-check" aria-hidden="true"></i>
+          Délivré le {{ cert.dateEmission | date : "dd/MM/yyyy" }}
+        </p>
+        <span class="cert-num">N° {{ cert.numCertificat }}</span>
+      </div>
+
+      <button
+        type="button"
+        class="btn-download"
+        (click)="downloadCertificat(cert)"
+      >
+        <i class="fa fa-download" aria-hidden="true"></i> Télécharger le PDF
+      </button>
+    </article>
+  </div>
+
+  <div *ngIf="!isLoading && certificats.length === 0" class="empty-state">
+    <i class="fa fa-award" aria-hidden="true"></i>
     <h3>Aucun certificat pour le moment</h3>
-    <button class="btn btn-primary mt-3" routerLink="/dashboard/mes-formations">
+    <p>Terminez une formation pour obtenir votre premier certificat.</p>
+    <a routerLink="/dashboard/mes-formations" class="btn-primary-link">
       Voir mes formations
-    </button>
+    </a>
   </div>
 </div>
 

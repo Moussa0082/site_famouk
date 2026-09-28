@@ -1,59 +1,305 @@
 .dashboard-container {
   display: flex;
+  // Hauteur fixe : la page elle-même ne défile pas. Seule la zone de
+  // contenu défile, le menu latéral reste immobile.
   height: 100vh;
-  background-color: #f4f7fe;
+  height: 100dvh; // évite la barre d'adresse mobile qui rogne la hauteur
+  overflow: hidden;
+  background-color: var(--dash-bg);
+}
 
-  .sidebar {
-    width: 260px;
-    background-color: #1a202c;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
+/* --------------------------------------------------------------------------
+   Barre supérieure mobile
+   -------------------------------------------------------------------------- */
+.topbar {
+  display: none; // masquée sur desktop
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  height: var(--dash-topbar-height);
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  background: var(--dash-sidebar);
+  color: #fff;
 
-    .sidebar-header {
-      margin-bottom: 30px;
-      text-align: center;
+  .burger {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.25rem;
+    padding: 8px 10px;
+    border-radius: var(--dash-radius-sm);
+    cursor: pointer;
+    line-height: 1;
+
+    &:hover {
+      background: var(--dash-sidebar-hover);
     }
+  }
 
-    .sidebar-menu {
-      flex-grow: 1;
+  .topbar-logo {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+
+    img {
+      height: 32px;
+      width: auto;
+      max-width: 150px;
+      object-fit: contain;
+    }
+  }
+
+  .topbar-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--dash-primary);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+}
+
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55);
+  z-index: 1035;
+}
+
+/* --------------------------------------------------------------------------
+   Menu latéral
+   -------------------------------------------------------------------------- */
+.sidebar {
+  width: var(--dash-sidebar-width);
+  flex-shrink: 0;
+  background-color: var(--dash-sidebar);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+  // Occupe toute la hauteur du conteneur et ne bouge jamais : c'est la
+  // zone de contenu qui défile, pas le menu.
+  height: 100%;
+
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+
+    .brand {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      align-items: center;
+      min-width: 0;
+      line-height: 0;
 
-      a {
-        color: #cbd5e0;
-        text-decoration: none;
-        padding: 12px 15px;
-        border-radius: 8px;
-        transition: 0.3s;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-
-        &:hover,
-        &.active {
-          background-color: #4a5568;
-          color: white;
-        }
+      img {
+        height: 40px;
+        width: auto;
+        max-width: 180px;
+        object-fit: contain;
       }
     }
 
-    .sidebar-footer button {
+    .close-sidebar {
+      display: none; // uniquement en mode off-canvas
+      background: transparent;
+      border: none;
+      color: #cbd5e0;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 6px 10px;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  .sidebar-user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: var(--dash-radius-sm);
+    background: rgba(255, 255, 255, 0.06);
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--dash-primary);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .user-meta {
+      min-width: 0; // autorise l'ellipse sur un nom long
+
+      strong {
+        display: block;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      small {
+        color: #a0aec0;
+        font-size: 0.75rem;
+      }
+    }
+  }
+
+  .sidebar-menu {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow-y: auto;
+
+    a {
+      color: #cbd5e0;
+      text-decoration: none;
+      padding: 12px 14px;
+      border-radius: var(--dash-radius-sm);
+      transition: background-color 0.2s, color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.93rem;
+
+      i {
+        width: 18px;
+        text-align: center;
+      }
+
+      &:hover {
+        background-color: var(--dash-sidebar-hover);
+        color: #fff;
+      }
+
+      &.active {
+        background-color: var(--dash-primary);
+        color: #fff;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    .btn-site {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+      color: #cbd5e0;
+      text-decoration: none;
+      border-radius: var(--dash-radius-sm);
+      font-size: 0.85rem;
+
+      &:hover {
+        background: var(--dash-sidebar-hover);
+        color: #fff;
+      }
+    }
+
+    button {
       width: 100%;
       padding: 10px;
-      background: #e53e3e;
-      border: none;
-      color: white;
-      border-radius: 5px;
+      background: transparent;
+      border: 1px solid rgba(248, 113, 113, 0.5);
+      color: #fca5a5;
+      border-radius: var(--dash-radius-sm);
       cursor: pointer;
+      font-size: 0.85rem;
+      transition: background-color 0.2s, color 0.2s;
+
+      &:hover {
+        background: var(--dash-danger);
+        border-color: var(--dash-danger);
+        color: #fff;
+      }
+    }
+  }
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0; // empêche le contenu large de pousser la grille
+  height: 100%;
+  // Seul élément qui défile verticalement dans le tableau de bord.
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 30px;
+}
+
+/* --------------------------------------------------------------------------
+   Tablette et mobile : le menu passe en tiroir (off-canvas)
+   -------------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .topbar {
+    display: flex;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    transform: translateX(-100%);
+    transition: transform 0.28s ease;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
+
+    .sidebar-header .close-sidebar {
+      display: block;
+    }
+  }
+
+  .dashboard-container.sidebar-open {
+    .sidebar {
+      transform: translateX(0);
+    }
+
+    .sidebar-backdrop {
+      display: block;
     }
   }
 
   .main-content {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 30px;
+    padding: calc(var(--dash-topbar-height) + 20px) 18px 32px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .sidebar {
+    width: min(86vw, var(--dash-sidebar-width));
+  }
+
+  .main-content {
+    padding: calc(var(--dash-topbar-height) + 16px) 14px 28px;
   }
 }

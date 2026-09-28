@@ -26,7 +26,22 @@ interface MenuItem {
   selector: 'app-mobile-sidebar',
   imports: [CommonModule, RouterLink],
   templateUrl: './mobile-sidebar.component.html',
-  styles: ``,
+  styles: `
+    /* Ce logo remplace un ancien texte : le thème ne lui donnait
+       aucune dimension. */
+    .logosicon-area .logos a {
+      display: inline-flex;
+      align-items: center;
+      line-height: 0;
+    }
+
+    .logosicon-area .logos img {
+      height: 40px;
+      width: auto;
+      max-width: 180px;
+      object-fit: contain;
+    }
+  `,
 })
 export class MobileSidebarComponent implements OnInit {
   private headService = inject(HeadImageService);

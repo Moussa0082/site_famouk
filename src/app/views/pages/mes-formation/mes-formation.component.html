@@ -1,71 +1,167 @@
 <div class="mes-formations-container">
-  <h1>Mes Formations</h1>
+  <header class="page-header">
+    <div>
+      <h1>Mes formations</h1>
+      <p>Reprenez votre apprentissage là où vous l'avez laissé</p>
+    </div>
+    <a routerLink="/dashboard/formations" class="btn-catalogue">
+      <i class="fa fa-plus" aria-hidden="true"></i> Découvrir le catalogue
+    </a>
+  </header>
 
-  <div *ngIf="isLoading" class="loader">Chargement de vos cours...</div>
-
-  <div *ngIf="!isLoading && progressions.length === 0" class="empty-state">
-    <p>Vous n'êtes inscrit à aucune formation pour le moment.</p>
-    <button routerLink="/formations">Explorer le catalogue</button>
+  <!-- Filtres par état -->
+  <div class="filtres" *ngIf="!isLoading && progressions.length > 0">
+    <button
+      type="button"
+      [class.active]="filtreActif === 'TOUS'"
+      (click)="setFiltre('TOUS')"
+    >
+      Toutes <span class="count">{{ progressions.length }}</span>
+    </button>
+    <button
+      type="button"
+      [class.active]="filtreActif === 'EN_COURS'"
+      (click)="setFiltre('EN_COURS')"
+    >
+      En cours <span class="count">{{ nbEnCours }}</span>
+    </button>
+    <button
+      type="button"
+      [class.active]="filtreActif === 'TERMINE'"
+      (click)="setFiltre('TERMINE')"
+    >
+      Terminées <span class="count">{{ nbTerminees }}</span>
+    </button>
   </div>
 
-  <div class="formations-grid" *ngIf="!isLoading && progressions.length > 0">
-    <div class="formation-card" *ngFor="let p of progressions">
+  <!-- Chargement -->
+  <div *ngIf="isLoading" class="loader-container">
+    <div class="spinner"></div>
+    <p>Chargement de vos formations...</p>
+  </div>
+
+  <!-- Erreur -->
+  <div class="error-alert" *ngIf="errorMessage && !isLoading">
+    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+    <span>{{ errorMessage }}</span>
+    <button type="button" (click)="reload()">Réessayer</button>
+  </div>
+
+  <!-- Aucune inscription -->
+  <div
+    *ngIf="!isLoading && !errorMessage && progressions.length === 0"
+    class="empty-state"
+  >
+    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+    <h3>Vous n'êtes inscrit à aucune formation</h3>
+    <p>Parcourez le catalogue et démarrez votre première formation.</p>
+    <a routerLink="/dashboard/formations" class="btn-primary-link">
+      Explorer le catalogue
+    </a>
+  </div>
+
+  <!-- Liste -->
+  <div
+    class="formations-grid"
+    *ngIf="!isLoading && !errorMessage && formationsFiltrees.length > 0"
+  >
+    <article
+      class="formation-card"
+      *ngFor="let p of formationsFiltrees; trackBy: trackById"
+    >
       <div class="card-image">
         <img
+          *ngIf="hasVisuel(p); else visuelParDefaut"
           [src]="getImageFullUrl(p.formation.imageUrl)"
           [alt]="p.formation.titre"
+          loading="lazy"
+          (error)="onImageError(p)"
         />
-        <span class="status-badge" [ngClass]="p.statut.toLowerCase()">{{
-          p.statut
-        }}</span>
+        <ng-template #visuelParDefaut>
+          <div class="image-placeholder" aria-hidden="true">
+            <i class="fa fa-graduation-cap"></i>
+          </div>
+        </ng-template>
+
+        <span
+          class="status-badge"
+          [class.termine]="estTerminee(p)"
+          [class.en-cours]="!estTerminee(p)"
+        >
+          {{ getStatutLabel(p) }}
+        </span>
       </div>
 
       <div class="card-body">
-        <h3>{{ p.formation.titre }}</h3>
+        <!-- Lien étendu : toute la carte est cliquable, sans imbriquer
+             de bouton dans un lien. -->
+        <h3>
+          <a [routerLink]="['/dashboard/lecture', p.id]" class="stretched-link">
+            {{ p.formation.titre }}
+          </a>
+        </h3>
 
         <div class="progress-section">
           <div class="progress-info">
             <span>Progression</span>
-            <span>{{ p.progression }}%</span>
+            <span class="value">{{ p.progression }}%</span>
           </div>
           <div class="progress-bar-bg">
             <div
               class="progress-bar-fill"
+              [class.complete]="estTerminee(p)"
               [style.width.%]="p.progression"
             ></div>
           </div>
         </div>
 
-        <!-- <div class="card-footer">
-          <button
-            [routerLink]="['/dashboard/lecture/', p.id]"
-            class="btn-continue"
-          >
-            {{ p.progression === 100 ? "Revoir" : "Continuer l'apprentissage" }}
-          </button>
-        </div> -->
         <div class="card-footer">
-          <button
+          <a
             [routerLink]="['/dashboard/lecture', p.id]"
             class="btn-continue"
-            [class.completed]="p.progression === 100"
+            [class.completed]="estTerminee(p)"
           >
-            {{
-              p.progression === 100
-                ? "Revoir la formation"
-                : "Continuer l'apprentissage"
-            }}
-          </button>
+            {{ estTerminee(p) ? "Revoir la formation" : "Continuer" }}
+            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+          </a>
           <button
-            *ngIf="p.progression === 100"
+            *ngIf="estTerminee(p)"
+            type="button"
             (click)="telechargerCertificat(p.formation.id)"
             class="btn-certificat"
+            [disabled]="certificatsEnCours.has(p.formation.id)"
             title="Obtenir mon certificat"
           >
-            <i class="fa fa-award"></i> Certificat
+            <i
+              class="fa"
+              [ngClass]="
+                certificatsEnCours.has(p.formation.id)
+                  ? 'fa-spinner fa-spin'
+                  : 'fa-award'
+              "
+              aria-hidden="true"
+            ></i>
+            Certificat
           </button>
         </div>
       </div>
-    </div>
+    </article>
+  </div>
+
+  <!-- Filtre sans résultat -->
+  <div
+    class="empty-state small"
+    *ngIf="
+      !isLoading &&
+      !errorMessage &&
+      progressions.length > 0 &&
+      formationsFiltrees.length === 0
+    "
+  >
+    <i class="fa fa-filter" aria-hidden="true"></i>
+    <h3>Aucune formation dans cette catégorie</h3>
+    <button type="button" class="btn-primary-link" (click)="setFiltre('TOUS')">
+      Voir toutes mes formations
+    </button>
   </div>
 </div>

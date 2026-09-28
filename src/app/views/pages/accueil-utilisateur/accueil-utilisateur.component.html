@@ -1,71 +1,174 @@
 <div class="dashboard-content">
   <header class="page-header">
     <div class="header-text">
-      <h1>Découvrir nos Formations</h1>
+      <h1>Découvrir nos formations</h1>
       <p>Élargissez vos compétences avec nos experts</p>
-    </div>
-    <div class="search-bar">
-      <i class="fa fa-search"></i>
-      <input
-        type="text"
-        [(ngModel)]="searchTerm"
-        placeholder="Rechercher une formation..."
-      />
     </div>
   </header>
 
+  <!-- Barre de recherche et filtres -->
+  <section class="filters" *ngIf="!isLoading && !errorMessage">
+    <div class="search-bar">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <input
+        type="search"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="applyFilters()"
+        placeholder="Rechercher une formation..."
+        aria-label="Rechercher une formation"
+      />
+    </div>
+
+    <div class="filter-group">
+      <select
+        [(ngModel)]="selectedCategorie"
+        (ngModelChange)="applyFilters()"
+        aria-label="Filtrer par catégorie"
+        *ngIf="categories.length > 0"
+      >
+        <option value="">Toutes les catégories</option>
+        <option *ngFor="let categorie of categories" [value]="categorie">
+          {{ categorie }}
+        </option>
+      </select>
+
+      <select
+        [(ngModel)]="selectedNiveau"
+        (ngModelChange)="applyFilters()"
+        aria-label="Filtrer par niveau"
+      >
+        <option value="">Tous les niveaux</option>
+        <option *ngFor="let niveau of niveaux" [value]="niveau.value">
+          {{ niveau.label }}
+        </option>
+      </select>
+
+      <button
+        type="button"
+        class="btn-reset"
+        (click)="resetFilters()"
+        *ngIf="hasActiveFilters"
+      >
+        <i class="fa fa-times"></i> Réinitialiser
+      </button>
+    </div>
+  </section>
+
+  <p class="results-count" *ngIf="!isLoading && !errorMessage && formations.length">
+    {{ formationsFiltrees.length }}
+    {{ formationsFiltrees.length > 1 ? "formations" : "formation" }}
+    <ng-container *ngIf="hasActiveFilters">sur {{ formations.length }}</ng-container>
+  </p>
+
+  <!-- Chargement -->
   <div *ngIf="isLoading" class="loader-container">
     <div class="spinner"></div>
     <p>Chargement des formations...</p>
   </div>
 
-  <div *ngIf="errorMessage" class="error-alert">
-    <i class="fa fa-exclamation-circle"></i>
-    {{ errorMessage }}
-    <button (click)="reload()">Réessayer</button>
+  <!-- Erreur -->
+  <div *ngIf="errorMessage && !isLoading" class="error-alert">
+    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+    <span>{{ errorMessage }}</span>
+    <button type="button" (click)="reload()">Réessayer</button>
   </div>
 
+  <!-- Catalogue : la carte entière est un lien -->
   <div class="formation-grid" *ngIf="!isLoading && !errorMessage">
-    <div class="formation-card" *ngFor="let formation of formations">
+    <a
+      class="formation-card"
+      *ngFor="let formation of formationsFiltrees; trackBy: trackById"
+      [routerLink]="['/dashboard/detail/formations', formation.id]"
+      [attr.aria-label]="'Voir le détail de la formation ' + formation.titre"
+    >
       <div class="card-image">
         <img
+          *ngIf="hasVisuel(formation); else visuelParDefaut"
           [src]="getImageFullUrl(formation.imageUrl)"
           [alt]="formation.titre"
+          loading="lazy"
+          (error)="onImageError(formation)"
         />
-        <span class="badge" [ngClass]="formation.niveau.toLowerCase()">{{
-          formation.niveau
-        }}</span>
+        <ng-template #visuelParDefaut>
+          <div class="image-placeholder" aria-hidden="true">
+            <i class="fa fa-graduation-cap"></i>
+          </div>
+        </ng-template>
+
+        <span class="badge-niveau" [ngClass]="formation.niveau.toLowerCase()">
+          {{ getNiveauLabel(formation.niveau) }}
+        </span>
+
+        <span
+          class="badge-suivi"
+          *ngIf="getProgression(formation.id) as prog"
+          [class.termine]="prog.progression === 100"
+        >
+          <i
+            class="fa"
+            [ngClass]="prog.progression === 100 ? 'fa-check-circle' : 'fa-play-circle'"
+          ></i>
+          {{ prog.progression === 100 ? "Terminée" : "En cours" }}
+        </span>
       </div>
 
       <div class="card-body">
-        <span class="category">{{ formation.categorie }}</span>
+        <span class="category" *ngIf="formation.categorie">
+          {{ formation.categorie }}
+        </span>
         <h3>{{ formation.titre }}</h3>
-        <p class="description">
-          {{ formation.description | slice : 0 : 100 }}...
-        </p>
+        <p class="description">{{ formation.description }}</p>
 
-        <div class="card-footer">
-          <div class="meta">
-            <span
-              ><i class="fa fa-clock"></i> {{ formation.dureeEstimee }}h</span
-            >
-            <span
-              ><i class="fa fa-list"></i>
-              {{ formation.nombreModules }} modules</span
-            >
+        <!-- Rappel d'avancement pour les formations déjà commencées -->
+        <div class="card-progress" *ngIf="getProgression(formation.id) as prog">
+          <div class="progress-bar-bg">
+            <div
+              class="progress-bar-fill"
+              [style.width.%]="prog.progression"
+            ></div>
           </div>
-          <button
-            class="btn-enroll"
-            [routerLink]="['/dashboard/detail/formations', formation.id]"
-          >
-            Voir le détail
-          </button>
+          <span>{{ prog.progression }}% complété</span>
         </div>
       </div>
-    </div>
+
+      <div class="card-footer">
+        <div class="meta">
+          <span>
+            <i class="fa fa-clock" aria-hidden="true"></i>
+            {{ formation.dureeEstimee }}h
+          </span>
+          <span>
+            <i class="fa fa-list" aria-hidden="true"></i>
+            {{ formation.nombreModules }}
+            {{ formation.nombreModules > 1 ? "modules" : "module" }}
+          </span>
+        </div>
+        <span class="card-cta">
+          {{ getProgression(formation.id) ? "Reprendre" : "Voir le détail" }}
+          <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </span>
+      </div>
+    </a>
   </div>
 
-  <div class="no-data" *ngIf="!isLoading && formations.length === 0">
-    <p>Aucune formation n'est disponible pour le moment.</p>
+  <!-- Aucun résultat après filtrage -->
+  <div
+    class="no-data"
+    *ngIf="!isLoading && !errorMessage && formations.length > 0 && formationsFiltrees.length === 0"
+  >
+    <i class="fa fa-search" aria-hidden="true"></i>
+    <h3>Aucune formation ne correspond à votre recherche</h3>
+    <p>Essayez d'élargir vos critères ou réinitialisez les filtres.</p>
+    <button type="button" (click)="resetFilters()">Réinitialiser les filtres</button>
+  </div>
+
+  <!-- Catalogue vide -->
+  <div
+    class="no-data"
+    *ngIf="!isLoading && !errorMessage && formations.length === 0"
+  >
+    <i class="fa fa-book-open" aria-hidden="true"></i>
+    <h3>Aucune formation disponible</h3>
+    <p>De nouvelles formations seront publiées prochainement.</p>
   </div>
 </div>

@@ -5,3 +5,60 @@
 @import "glightbox/dist/css/glightbox.min.css";
 @import "bootstrap/dist/css/bootstrap.min.css";
 @import "../public/assets/scss/main.scss";
+
+/* ==========================================================================
+   Tokens de l'espace apprenant (/dashboard)
+   Variables CSS globales : utilisables dans tous les composants du dashboard
+   sans avoir à dupliquer la palette dans chaque fichier .scss.
+   ========================================================================== */
+:root {
+  /* Couleurs de marque */
+  --dash-primary: #2563eb;
+  --dash-primary-dark: #1d4ed8;
+  --dash-primary-soft: #eff6ff;
+  --dash-primary-border: #bfdbfe;
+
+  /* Neutres */
+  --dash-bg: #f4f7fe;
+  --dash-surface: #ffffff;
+  --dash-sidebar: #1a202c;
+  --dash-sidebar-hover: #2d3748;
+
+  /* Texte */
+  --dash-text: #1a202c;
+  --dash-text-muted: #64748b;
+  --dash-text-light: #94a3b8;
+
+  /* Bordures et ombres */
+  --dash-border: #e2e8f0;
+  --dash-radius: 14px;
+  --dash-radius-sm: 8px;
+  --dash-shadow: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --dash-shadow-lg: 0 12px 28px rgba(15, 23, 42, 0.1);
+
+  /* Statuts */
+  --dash-success: #16a34a;
+  --dash-success-soft: #dcfce7;
+  --dash-warning: #d97706;
+  --dash-warning-soft: #fef3c7;
+  --dash-danger: #dc2626;
+  --dash-danger-soft: #fee2e2;
+
+  /* Gabarit */
+  --dash-sidebar-width: 260px;
+  --dash-topbar-height: 60px;
+}
+
+/* Le viewport ne doit jamais défiler horizontalement (site public + dashboard) */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Garde-fou responsive : les médias ne débordent jamais de leur conteneur */
+img,
+video,
+iframe {
+  max-width: 100%;
+}

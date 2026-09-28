@@ -1,4 +1,14 @@
-<div class="lecture-layout" *ngIf="!isLoading">
+<div
+  class="lecture-layout"
+  *ngIf="!isLoading"
+  [class.sommaire-open]="isSommaireOpen"
+>
+  <!-- Bascule du sommaire : visible uniquement sur petit écran -->
+  <button type="button" class="sommaire-toggle" (click)="toggleSommaire()">
+    <i class="fa" [ngClass]="isSommaireOpen ? 'fa-times' : 'fa-list-ul'"></i>
+    {{ isSommaireOpen ? "Fermer le sommaire" : "Sommaire de la formation" }}
+  </button>
+
   <aside class="sidebar">
     <div class="sidebar-header">
       <button class="btn-back" routerLink="/dashboard/mes-formations">

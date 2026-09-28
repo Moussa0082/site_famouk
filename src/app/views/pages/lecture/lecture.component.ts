@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProgressionService } from '../../../service/progression.service';
 import { ModuleService } from '../../../service/module.service';
 import { CoursService } from '../../../service/cours.service';
@@ -30,7 +30,7 @@ interface ModuleUI extends ModuleResponse {
 @Component({
   selector: 'app-lecture',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './lecture.component.html',
   styleUrl: './lecture.component.scss',
 })
@@ -56,6 +56,13 @@ export class LectureComponent implements OnInit {
   isLoading = true;
   currentQuiz: QuizResponseDTO | null = null;
   showQuiz = false;
+
+  /** Sommaire des modules : replié par défaut sur mobile. */
+  isSommaireOpen = false;
+
+  toggleSommaire() {
+    this.isSommaireOpen = !this.isSommaireOpen;
+  }
 
   constructor(private router: Router) {}
 
@@ -167,6 +174,7 @@ export class LectureComponent implements OnInit {
   selectCours(cours: CoursResponseDTO) {
     this.currentCours = cours;
     this.showQuiz = false;
+    this.isSommaireOpen = false;
   }
 
   validerLeconActuelle() {
@@ -223,6 +231,7 @@ export class LectureComponent implements OnInit {
       this.currentQuiz = module.quiz;
       this.currentCours = null; // Désactive le mode cours
       this.showQuiz = true; // Active le mode quiz
+      this.isSommaireOpen = false;
     } else {
       // Si le quiz n'est pas encore chargé en mémoire, on le charge
       this.loadQuizForModule(module);

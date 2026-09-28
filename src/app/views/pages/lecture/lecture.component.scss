@@ -397,3 +397,131 @@
     margin-right: 10px;
   }
 }
+
+/* ==========================================================================
+   Bascule du sommaire : masquée sur desktop, où la colonne est déjà visible
+   ========================================================================== */
+.sommaire-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 18px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: white;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  margin-bottom: 14px;
+}
+
+/* La hauteur tient compte du padding vertical du conteneur du dashboard,
+   pour éviter que la page ne déborde sous la fenêtre. */
+.lecture-layout {
+  height: calc(100vh - 60px);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 991.98px) {
+  .lecture-layout {
+    /* Le sommaire passe au-dessus du lecteur, en pleine largeur */
+    flex-direction: column;
+    height: auto;
+
+    .sommaire-toggle {
+      display: flex;
+    }
+
+    .sidebar {
+      width: 100%;
+      border-right: none;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin-bottom: 18px;
+      max-height: 60vh;
+
+      /* Replié par défaut : on ne l'affiche qu'à la demande */
+      display: none;
+    }
+
+    &.sommaire-open .sidebar {
+      display: flex;
+    }
+
+    .content-viewer {
+      overflow: visible;
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .lecture-layout {
+    .sidebar .sidebar-header {
+      padding: 18px;
+
+      h2 {
+        font-size: 1rem;
+      }
+    }
+
+    .content-viewer .content-footer {
+      padding: 18px 0;
+
+      .lesson-header {
+        /* Titre et bouton de validation empilés */
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+
+        h1 {
+          font-size: 1.25rem;
+        }
+
+        .btn-complete {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .quiz-view {
+    padding: 0;
+
+    .quiz-header {
+      .d-flex {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 12px;
+      }
+
+      h1 {
+        font-size: 1.3rem;
+      }
+
+      .quiz-meta {
+        text-align: left !important;
+      }
+    }
+
+    .question-card .d-flex {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  }
+
+  .video-section {
+    padding: 10px;
+  }
+
+  /* La fenêtre de résultat doit rester lisible sur petit écran */
+  .result-modal {
+    width: 92%;
+    max-height: 88vh;
+    overflow-y: auto;
+  }
+}

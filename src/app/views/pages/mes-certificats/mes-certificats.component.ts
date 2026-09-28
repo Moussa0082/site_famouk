@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import {
   CertificatResponse,
   CertificatService,
@@ -13,7 +14,7 @@ import { UtilisateurService } from '../../../service/utilisateur.service';
 @Component({
   selector: 'app-mes-certificats',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './mes-certificats.component.html',
   styleUrl: './mes-certificats.component.scss',
 })

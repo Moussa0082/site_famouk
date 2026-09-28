@@ -95,3 +95,16 @@
     }
   }
 }
+
+/* ==========================================================================
+   Responsive : la carte ne doit pas coller aux bords de l'écran
+   ========================================================================== */
+@media (max-width: 575.98px) {
+  .login-container {
+    padding: 16px 12px;
+
+    .login-card {
+      padding: 1.75rem 1.25rem;
+    }
+  }
+}

@@ -1,9 +1,10 @@
 // formation-detail.component.ts
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-formation-detail',
+  imports: [RouterLink],
   templateUrl: './formation-detail.component.html',
   styleUrls: ['./formation-detail.component.scss']
 })

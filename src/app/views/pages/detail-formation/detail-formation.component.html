@@ -1,111 +1,240 @@
-<div class="detail-container" *ngIf="formation">
-  <section class="formation-header">
-    <div class="header-content">
-      <span class="badge">{{ formation.categorie }}</span>
-      <h1>{{ formation.titre }}</h1>
-      <div class="description-container">
-        <p class="formation-description">
-          {{ formation.description }}
-        </p>
-      </div>
+<div class="detail-page">
+  <!-- Fil d'Ariane -->
+  <nav class="breadcrumb-nav" *ngIf="!isLoading">
+    <a routerLink="/dashboard/formations">
+      <i class="fa fa-arrow-left" aria-hidden="true"></i> Retour au catalogue
+    </a>
+  </nav>
 
-      <div class="meta-info">
-        <span><i class="fa fa-signal"></i> {{ formation.niveau }}</span>
-        <span
-          ><i class="fa fa-clock"></i> {{ formation.dureeEstimee }} heures</span
-        >
-        <span
-          ><i class="fa fa-folder-open"></i> {{ modules.length }} Modules</span
-        >
-      </div>
+  <!-- Erreur de chargement -->
+  <div class="error-alert" *ngIf="errorMessage && !isLoading">
+    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+    <span>{{ errorMessage }}</span>
+    <a routerLink="/dashboard/formations">Voir le catalogue</a>
+  </div>
 
-      <button class="btn-start" (click)="demarrerFormation()">
-        <ng-container *ngIf="!isStarted; else continueLabel">
-          <i class="fa fa-play-circle"></i> Démarrer la formation
-        </ng-container>
-        <ng-template #continueLabel>
-          <i class="fa fa-eye"></i> Voir la formation
-        </ng-template>
-      </button>
-    </div>
+  <div class="detail-container" *ngIf="formation && !isLoading">
+    <!-- ================= En-tête ================= -->
+    <section class="formation-header">
+      <div class="header-content">
+        <span class="badge-categorie" *ngIf="formation.categorie">
+          {{ formation.categorie }}
+        </span>
 
-    <div class="header-image">
-      <img
-        [src]="getImageFullUrl(formation.imageUrl)"
-        [alt]="formation.titre"
-      />
-    </div>
-  </section>
+        <h1>{{ formation.titre }}</h1>
 
-  <section class="formation-content">
-    <h2>Programme de la formation</h2>
+        <div class="description-container">
+          <p class="formation-description">{{ formation.description }}</p>
+        </div>
 
-    <div *ngIf="modules.length === 0 && !isLoading" class="no-modules">
-      <p>Aucun module n'est disponible pour cette formation.</p>
-    </div>
+        <div class="meta-info">
+          <span>
+            <i class="fa fa-signal" aria-hidden="true"></i>
+            {{ getNiveauLabel(formation.niveau) }}
+          </span>
+          <span>
+            <i class="fa fa-clock" aria-hidden="true"></i>
+            {{ formation.dureeEstimee }} heures
+          </span>
+          <span>
+            <i class="fa fa-folder-open" aria-hidden="true"></i>
+            {{ modules.length }}
+            {{ modules.length > 1 ? "modules" : "module" }}
+          </span>
+        </div>
 
-    <div class="modules-list">
-      <div class="module-item" *ngFor="let module of modules; let i = index">
-        <div class="module-header" (click)="toggleModule(i)">
-          <div class="module-title">
-            <span class="module-number">Module {{ i + 1 }}</span>
-            <h3>{{ module.titre }}</h3>
+        <!-- Avancement, uniquement si la formation est déjà commencée -->
+        <div class="progression-bloc" *ngIf="isStarted">
+          <div class="progression-head">
+            <span>Votre progression</span>
+            <strong>{{ progressionPourcent }}%</strong>
           </div>
+          <div class="progress-bar-bg">
+            <div
+              class="progress-bar-fill"
+              [style.width.%]="progressionPourcent"
+            ></div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="btn-start"
+          [class.is-started]="isStarted"
+          [disabled]="isSubmitting"
+          (click)="onActionPrincipale()"
+        >
+          <ng-container *ngIf="isSubmitting; else libelleBouton">
+            <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+            Inscription en cours...
+          </ng-container>
+          <ng-template #libelleBouton>
+            <ng-container *ngIf="isStarted; else demarrerLabel">
+              <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+              Suivre la formation
+            </ng-container>
+            <ng-template #demarrerLabel>
+              <i class="fa fa-play-circle" aria-hidden="true"></i>
+              Démarrer la formation
+            </ng-template>
+          </ng-template>
+        </button>
+      </div>
+
+      <div class="header-image">
+        <img
+          *ngIf="hasVisuel; else visuelParDefaut"
+          [src]="getImageFullUrl(formation.imageUrl)"
+          [alt]="formation.titre"
+          (error)="onImageError()"
+        />
+        <ng-template #visuelParDefaut>
+          <div class="image-placeholder" aria-hidden="true">
+            <i class="fa fa-graduation-cap"></i>
+          </div>
+        </ng-template>
+      </div>
+    </section>
+
+    <!-- ================= Programme ================= -->
+    <section class="formation-content">
+      <div class="section-head">
+        <h2>Programme de la formation</h2>
+        <!-- Rappel visible tant que la formation n'est pas démarrée -->
+        <span class="lock-hint" *ngIf="!isStarted">
+          <i class="fa fa-lock" aria-hidden="true"></i>
+          Démarrez la formation pour débloquer les cours
+        </span>
+      </div>
+
+      <div *ngIf="modules.length === 0" class="no-modules">
+        <i class="fa fa-folder-open" aria-hidden="true"></i>
+        <p>Aucun module n'est disponible pour cette formation.</p>
+      </div>
+
+      <div class="modules-list">
+        <div class="module-item" *ngFor="let module of modules; let i = index">
+          <button
+            type="button"
+            class="module-header"
+            (click)="toggleModule(i)"
+            [attr.aria-expanded]="module.isOpen"
+          >
+            <div class="module-title">
+              <span class="module-number">Module {{ i + 1 }}</span>
+              <h3>{{ module.titre }}</h3>
+              <span class="module-meta">
+                <span *ngIf="module.nombreCours">
+                  {{ module.nombreCours }} cours
+                </span>
+                <span *ngIf="module.dureeEstimee">
+                  · {{ module.dureeEstimee }} min
+                </span>
+                <span class="quiz-tag" *ngIf="module.hasQuiz">· Quiz</span>
+              </span>
+            </div>
+            <i
+              class="fa chevron"
+              [ngClass]="module.isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"
+              aria-hidden="true"
+            ></i>
+          </button>
+
+          <div class="module-body" *ngIf="module.isOpen">
+            <p class="module-description" *ngIf="module.description">
+              {{ module.description }}
+            </p>
+
+            <div *ngIf="module.isLessonsLoading" class="loader-cours">
+              <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+              Chargement des leçons...
+            </div>
+
+            <ul
+              class="cours-list"
+              *ngIf="
+                !module.isLessonsLoading &&
+                  module.cours &&
+                  module.cours.length > 0;
+                else noCourses
+              "
+            >
+              <!-- Chaque leçon est cliquable : verrouillée tant que la
+                   formation n'est pas démarrée. -->
+              <li
+                class="cours-item"
+                *ngFor="let cours of module.cours"
+                [class.locked]="!isStarted"
+                (click)="lireCours(cours)"
+                (keydown.enter)="lireCours(cours)"
+                tabindex="0"
+                role="button"
+                [attr.aria-label]="
+                  (isStarted ? 'Lire le cours ' : 'Cours verrouillé : ') +
+                  cours.titre
+                "
+              >
+                <div class="cours-info">
+                  <i
+                    class="fa"
+                    [ngClass]="getCoursIcon(cours.typeContenu)"
+                    aria-hidden="true"
+                  ></i>
+                  <span class="cours-titre">{{ cours.titre }}</span>
+                </div>
+
+                <span class="cours-action">
+                  <i
+                    class="fa"
+                    [ngClass]="isStarted ? 'fa-play' : 'fa-lock'"
+                    aria-hidden="true"
+                  ></i>
+                </span>
+              </li>
+            </ul>
+
+            <ng-template #noCourses>
+              <p class="empty-msg" *ngIf="!module.isLessonsLoading">
+                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                Aucun cours disponible dans ce module.
+              </p>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+
+      <!-- Appel à l'action de bas de page -->
+      <div class="bottom-cta" *ngIf="modules.length > 0">
+        <div class="cta-text">
+          <strong>{{
+            isStarted ? "Reprenez où vous vous êtes arrêté" : "Prêt à commencer ?"
+          }}</strong>
+          <span>{{
+            isStarted
+              ? "Retrouvez vos cours et vos quiz dans l'espace de lecture."
+              : "Démarrez la formation pour accéder à l'ensemble des cours."
+          }}</span>
+        </div>
+        <button
+          type="button"
+          class="btn-start"
+          [class.is-started]="isStarted"
+          [disabled]="isSubmitting"
+          (click)="onActionPrincipale()"
+        >
           <i
             class="fa"
-            [ngClass]="module.isOpen ? 'fa-chevron-up' : 'fa-chevron-down'"
+            [ngClass]="isStarted ? 'fa-graduation-cap' : 'fa-play-circle'"
+            aria-hidden="true"
           ></i>
-        </div>
-
-        <div class="module-body" *ngIf="module.isOpen">
-          <p class="module-description" *ngIf="module.description">
-            {{ module.description }}
-          </p>
-
-          <div *ngIf="module.isLessonsLoading" class="loader-cours">
-            <i class="fa fa-spinner fa-spin"></i> Chargement des leçons...
-          </div>
-
-          <ul
-            class="cours-list"
-            *ngIf="
-              !module.isLessonsLoading &&
-                module.cours &&
-                module.cours.length > 0;
-              else noCourses
-            "
-          >
-            <li class="cours-item" *ngFor="let cours of module.cours">
-              <div class="cours-info">
-                <i
-                  class="fa"
-                  [ngClass]="{
-                    'fa-play-circle': cours.typeContenu === 'VIDEO',
-                    'fa-file-text': cours.typeContenu === 'TEXTE',
-                    'fa-file-pdf': cours.typeContenu === 'PDF'
-                  }"
-                ></i>
-                <span class="cours-titre">{{ cours.titre }}</span>
-              </div>
-
-              <button class="btn-read" (click)="lireCours(cours)">
-                <i class="fa fa-eye"></i>
-              </button>
-            </li>
-          </ul>
-
-          <ng-template #noCourses>
-            <p class="empty-msg" *ngIf="!module.isLessonsLoading">
-              <i class="fa fa-info-circle"></i> Aucun cours disponible dans ce
-              module.
-            </p>
-          </ng-template>
-        </div>
+          {{ isStarted ? "Suivre la formation" : "Démarrer la formation" }}
+        </button>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </div>
 
 <div *ngIf="isLoading" class="loader-overlay">
   <div class="spinner"></div>
+  <p>Chargement de la formation...</p>
 </div>

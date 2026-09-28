@@ -1,3 +1,200 @@
+/* ==========================================================================
+   Liste des certificats (affichage à l'écran)
+   ========================================================================== */
+.certificats-page {
+  .page-header {
+    margin-bottom: 26px;
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--dash-text);
+      margin: 0;
+    }
+
+    p {
+      color: var(--dash-text-muted);
+      margin: 6px 0 0;
+      font-size: 0.95rem;
+    }
+  }
+
+  .certificats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 22px;
+  }
+
+  .certificat-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--dash-surface);
+    border: 1px solid var(--dash-border);
+    border-radius: var(--dash-radius);
+    overflow: hidden;
+    box-shadow: var(--dash-shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--dash-shadow-lg);
+    }
+
+    .cert-ribbon {
+      height: 92px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+      color: #fbbf24;
+      font-size: 2.4rem;
+    }
+
+    .cert-body {
+      padding: 20px;
+      flex-grow: 1;
+
+      h3 {
+        font-size: 1.05rem;
+        font-weight: 650;
+        color: var(--dash-text);
+        margin: 0 0 10px;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+      }
+
+      .cert-date {
+        color: var(--dash-text-muted);
+        font-size: 0.85rem;
+        margin: 0 0 12px;
+
+        i {
+          margin-right: 7px;
+          color: var(--dash-primary);
+        }
+      }
+
+      .cert-num {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 999px;
+        background: var(--dash-primary-soft);
+        color: var(--dash-primary);
+        font-size: 0.76rem;
+        font-weight: 600;
+        overflow-wrap: anywhere;
+      }
+    }
+
+    .btn-download {
+      margin: 0 20px 20px;
+      padding: 11px 16px;
+      border-radius: var(--dash-radius-sm);
+      border: 1px solid var(--dash-primary);
+      background: var(--dash-surface);
+      color: var(--dash-primary);
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+
+      i {
+        margin-right: 7px;
+      }
+
+      &:hover {
+        background: var(--dash-primary);
+        color: white;
+      }
+    }
+  }
+
+  .loader-container {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--dash-text-muted);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 64px 20px;
+    background: var(--dash-surface);
+    border: 1px dashed var(--dash-border);
+    border-radius: var(--dash-radius);
+
+    i {
+      font-size: 2.5rem;
+      color: var(--dash-text-light);
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: var(--dash-text);
+      margin: 0 0 8px;
+    }
+
+    p {
+      color: var(--dash-text-muted);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .btn-primary-link {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 11px 22px;
+      border-radius: var(--dash-radius-sm);
+      background: var(--dash-primary);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+
+      &:hover {
+        background: var(--dash-primary-dark);
+      }
+    }
+  }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e2e8f0;
+  border-top-color: var(--dash-primary);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin: 0 auto 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .certificats-page {
+    .page-header h1 {
+      font-size: 1.45rem;
+    }
+
+    .certificats-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .certificat-card:hover {
+      transform: none;
+    }
+  }
+}
+
+/* ==========================================================================
+   Zone d'impression du certificat (capturée par html2canvas)
+   Dimensions fixes volontaires : elles définissent le rendu du PDF et ne
+   doivent surtout pas devenir responsives.
+   ========================================================================== */
 .certificat-print-area {
   width: 1100px; // Largeur pour le rendu
   height: 780px;

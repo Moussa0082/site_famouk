@@ -14,7 +14,35 @@ import { PageScrollComponent } from "../page-scroll/page-scroll.component";
     RouterLink,            // ✅ obligatoire pour <a routerLink="...">
     NavbarComponent, RouterOutlet, FooterComponent, SubscribeComponent, MobileSidebarComponent, PageScrollComponent],
   templateUrl: './layout.component.html',
-  styles: ``
+  styles: `
+    /* Le thème ne dimensionnait pas ce logo : l'emplacement contenait
+       auparavant du texte, pas une image. */
+    .mobile-logo {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .mobile-logo a {
+      display: inline-flex;
+      align-items: center;
+      line-height: 0;
+    }
+
+    .mobile-logo img {
+      height: 38px;
+      width: auto;
+      max-width: 190px;
+      object-fit: contain;
+    }
+
+    @media (max-width: 400px) {
+      .mobile-logo img {
+        height: 32px;
+        max-width: 150px;
+      }
+    }
+  `
 })
 export class LayoutComponent {
   isMenuOpen = false;
